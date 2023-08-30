@@ -24,7 +24,8 @@ const Submit = () => {
         email: "",
         address: "",
         detail_address: "",
-        portfolio: ""
+        portfolio: "",
+        approve: false
     })
 
     const inputChange = (name, value) => {
@@ -45,7 +46,7 @@ const Submit = () => {
                 finalFocusRef={finalRef}
                 isOpen={isOpen}
                 onClose={onClose}
-                size={'lg'}
+                size={'xl'}
             >
                 <ModalOverlay />
                 <ModalContent>
@@ -55,10 +56,10 @@ const Submit = () => {
                         <Stack direction={'column'} spacing={4}>
                             <UserProfileEdit isRequired={false} label={'프로필 이미지'} profile={inputData.profileImage} setUrl={(value) => inputChange('profileImage', value)} />
                             <RadioInput isRequired={true} label={'구분'} defaultValue={inputData.division} list={['Shop', 'Florist']} onChange={(value) => inputChange('division', value)} />
-                            <TextInput isRequired={true} label={'이름'} onChange={(value) => inputChange('name', value)} />
-                            <DateInput isRequired={true} label={'생년월일'} onChange={(value) => inputChange('birth', value)} />
-                            <TextInput isRequired={true} label={'전화번호'} onChange={(value) => inputChange('number', value)} />
-                            <MailInput isRequired={true} label={'이메일'} isError={inputData.email === "" || !(inputData.email.includes('@') && inputData.email.includes('.'))} onChange={(value) => inputChange('email', value)} />
+                            <TextInput isRequired={true} label={'이름'} defaultValue={inputData.name} onChange={(value) => inputChange('name', value)} />
+                            <DateInput isRequired={true} label={'생년월일'} defaultValue={inputData.birth} onChange={(value) => inputChange('birth', value)} />
+                            <TextInput isRequired={true} label={'전화번호'} defaultValue={inputData.number} onChange={(value) => inputChange('number', value)} />
+                            <MailInput isRequired={true} label={'이메일'} defaultValue={inputData.email} isError={inputData.email === "" || !(inputData.email.includes('@') && inputData.email.includes('.'))} onChange={(value) => inputChange('email', value)} />
 
                             <HStack alignItems={'flex-end'}>
                                 <TextInput isRequired={true} label={'주소'} defaultValue={inputData.address} disabled={true} onChange={(value) => inputChange('address', value)} />
@@ -77,8 +78,8 @@ const Submit = () => {
 
                             <TextInput isRequired={false} label={'상세주소'} defaultValue={inputData.detail_address} onChange={(value) => inputChange('detail_address', value)} />
 
-                            <FileUploader isRequired={false} label={'사업자등록증'} file={getPath(inputData.business)} accept=".jpg,.pdf" setUrl={(value) => inputChange('business', value)} />
-                            <FileUploader isRequired={false} label={'포트폴리오'} file={getPath(inputData.portfolio)} accept=".jpg,.pdf" setUrl={(value) => inputChange('portfolio', value)} />
+                            <FileUploader isRequired={false} label={'사업자등록증'} file={inputData.business} accept=".jpg,.pdf" setUrl={(value) => inputChange('business', value)} />
+                            <FileUploader isRequired={false} label={'포트폴리오'} file={inputData.portfolio} accept=".jpg,.pdf" setUrl={(value) => inputChange('portfolio', value)} />
 
                         </Stack>
                     </ModalBody>

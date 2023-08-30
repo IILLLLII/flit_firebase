@@ -44,6 +44,7 @@ import Customer from '../Pages/Owner/Shop/Customer'
 import ChatList, { ChatRoom } from '../Pages/Owner/Shop/Chat'
 import Login from '../Pages/Owner/Login'
 import Submit from '../Pages/Owner/Submit'
+import Footer from './Footer'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -64,7 +65,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          FLIT
+          OWNER
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
@@ -250,14 +251,14 @@ const MobileNav = ({ onOpen, ...rest }) => {
         fontSize="2xl"
         fontFamily="monospace"
         fontWeight="bold">
-        FLIT
+        OWNER
       </Text>
 
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
           <HStack>
-          <Login/>
-        <Submit/>
+            <Login />
+            {(localStorage.getItem('ownerToken') === "" || !localStorage.getItem('ownerToken')) && <Submit />}
           </HStack>
           {/* <Menu>
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
@@ -315,7 +316,7 @@ const SidebarWithHeader = () => {
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 60 }} p="4" justifyContent={'space-between'} minHeight={'100vh'}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -340,6 +341,7 @@ const SidebarWithHeader = () => {
             <Route path='/shop/chat/*' element={<ChatRoom />} />
           </Routes>
         </BrowserRouter>
+        <Footer />
       </Box>
     </Box>
   )

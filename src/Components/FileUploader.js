@@ -2,6 +2,7 @@ import { Stack, Button, FormControl, FormLabel, Input} from "@chakra-ui/react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useRef } from "react";
 import { storage } from "../DB/firebase-config";
+import { getPath } from "../DB/function";
 
 export function FileUploader({ isRequired, label, file, ...props }) {
     const imageInputRef = useRef();
@@ -33,8 +34,9 @@ export function FileUploader({ isRequired, label, file, ...props }) {
         <FormControl id="userName" isRequired={isRequired}>
             <FormLabel>{label}</FormLabel>
             <Stack direction={['column', 'row']}>
-                <Input defaultValue={file} disabled={true} _disabled={{ color: 'black' }} placeholder={`${label} (${props.accept} 첨부)`} />
+                <Input defaultValue={getPath(file)} disabled={true} _disabled={{ color: 'black' }} placeholder={`${label} (${props.accept} 첨부)`} />
                 <Button onClick={() => handleClick()}>첨부파일</Button>
+                <Button as={'a'} href={file}>미리보기</Button>
                 <input
                     type="file"
                     ref={imageInputRef}

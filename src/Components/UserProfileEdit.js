@@ -44,7 +44,7 @@ export function UserProfileEdit({ isRequired, label, profile, ...props }) {
     return (
         <FormControl id="userName" isRequired={isRequired}>
         <FormLabel>{label}</FormLabel>
-        <Stack direction={['column', 'row']} spacing={6}>
+        <Stack direction={'column'} spacing={6}>
             <Center>
                 <Avatar size="xl" src={profile} bgColor={'gray.400'}>
                     <AvatarBadge
@@ -61,7 +61,7 @@ export function UserProfileEdit({ isRequired, label, profile, ...props }) {
                 </Avatar>
             </Center>
             <Center w="full">
-                <Button w="full" onClick={() => handleClick()}>이미지 변경</Button>
+                <Button w="150px" onClick={() => handleClick()}>이미지 변경</Button>
                 <input
                     type="file"
                     ref={imageInputRef}

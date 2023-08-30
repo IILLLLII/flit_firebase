@@ -1,69 +1,51 @@
-import { Flex, useColorModeValue, Stack, Heading, Checkbox, Box, Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, Image, Container, Menu, MenuButton, HStack, Avatar, VStack, MenuList, MenuItem, MenuDivider, FormErrorMessage } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Flex, useColorModeValue, Stack, Heading, Checkbox, Box, Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Text, useDisclosure, Image, Container, Menu, MenuButton, HStack, Avatar, VStack, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react";
+import React, { useState } from "react";
 import { SecondaryButton } from "../../Style/Button";
-import { compareAccount, getAccount, getDocument } from "../../DB/function";
 
 const Login = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const [account, setAccout] = useState({})
 
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+
+    const adminAccout = {
+        id: 'illi@illi.kr',
+        password: 'illi0606!'
+    }
 
     const [inputData, setInputData] = useState({
         id: '',
         password: ''
     })
-    const [isError, setError] = useState(false);
 
-    useEffect(() => {
-        getAuth()
-    }, []);
-
-    const getAuth = async() => {
-        console.log(localStorage.getItem('ownerToken'))
-        let accout_ = await getDocument('Submit', localStorage.getItem('ownerToken'))
-        setAccout(accout_)
-    }
-
-    const login = async() => {
-        // 이메일로 문서를 가지고와서 비밀번호를 대조
-        let accout_ = await getAccount(inputData.id, inputData.password);
-        setAccout(accout_)
-        if(accout_.email == inputData.id && accout_.password == inputData.password)
-        {
-            localStorage.setItem('onwerId', inputData.id)
-            localStorage.setItem('ownerPw', inputData.password)
-            localStorage.setItem('ownerToken', accout_.id)
+    const login = () => {
+        if (adminAccout.id === inputData.id && adminAccout.password === inputData.password) {
+            localStorage.setItem('adminId', inputData.id)
+            localStorage.setItem('adminPw', inputData.password)
             onClose();
-            setError(false);
-        }
-        else
-        {
-            setError(true);
         }
     }
 
     return (
         <>
-        {(localStorage.getItem('onwerId') === account.email && localStorage.getItem('ownerPw') === account.password) ?
+        {(localStorage.getItem('adminId') === adminAccout.id && localStorage.getItem('adminPw') === adminAccout.password) ?
                        <Menu>
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
               <HStack>
-                <Avatar
+                <Image
+                    h={'40px'}
                   src={
-                    account.profile
+                    'http://www.illi.kr/static/img/mainlogo.png'
                   }
-                  bgColor={'gray.400'}
                 />
                 <VStack
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="flex-start"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm">{account.name}</Text>
+                  <Text fontSize="sm">일리</Text>
                   <Text fontSize="xs" color="gray.600">
-                    {account.grade}
+                    관리자
                   </Text>
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -71,7 +53,7 @@ const Login = () => {
               </HStack>
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => {localStorage.removeItem('ownerId'); localStorage.removeItem('ownerPw'); window.location.reload();}}>로그아웃</MenuItem>
+              <MenuItem onClick={() => {localStorage.removeItem('adminId'); localStorage.removeItem('adminPw'); window.location.reload();}}>로그아웃</MenuItem>
             </MenuList>
           </Menu> :
             <Button {...SecondaryButton} onClick={onOpen}>로그인</Button>
@@ -97,7 +79,8 @@ const Login = () => {
                             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                                 <Stack align={'center'} spacing={4}>
                                     <Image src={require('../../Asset/Logo.png')} width={'100px'} />
-                                    <Heading fontSize={'3xl'}>로그인</Heading>
+                                    <Heading fontSize={'3xl'}>관리자 로그인</Heading>
+                                    <Text color={'blue.400'}>오늘도 화이팅 ✌️</Text>
                                 </Stack>
                                 <Box
                                     rounded={'lg'}
@@ -114,7 +97,6 @@ const Login = () => {
                                         <FormControl id="password">
                                             <FormLabel>Password</FormLabel>
                                             <Input type="password" onChange={(e) => setInputData({ ...inputData, password: e.target.value })} />
-                                            {isError && <Text color='red.500'>로그인 정보를 다시 확인해주세요.</Text>}
                                         </FormControl>
                                         <Stack spacing={10}>
                                             <Button
