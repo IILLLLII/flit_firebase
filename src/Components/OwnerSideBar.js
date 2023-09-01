@@ -45,6 +45,7 @@ import ChatList, { ChatRoom } from '../Pages/Owner/Shop/Chat'
 import Login from '../Pages/Owner/Login'
 import Submit from '../Pages/Owner/Submit'
 import Footer from './Footer'
+import { useState } from 'react'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -73,7 +74,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Stack spacing={0}>
         <NavItem link={'/'}>HOME</NavItem>
 
-        <Accordion defaultIndex={parseInt(localStorage.getItem('openIndex'))} onChange={(e) => localStorage.setItem('openIndex', e)}>
+        <Accordion allowMultiple defaultIndex={parseInt(localStorage.getItem('openIndex'))} onChange={(e) => localStorage.setItem('openIndex', e)}>
           <AccordionItem>
             <AccordionButton p={0} w={'100%'}>
               <NavTitle>주문 관리<AccordionIcon /></NavTitle>
@@ -227,6 +228,7 @@ const NavSubTitle = ({ icon, children, ...rest }) => {
 }
 
 const MobileNav = ({ onOpen, ...rest }) => {
+  const [authToken, setToken] = useState(localStorage.getItem('ownerToken'))
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -257,8 +259,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
           <HStack>
-            <Login />
-            {(localStorage.getItem('ownerToken') === "" || !localStorage.getItem('ownerToken')) && <Submit />}
+            <Login onLogin={() => console.log('close!!!!!')}/>
+            {(!authToken || authToken == "") && <Submit />}
           </HStack>
           {/* <Menu>
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>

@@ -43,7 +43,7 @@ const SubmitView = () => {
 
     const updateSubmit = async() => {
         let approve_ = inputData.approve === "승인" ? "미승인" : "승인";
-        await updateData('Submit', inputData.id, {...inputData, grade:'Flinney', approve: approve_, password: v4().split('-')[0]})
+        await updateData('Owner', inputData.id, {...inputData, grade:'Flinney', approve: approve_, password: v4().split('-')[0]})
     }
 
     return (

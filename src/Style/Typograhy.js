@@ -15,3 +15,16 @@ export const Title_lg = {
     fontWeight: 700,
     mb: 2
 }
+
+export const Title_sm = {
+    fontSize: 'sm',
+    fontWeight: 600,
+}
+
+export const Body_lg = {
+    fontSize: 'lg',
+}
+
+export const Body_sm = {
+    fontSize: 'sm',
+}

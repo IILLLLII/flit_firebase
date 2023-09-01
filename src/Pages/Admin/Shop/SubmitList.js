@@ -28,7 +28,7 @@ const SubmitList = () => {
     }, []);
 
     const getList = async () => {
-        let _list = await getAllList('Submit');
+        let _list = await getAllList('Owner');
         setSubmitList(_list)
         console.log(_list)
     }

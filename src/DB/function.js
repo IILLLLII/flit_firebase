@@ -48,7 +48,7 @@ export const getAllList = async (collectionId) => {
 //# filtering
 export const getSubmitList = async(filter) => {
 
-  const q = query(collection(db, 'Submit'), and(where('division', 'in', filter.division), where('approve', 'in', filter.approve)))
+  const q = query(collection(db, 'Owner'), and(where('division', 'in', filter.division), where('approve', 'in', filter.approve)))
 
   const querySnapshot = await getDocs(q);
   let result = []
@@ -80,13 +80,25 @@ export const getSubmitList = async(filter) => {
 }
 
 export const getAccount = async(email, password) => {
-  const q = query(collection(db, "Submit"), where("email", "==", email));
+  const q = query(collection(db, 'Owner'), where("email", "==", email));
   const querySnapshot = await getDocs(q);
   let result = {};
   querySnapshot.forEach((doc) => {
     if(doc.data().password === password)
       result = { ...doc.data(), id: doc.id };
   })
+  return result;
+}
+
+export const getShop = async(ownerId) => {
+  const q = query(collection(db, 'Shop'), where("ownerId", "==", ownerId));
+  const querySnapshot = await getDocs(q);
+  let result = {};
+  querySnapshot.forEach((doc) => {
+      result = { ...doc.data(), id: doc.id };
+  })
+
+  console.log(result, ownerId)
   return result;
 }
 

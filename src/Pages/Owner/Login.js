@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SecondaryButton } from "../../Style/Button";
 import { compareAccount, getAccount, getDocument } from "../../DB/function";
 
-const Login = () => {
+const Login = ({...props}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [account, setAccout] = useState({})
 
@@ -22,11 +22,15 @@ const Login = () => {
 
     const getAuth = async() => {
         console.log(localStorage.getItem('ownerToken'))
-        let accout_ = await getDocument('Submit', localStorage.getItem('ownerToken'))
-        setAccout(accout_)
+        if(localStorage.getItem('ownerToken'))
+        {
+            let accout_ = await getDocument('Owner', localStorage.getItem('ownerToken'))
+            setAccout(accout_)
+        }
     }
 
     const login = async() => {
+        // window.location.reload();
         // 이메일로 문서를 가지고와서 비밀번호를 대조
         let accout_ = await getAccount(inputData.id, inputData.password);
         setAccout(accout_)
@@ -35,8 +39,10 @@ const Login = () => {
             localStorage.setItem('onwerId', inputData.id)
             localStorage.setItem('ownerPw', inputData.password)
             localStorage.setItem('ownerToken', accout_.id)
-            onClose();
+        
+            props.onLogin();
             setError(false);
+            onClose();
         }
         else
         {
@@ -52,7 +58,7 @@ const Login = () => {
               <HStack>
                 <Avatar
                   src={
-                    account.profile
+                    account.profileImage
                   }
                   bgColor={'gray.400'}
                 />

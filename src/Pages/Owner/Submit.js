@@ -34,7 +34,7 @@ const Submit = () => {
 
     const submit = async () => {
         console.log(inputData)
-        await addDocument('Submit', inputData)
+        await addDocument('Owner', inputData)
     }
 
     return (

@@ -69,7 +69,7 @@ const ImageUploader = ({ ...props }) => {
             textAlign="center"
             w={props.w} h={props.h}
             backgroundColor='gray.200'
-            border="1px solid gray"
+            border="1px solid #d9d9d9"
           >
             <Flex position="relative" alignItems="flex-start" justifyContent={'flex-end'} >
               <Image borderRadius='lg' objectFit='cover' w={props.w} h={props.h} src={props.src} alt="uploaded image" />
