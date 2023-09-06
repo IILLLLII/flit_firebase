@@ -4,8 +4,8 @@ import SideBar from './Components/OwnerSideBar';
 import SidebarWithHeader from './Components/AdminSidebar';
 import Footer from './Components/Footer';
 
+export const isAdmin = window.location.pathname.includes('admin');
 function App() {
-  const isAdmin = window.location.pathname.includes('admin');
 
   return (
     <Container maxW={''}>

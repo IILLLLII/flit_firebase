@@ -10,6 +10,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import ProductCard from "../../../Components/ProductCard";
 import { FilterSelect } from "../../../Components/FilterSelect";
 import { SearchInput } from "../../../Components/Form";
+import { isAdmin } from "../../../App";
 
 const ProductList = () => {
     const toast = useToast();
@@ -21,7 +22,7 @@ const ProductList = () => {
         state: ['판매중', '판매종료', '품절'],
         order: '등록순',
         date: '등록일',
-        start: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
+        start: new Date().getFullYear() - 1 + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
         end: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
     });
 
@@ -42,7 +43,7 @@ const ProductList = () => {
             state: ['판매중', '판매종료', '품절'],
             order: '등록순',
             date: '등록일',
-            start: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
+            start: new Date().getFullYear()- 1 + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
             end: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
         })
     }
@@ -123,7 +124,7 @@ const ProductList = () => {
                     </Thead>
                     <Tbody>
                         {productList.map((value, index) => (
-                            <Tr opacity={value.count - value.sales_count > 0 && compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? 1 : 0.5} _hover={{ bgColor: 'gray.100' }} onClick={() => navigate(`/product/view/${value.id}`, { state: {...value, id: value.id} })}>
+                            <Tr opacity={value.count - value.sales_count > 0 && compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? 1 : 0.5} _hover={{ bgColor: 'gray.100' }} onClick={() => navigate( isAdmin ? `/admin/product/view/${value.id}` : `/product/view/${value.id}`, { state: {...value, id: value.id} })}>
                                 <Th><Checkbox /></Th>
                                 <Td {...TBody}>{value.id.slice(0, 10)}</Td>
                                 <Td {...TBody}>
@@ -158,7 +159,7 @@ const ProductList = () => {
                 </Table>
             </TableContainer>
 
-            <Wrap spacing={2} display={{ base: 'box', md: 'none' }}>
+            <Wrap spacing={2} display={{ base: 'box', md: 'none' }} mt={4}>
                 {productList.map((value, index) => (
                     <ProductCard data={value} state={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '판매중' : '판매종료' : "품절"} />
                 ))}

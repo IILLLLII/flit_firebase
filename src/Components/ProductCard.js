@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom"
 import { ChatIcon } from "@chakra-ui/icons";
 import { FaHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import { isAdmin } from "../App";
 
 export default function ProductCard({ data, state }) {
   const navigate = useNavigate();
   return (
-    <Box width={'32%'} opacity={state == '판매중' || data.saletime.set == "설정안함" ? 1 : 0.5} onClick={() => navigate('/product/view/' + data.id, { state: data })}>
+    <Box width={'32%'} opacity={state == '판매중' || data.saletime.set == "설정안함" ? 1 : 0.5} onClick={() => navigate(isAdmin ? '/admin/product/view/' : '/product/view/' + data.id, { state: data })}>
       <Stack w="100%" direction={'column'} borderWidth='1px' borderRadius='lg'>
         <Image src={data.thumbnail_image} borderTopRadius={'lg'} />
 

@@ -1,6 +1,7 @@
 import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, limit, or, orderBy, query, updateDoc, where } from "firebase/firestore"
 import { db } from "./firebase-config"
 import { filter } from "@chakra-ui/react"
+import { isAdmin } from "../App"
 
 export const addDocument = async (collectionId, newData) => {
   const doc = await addDoc(collection(db, collectionId), newData)
@@ -102,7 +103,7 @@ export const getProductList = async (filter) => {
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
-    if(doc.data().ownerId == localStorage.getItem('ownerToken'))
+    if(doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin)
     {
       if ((filter.state.includes('품절') && (doc.data().count - doc.data().sales_count <= 0))
       || (filter.state.includes('판매종료') && (doc.data().count - doc.data().sales_count > 0) && !compareDate(doc.data().saletime.end) && doc.data().saletime.set == "설정함")
@@ -143,7 +144,7 @@ export const getPortfolioList = async (filter) => {
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
-    if(doc.data().ownerId == localStorage.getItem('ownerToken'))
+    if(doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin)
     {
       if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
         if (filter.type === "상품명") {

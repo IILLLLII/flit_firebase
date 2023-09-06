@@ -8,8 +8,9 @@ import { Title_2xl, Title_lg, Title_sm } from "../../../Style/Typograhy";
 import { FaHeart } from "react-icons/fa";
 import { ChatIcon } from "@chakra-ui/icons";
 import ConfirmButton from "../../../Components/ConfirmButton";
+import { isAdmin } from "../../../App";
 
-const PortfolioView = () => {
+const ProductView = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [product, setProduct] = useState()
@@ -119,11 +120,13 @@ const PortfolioView = () => {
                                 ))}
 
                             </Box>
+                            {!isAdmin &&
                             <HStack mt={6} justifyContent={'center'}>
                             <Button onClick={() => navigate('/product/add', { state : product})}>수정하기</Button>
                             <ConfirmButton collection={'Product'} type={'삭제'} data={product}/>
                             {/* <Button onClick={() => deleteProduct()}>삭제</Button> */}
                         </HStack>
+                            }
                         </Stack>
 
                     </Box>
@@ -133,4 +136,4 @@ const PortfolioView = () => {
     )
 
 }
-export default PortfolioView;
+export default ProductView;

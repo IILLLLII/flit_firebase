@@ -10,6 +10,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import ProductCard from "../../../Components/ProductCard";
 import { FilterSelect } from "../../../Components/FilterSelect";
 import { SearchInput } from "../../../Components/Form";
+import { isAdmin } from "../../../App";
 
 const PortfolioList = () => {
     const toast = useToast();
@@ -20,7 +21,7 @@ const PortfolioList = () => {
         type: '상품명',
         order: '등록순',
         date: '등록일',
-        start: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
+        start: new Date().getFullYear() - 1 + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
         end: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
     });
 
@@ -34,7 +35,7 @@ const PortfolioList = () => {
             type: '상품명',
             order: '등록순',
             date: '등록일',
-            start: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
+            start: new Date().getFullYear() - 1 + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
             end: new Date().getFullYear() + "-" + ('0' + (new Date().getMonth() + 1)).slice(-2) + "-" + ('0' + new Date().getDate()).slice(-2),
         })
     }
@@ -89,7 +90,7 @@ const PortfolioList = () => {
                     </Thead>
                     <Tbody>
                         {productList.map((value, index) => (
-                            <Tr _hover={{ bgColor: 'gray.100' }} onClick={() => navigate(`/portfolio/view/${value.id}`, { state: {...value, id: value.id} })}>
+                            <Tr _hover={{ bgColor: 'gray.100' }} onClick={() => navigate(isAdmin ? `/admin/portfolio/view/${value.id}` : `/portfolio/view/${value.id}`, { state: {...value, id: value.id} })}>
                                 <Th w={'20px'}><Checkbox /></Th>
                                 <Td {...TBody}>{value.id.slice(0, 10)}</Td>
                                 <Td {...TBody}>
@@ -111,7 +112,7 @@ const PortfolioList = () => {
 
             <Wrap spacing={4} display={{ base: 'box', md: 'none' }} mt={4}>
                 {productList.map((value, index) => (
-                    <Image cursor={'pointer'} onClick={() => navigate('/portfolio/view/' + value.id, { state: value })} w={'31%'} borderRadius={'sm'} src={value.thumbnail_image}/>
+                    <Image cursor={'pointer'} onClick={() => navigate(isAdmin ? '/admin/portfolio/view/' : '/portfolio/view/' + value.id, { state: value })} w={'31%'} borderRadius={'sm'} src={value.thumbnail_image}/>
                 ))}
             </Wrap>
 

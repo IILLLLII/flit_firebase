@@ -30,6 +30,10 @@ import Login from '../Pages/Admin/Login'
 import SubmitList from '../Pages/Admin/Shop/SubmitList'
 import SubmitView from '../Pages/Admin/Shop/SubmitView'
 import Footer from './Footer'
+import ProductList from '../Pages/Owner/Product/List'
+import ProductView from '../Pages/Owner/Product/View'
+import PortfolioList from '../Pages/Owner/Portfolio/List'
+import PortfolioView from '../Pages/Owner/Portfolio/View'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -69,6 +73,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavItem >Shop 관리</NavItem>
               <NavItem >Florist 관리</NavItem>
               <NavItem >탈퇴 유저 관리</NavItem>
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <AccordionButton p={0} w={'100%'}>
+              <NavTitle>상품 관리<AccordionIcon /></NavTitle>
+            </AccordionButton>
+            <AccordionPanel p={0}>
+              <NavItem link={'/admin/product/1'}>상품 관리</NavItem>
+              <NavItem link={'/admin/portfolio/1'}>포트폴리오 관리</NavItem>
             </AccordionPanel>
           </AccordionItem>
 
@@ -276,6 +290,10 @@ const SidebarWithHeader = () => {
             <Route path='/admin' element={<Home />} />
             <Route path='/admin/submit/list/*' element={<SubmitList/>} />
             <Route path='/admin/submit/view/*' element={<SubmitView/>} />
+            <Route path='/admin/product/*' element={<ProductList />} />
+            <Route path='/admin/product/view/*' element={<ProductView />} />
+            <Route path='/admin/portfolio/*' element={<PortfolioList />} />
+            <Route path='/admin/portfolio/view/*' element={<PortfolioView />} />
           </Routes>
         </BrowserRouter>
         </Box>
