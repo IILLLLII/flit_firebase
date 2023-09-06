@@ -10,11 +10,11 @@ const ConfirmButton = ({ collection, data, type, ...props }) => {
   const submit = async () => {
     if (type == "등록") {
       let doc = await addDocument(collection, data)
-      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, id: doc.id} })
+      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, id: doc.id, regist_date : new Date()} })
     }
     else if (type == "수정") {
       await updateData(collection, data.id, data)
-      navigate(`/${collection.toLowerCase()}/view/`, { state: data })
+      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, regist_date : new Date()}})
     }
     else if (type == "삭제") {
       await deleteDocument(collection, data.id)

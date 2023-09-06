@@ -27,7 +27,7 @@ const ProductList = () => {
     });
 
     useEffect(() => {
-        getList();
+        search();
     }, []);
 
     const getList = async () => {
