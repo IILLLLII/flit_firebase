@@ -53,6 +53,7 @@ const ImageUploader = ({ ...props }) => {
               borderRadius="lg"
               padding="10"
               textAlign="center"
+              bgColor={'white'}
               w={props.w} h={props.h} 
             >
               <Center w='100%' h='100%'>

@@ -5,7 +5,7 @@ export const TextInput = ({ label, defaultValue, isRequired, ...props }) => {
     return (
         <FormControl isRequired={isRequired}>
             <FormLabel>{label}</FormLabel>
-            <Input _disabled={{ color: 'black' }} disabled={props.disabled} defaultValue={defaultValue} placeholder={props.placeholder} onChange={(e) => props.onChange(e.target.value)} />
+            <Input bgColor='white' _disabled={{ color: 'black' }} disabled={props.disabled} defaultValue={defaultValue} placeholder={props.placeholder} onChange={(e) => props.onChange(e.target.value)} />
         </FormControl>
     )
 }

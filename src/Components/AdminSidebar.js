@@ -310,7 +310,6 @@ const SidebarWithHeader = () => {
           </Routes>
         </BrowserRouter>
         </Box>
-        <Footer/>
       </Box>
     </Box>
   )

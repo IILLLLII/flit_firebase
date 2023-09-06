@@ -11,7 +11,7 @@ export const FilterSelect = ({ children, bOpen, ...props }) => {
         <>
             <IconButton onClick={() => setOpen(!isOpen)} icon={<FiSliders />} />
 
-            {(isOpen) && <Box p={4} w={'500px'} h={'auto'} bgColor={'white'} borderRadius={'md'} borderWidth={1.5} boxShadow={'lg'} borderColor={'gray.300'} position={'absolute'} top={"170px"}>
+            {(isOpen) && <Box p={4} zIndex={9999} w={'500px'} h={'auto'} bgColor={'white'} borderRadius={'md'} borderWidth={1.5} boxShadow={'lg'} borderColor={'gray.300'} position={'absolute'} top={"170px"}>
                 <Flex justifyContent={'space-between'}>
                     <Text {...Title_xl}>필터</Text>
                     <CloseButton onClick={() => setOpen(false)} />

@@ -147,13 +147,9 @@ const ShopView = () => {
 
     return (
         <Box>
-            <Text {...Title_2xl} color={'gray.800'}>
-                상점 정보
-            </Text>
-
             {account &&
                 <HStack width={'100%'} alignItems={'flex-start'}>
-                    <Flex h={"100%"} minW={'410px'} display={{ base: 'none', md: 'block' }} bgColor={'white'} mt={scrollY}>
+                    <Flex h={"100%"} minW={'410px'} display={{ base: 'none', md: 'block' }} bgColor={'white'} position={'fixed'}>
                         {/* <Text w="100%" textAlign={'center'} p={2} color={'gray.500'}>미리보기</Text> */}
                         {account.profileImage ? <Image src={account.profileImage} bgColor={'gray.300'} w='400px' h='400px' /> : <Box w={'400px'} h={'400px'} bgColor={'gray.300'} />}
                         <Center mt={"-150px"}>
@@ -196,7 +192,10 @@ const ShopView = () => {
 
                     </Flex>
 
-                    <Box w={'100%'} bgColor={'white'}>
+                    <Box w={'100%'} bgColor={'white'} ml={{base: '0px', md: '420px'}} borderLeft={'1px solid #d9d9d9'}>
+                    <Text {...Title_2xl} ml={4} color={'gray.800'}>
+                상점 정보
+            </Text>
                         <Accordion allowMultiple defaultIndex={[0, 1, 2, 3, 4, 5, 6, 7]}>
                             <AccordionItem>
                                 <h2>
@@ -423,9 +422,6 @@ const ShopView = () => {
                                                 </HStack>
                                             </VStack>
                                         </HStack>
-
-
-                                        <Text {...Body_sm} color={'gray.500'} mx={2}>유료 배송 상품 여러 개가 묶음배송 될 경우, 가장 큰 유료 배송비로 결제됩니다.</Text>
 
                                     </Stack>
                                 </AccordionPanel>

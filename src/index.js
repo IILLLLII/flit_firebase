@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
+import './scss/_slick.scss'
+import './scss/_slick-theme.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -74,7 +74,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Stack spacing={0}>
         <NavItem link={'/'}>HOME</NavItem>
 
-        <Accordion allowMultiple defaultIndex={parseInt(localStorage.getItem('openIndex'))} onChange={(e) => localStorage.setItem('openIndex', e)}>
+        <Accordion defaultIndex={[parseInt(localStorage.getItem('openIndex'))]} onChange={(e) => localStorage.setItem('openIndex', e)}>
           <AccordionItem>
             <AccordionButton p={0} w={'100%'}>
               <NavTitle>주문 관리<AccordionIcon /></NavTitle>
@@ -318,7 +318,7 @@ const SidebarWithHeader = () => {
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4" justifyContent={'space-between'} minHeight={'100vh'}>
+      <Box overflowX={'clip'} ml={{ base: 0, md: 60 }} p="4" justifyContent={'space-between'} minHeight={'100vh'}>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Home />} />
@@ -343,7 +343,6 @@ const SidebarWithHeader = () => {
             <Route path='/shop/chat/*' element={<ChatRoom />} />
           </Routes>
         </BrowserRouter>
-        <Footer />
       </Box>
     </Box>
   )

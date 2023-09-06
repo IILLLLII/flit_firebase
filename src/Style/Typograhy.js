@@ -1,7 +1,7 @@
 export const Title_2xl = {
     fontSize: '2xl',
     fontWeight: 900,
-    mb: 8
+    mb: 8,
 }
 
 export const Title_xl = {
