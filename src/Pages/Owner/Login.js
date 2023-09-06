@@ -77,7 +77,14 @@ const Login = ({...props}) => {
               </HStack>
             </MenuButton>
             <MenuList>
-              <MenuItem onClick={() => {localStorage.removeItem('ownerId'); localStorage.removeItem('ownerPw'); window.location.reload();}}>로그아웃</MenuItem>
+              <MenuItem onClick={() => {
+                localStorage.removeItem('ownerId'); 
+                localStorage.removeItem('ownerPw'); 
+                localStorage.removeItem('ownerToken'); 
+                window.location.reload();
+                }}>
+                로그아웃
+                </MenuItem>
             </MenuList>
           </Menu> :
             <Button {...SecondaryButton} onClick={onOpen}>로그인</Button>

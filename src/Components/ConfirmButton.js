@@ -39,12 +39,12 @@ const ConfirmButton = ({ collection, data, type, ...props }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>{collection == "Product" ? "상품" : ""} {type}</ModalHeader>
+          <ModalHeader>{collection == "Product" ? "상품" : collection == "Portfolio" ? '포트폴리오' : ""} {type}</ModalHeader>
           <ModalCloseButton />
           <ModalBody whiteSpace={'pre-wrap'}>
             {type == "삭제" ?
-              `${collection == "Product" ? "상품" : ""}을 삭제하시겠습니까?\n삭제 후 목록으로 이동합니다.\n삭제를 취소하시려면 취소 버튼을 클릭하세요.` :
-              `입력한 정보로 ${collection == "Product" ? "상품" : ""}을 등록하시겠습니까?\n${collection == "Product" ? "상품" : ""} 등록 후 목록으로 이동합니다.\n정보를 수정하시려면 취소 버튼을 클릭하세요.`}
+              `${collection == "Product" ? "상품" : collection == "Portfolio" ? '포트폴리오' : ""}을 삭제하시겠습니까?\n삭제 후 목록으로 이동합니다.\n삭제를 취소하시려면 취소 버튼을 클릭하세요.` :
+              `입력한 정보로 ${collection == "Product" ? "상품" : collection == "Portfolio" ? '포트폴리오' : ""}을 등록하시겠습니까?\n${collection == "Product" ? "상품" : collection == "Portfolio" ? '포트폴리오' : ""} 등록 후 목록으로 이동합니다.\n정보를 수정하시려면 취소 버튼을 클릭하세요.`}
           </ModalBody>
 
           <ModalFooter>

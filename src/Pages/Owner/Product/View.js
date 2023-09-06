@@ -9,7 +9,7 @@ import { FaHeart } from "react-icons/fa";
 import { ChatIcon } from "@chakra-ui/icons";
 import ConfirmButton from "../../../Components/ConfirmButton";
 
-const ProductView = () => {
+const PortfolioView = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [product, setProduct] = useState()
@@ -133,4 +133,4 @@ const ProductView = () => {
     )
 
 }
-export default ProductView;
+export default PortfolioView;

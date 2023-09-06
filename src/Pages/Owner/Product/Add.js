@@ -32,6 +32,7 @@ export const ProductAdd = () => {
         price: '',
     })
     const [productInfo, setProduct] = useState(location.state ? location.state : {
+        ownerId: localStorage.getItem('ownerToken'),
         category1: "꽃",
         category2: "꽃다발",
         product_name: "",
@@ -182,7 +183,7 @@ export const ProductAdd = () => {
     return (
         <Box >
             <Text {...Title_2xl} color={'gray.800'}>
-                상품 정보
+                상품 등록
             </Text>
 
             <VStack w={'full'} spacing={6}>

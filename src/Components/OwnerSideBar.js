@@ -29,9 +29,9 @@ import Home from '../Pages/Owner/Home'
 import OrderList from '../Pages/Owner/Order/List'
 import ProductList from '../Pages/Owner/Product/List'
 import OrderView from '../Pages/Owner/Order/View'
-import { ProductAdd, ProductUpdate } from '../Pages/Owner/Product/Add'
+import ProductAdd from '../Pages/Owner/Product/Add'
 import PortfolioList from '../Pages/Owner/Portfolio/List'
-import { PortfolioAdd, PortfolioUpdate } from '../Pages/Owner/Portfolio/Add'
+import PortfolioAdd from '../Pages/Owner/Portfolio/Add'
 import ProductView from '../Pages/Owner/Product/View'
 import PortfolioView from '../Pages/Owner/Portfolio/View'
 import SalesList from '../Pages/Owner/Sales/List'
@@ -228,7 +228,6 @@ const NavSubTitle = ({ icon, children, ...rest }) => {
 }
 
 const MobileNav = ({ onOpen, ...rest }) => {
-  const [authToken, setToken] = useState(localStorage.getItem('ownerToken'))
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -259,40 +258,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
           <HStack>
-            <Login onLogin={() => console.log('close!!!!!')}/>
-            {(!authToken || authToken == "") && <Submit />}
+            <Login onLogin={() => window.location.reload()}/>
+            {!localStorage.getItem('ownerToken') && <Submit />}
           </HStack>
-          {/* <Menu>
-            <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
-              <HStack>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://lh3.googleusercontent.com/ogw/AGvuzYa1ziFxi8Mj6t2WBY475A8l5auXrCXPU8pAlZEc=s64-c-mo'
-                  }
-                />
-                <VStack
-                  display={{ base: 'none', md: 'flex' }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2">
-                  <Text fontSize="sm">태영애드</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    관리자
-                  </Text>
-                </VStack>
-                <Box display={{ base: 'none', md: 'flex' }}>
-                </Box>
-              </HStack>
-            </MenuButton>
-            <MenuList
-              bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
-              <MenuItem>계정설정</MenuItem>
-              <MenuDivider />
-              <MenuItem>로그아웃</MenuItem>
-            </MenuList>
-          </Menu> */}
         </Flex>
       </HStack>
     </Flex>
@@ -326,11 +294,9 @@ const SidebarWithHeader = () => {
             <Route path='/order/view/*' element={<OrderView />} />
             <Route path='/product/*' element={<ProductList />} />
             <Route path='/product/add' element={<ProductAdd />} />
-            <Route path='/product/update/*' element={<ProductUpdate />} />
             <Route path='/product/view/*' element={<ProductView />} />
             <Route path='/portfolio/*' element={<PortfolioList />} />
             <Route path='/portfolio/add' element={<PortfolioAdd />} />
-            <Route path='/portfolio/update/*' element={<PortfolioUpdate />} />
             <Route path='/portfolio/view/*' element={<PortfolioView />} />
             <Route path='/sales/*' element={<SalesList />} />
             <Route path='/advertise/add' element={<AdvertiseAdd />} />

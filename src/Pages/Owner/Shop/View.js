@@ -113,6 +113,7 @@ const ShopView = () => {
                 })
                 localStorage.removeItem('ownerId');
                 localStorage.removeItem('ownerPw');
+                localStorage.removeItem('ownerToken');
                 setPasswordError(false);
                 onOpen();
                 await updateData('Owner', account.id, { ...account, password: password.newPassword });

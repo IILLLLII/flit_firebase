@@ -102,10 +102,49 @@ export const getProductList = async (filter) => {
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
-    if ((filter.state.includes('품절') && (doc.data().count - doc.data().sales_count <= 0))
+    if(doc.data().ownerId == localStorage.getItem('ownerToken'))
+    {
+      if ((filter.state.includes('품절') && (doc.data().count - doc.data().sales_count <= 0))
       || (filter.state.includes('판매종료') && (doc.data().count - doc.data().sales_count > 0) && !compareDate(doc.data().saletime.end) && doc.data().saletime.set == "설정함")
       || (filter.state.includes('판매중') && (doc.data().count - doc.data().sales_count > 0 && compareDate(doc.data().saletime.end) || doc.data().saletime.set == "설정안함"))) {
 
+      if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
+        if (filter.type === "상품명") {
+          if (doc.data().product_name.includes(filter.keyword)) {
+            result = [...result, { ...doc.data(), id: doc.id }]
+          }
+        }
+        else if (filter.type === "상품코드") {
+          if (doc.id.includes(filter.keyword)) {
+            result = [...result, { ...doc.data(), id: doc.id }]
+          }
+        }
+      }
+    }
+    }
+  })
+
+  console.log(filter, result)
+  return result;
+}
+
+export const getPortfolioList = async (filter) => {
+
+  let field = 'regist_date';
+  if (filter.order == "등록순")
+    field = 'regist_date'
+  else if (filter.order == "관심순")
+    field = 'goods'
+  else if (filter.order == "리뷰순")
+    field = 'review'
+
+  const q = query(collection(db, 'Portfolio'), orderBy(field, "desc"))
+
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+    if(doc.data().ownerId == localStorage.getItem('ownerToken'))
+    {
       if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
         if (filter.type === "상품명") {
           if (doc.data().product_name.includes(filter.keyword)) {

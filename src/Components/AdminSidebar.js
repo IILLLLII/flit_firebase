@@ -244,37 +244,6 @@ const MobileNav = ({ onOpen, ...rest }) => {
           <HStack>
           <Login/>
           </HStack>
-          {/* <Menu>
-            <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }}>
-              <HStack>
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://lh3.googleusercontent.com/ogw/AGvuzYa1ziFxi8Mj6t2WBY475A8l5auXrCXPU8pAlZEc=s64-c-mo'
-                  }
-                />
-                <VStack
-                  display={{ base: 'none', md: 'flex' }}
-                  alignItems="flex-start"
-                  spacing="1px"
-                  ml="2">
-                  <Text fontSize="sm">태영애드</Text>
-                  <Text fontSize="xs" color="gray.600">
-                    관리자
-                  </Text>
-                </VStack>
-                <Box display={{ base: 'none', md: 'flex' }}>
-                </Box>
-              </HStack>
-            </MenuButton>
-            <MenuList
-              bg={useColorModeValue('white', 'gray.900')}
-              borderColor={useColorModeValue('gray.200', 'gray.700')}>
-              <MenuItem>계정설정</MenuItem>
-              <MenuDivider />
-              <MenuItem>로그아웃</MenuItem>
-            </MenuList>
-          </Menu> */}
         </Flex>
       </HStack>
     </Flex>
