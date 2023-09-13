@@ -42,7 +42,7 @@ const ProductView = () => {
                             </HStack>
                             <Box p={2}>
                                 <Text mb={4} color={'#8c8c8c'}>{product.regist_date ? getDate(product.regist_date) : ''}</Text>
-                                <Text>{product.comment}</Text>
+                                <Text whiteSpace={'pre-wrap'}>{product.comment}</Text>
                             </Box>
                             <Box p={2}>
                                 <Text {...Title_lg}>검색필터</Text>

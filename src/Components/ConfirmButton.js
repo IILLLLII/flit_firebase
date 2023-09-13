@@ -2,6 +2,7 @@ import React from "react"
 import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure } from "@chakra-ui/react"
 import { useNavigate } from "react-router-dom"
 import { addDocument, deleteDocument, updateData } from "../DB/function";
+import { serverTimestamp } from "firebase/firestore";
 
 const ConfirmButton = ({ collection, data, type, ...props }) => {
   const navigate = useNavigate();
@@ -10,11 +11,11 @@ const ConfirmButton = ({ collection, data, type, ...props }) => {
   const submit = async () => {
     if (type == "등록") {
       let doc = await addDocument(collection, data)
-      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, id: doc.id, regist_date : new Date()} })
+      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, id: doc.id, regist_date : serverTimestamp()} })
     }
     else if (type == "수정") {
       await updateData(collection, data.id, data)
-      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, regist_date : new Date()}})
+      navigate(`/${collection.toLowerCase()}/view/`, { state: {...data, regist_date : serverTimestamp()}})
     }
     else if (type == "삭제") {
       await deleteDocument(collection, data.id)

@@ -10,6 +10,7 @@ import PopupPostCode from "../../../Components/PopupPostCode";
 import ColorPicker from "../../../Components/ColorPicker";
 import ConfirmButton from "../../../Components/ConfirmButton";
 import { useLocation, useNavigate } from "react-router-dom";
+import { serverTimestamp } from "firebase/firestore";
 
 const category = {
     flower: ['꽃다발', '꽃바구니', '플라워박스', '화병꽂이'],
@@ -25,6 +26,7 @@ export const ProductAdd = () => {
     const panelColor = 'gray.50';
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [isPopupOpen, setIsPopupOpen] = useState(false)
+    const [isAddress, setAddress] = useState(false)
     const [allToggle, setAllToggle] = useState(false)
     const [process, setProcess] = useState(0)
     const [option, setOption] = useState({
@@ -83,11 +85,13 @@ export const ProductAdd = () => {
         bundle_delivery: '설정함',
         address: '',
         detail_address: '',
+        address_2: '',
+        detail_address_2: '',
         tag: [],
         color: [],
         review: [],
         goods: [],
-        regist_date: new Date()
+        regist_date: serverTimestamp()
 
     })
 
@@ -682,14 +686,25 @@ export const ProductAdd = () => {
                                         </RadioGroup>
                                     </HStack>
                                     <HStack alignItems={'flex-start'}>
-                                        <Text mt={1} w='150px'>픽업지 / 출고지</Text>
+                                        <Text mt={1} w='150px'>픽업지</Text>
                                         <VStack w="70%" alignItems={'flex-start'}>
                                             <HStack w="100%" >
                                                 <TextInput defaultValue={productInfo.address} disabled={true} />
-                                                <Button onClick={() => setIsPopupOpen(true)}>주소검색</Button>
+                                                <Button onClick={() => {setIsPopupOpen(true); setAddress(true);}}>주소검색</Button>
                                             </HStack>
 
                                             <Input bgColor='white' defaultValue={productInfo.detail_address} placeholder="상세주소를 입력하세요" onChange={(e) => setProduct({ ...productInfo, detail_address: e.target.value })} />
+                                        </VStack>
+                                    </HStack>
+                                    <HStack alignItems={'flex-start'}>
+                                        <Text mt={1} w='150px'>출고지</Text>
+                                        <VStack w="70%" alignItems={'flex-start'}>
+                                            <HStack w="100%" >
+                                                <TextInput defaultValue={productInfo.address_2} disabled={true} />
+                                                <Button onClick={() => {setIsPopupOpen(true); setAddress(false);}}>주소검색</Button>
+                                            </HStack>
+
+                                            <Input bgColor='white' defaultValue={productInfo.detail_address_2} placeholder="상세주소를 입력하세요" onChange={(e) => setProduct({ ...productInfo, detail_address_2: e.target.value })} />
                                         </VStack>
                                     </HStack>
                                 </Stack>
@@ -756,7 +771,7 @@ export const ProductAdd = () => {
                     <ModalHeader>주소검색</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <PopupPostCode onClose={() => setIsPopupOpen(false)} onChange={(value) => setProduct({ ...productInfo, address: value })} />
+                        <PopupPostCode onClose={() => setIsPopupOpen(false)} onChange={(value) => isAddress ? setProduct({ ...productInfo, address: value }) : setProduct({ ...productInfo, address_2: value })} />
                     </ModalBody>
                 </ModalContent>
             </Modal>

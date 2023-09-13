@@ -28,9 +28,10 @@ const SubmitList = () => {
     }, []);
 
     const getList = async () => {
-        let _list = await getAllList('Owner');
-        setSubmitList(_list)
-        console.log(_list)
+        // let _list = await getAllList('Owner');
+        // setSubmitList(_list)
+        // console.log(_list)
+        search();
     }
 
     const reset = () => {

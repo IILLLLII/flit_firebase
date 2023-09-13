@@ -30,12 +30,6 @@ const ProductList = () => {
         search();
     }, []);
 
-    const getList = async () => {
-        let _list = await getAllList('Product');
-        setProductList(_list)
-        console.log(_list)
-    }
-
     const reset = () => {
         setFilter({
             keyword: '',

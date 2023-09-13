@@ -10,6 +10,7 @@ import PopupPostCode from "../../../Components/PopupPostCode";
 import ColorPicker from "../../../Components/ColorPicker";
 import ConfirmButton from "../../../Components/ConfirmButton";
 import { useLocation, useNavigate } from "react-router-dom";
+import { serverTimestamp } from "firebase/firestore";
 
 const category = {
     flower: ['꽃다발', '꽃바구니', '플라워박스', '화병꽂이'],
@@ -42,7 +43,7 @@ export const ProductAdd = () => {
         color: [],
         review: [],
         goods: [],
-        regist_date: new Date()
+        regist_date: serverTimestamp()
 
     })
 

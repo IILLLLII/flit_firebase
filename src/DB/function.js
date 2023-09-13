@@ -299,3 +299,12 @@ export function compareDate(date) {
     return false
   }
 }
+
+export const getOwnerName = async (ownerId) => {
+  const docRef = doc(db, "Owner", ownerId);
+  const _doc = await getDoc(docRef);
+
+  //console.log("Data", id, _doc.data());
+
+  return _doc.data().name
+}

@@ -7,6 +7,7 @@ import { FileUploader } from "../../Components/FileUploader";
 import { addDocument, getPath } from "../../DB/function";
 
 import PopupPostCode from "../../Components/PopupPostCode";
+import { useNavigate } from "react-router-dom";
 
 const Submit = () => {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -25,7 +26,7 @@ const Submit = () => {
         address: "",
         detail_address: "",
         portfolio: "",
-        approve: false
+        approve: "비승인"
     })
 
     const inputChange = (name, value) => {
@@ -34,7 +35,12 @@ const Submit = () => {
 
     const submit = async () => {
         console.log(inputData)
-        await addDocument('Owner', inputData)
+        if(window.confirm("제출하시겠습니까?"))
+        {
+            await addDocument('Owner', inputData)
+        }
+        window.alert("제출이 완료되었습니다.")
+        onClose();
     }
 
     return (
