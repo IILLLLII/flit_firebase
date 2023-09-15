@@ -48,6 +48,7 @@ export const getAllList = async (collectionId) => {
   querySnapshot.forEach((doc) => {
     result = [...result, { ...doc.data(), id: doc.id }]
   })
+  
   return result;
 
 }
@@ -83,6 +84,17 @@ export const getSubmitList = async (filter) => {
   })
 
   console.log(filter, result)
+  return result;
+}
+
+export const getShopProductList = async(ownerId) => {
+  const q = query(collection(db, 'Product'), where("ownerId", "==", ownerId))
+
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+    result = [...result, { ...doc.data(), id: doc.id }]
+  })
   return result;
 }
 

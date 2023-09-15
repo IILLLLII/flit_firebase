@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import { Box, Center, HStack, VStack, Wrap, Text, Stack } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 
-const colorChip = [
-  { color: '#FF0000', select: false },
-  { color: '#FF5001', select: false },
-  { color: '#FFB800', select: false },
-  { color: '#FFE403', select: false },
-  { color: '#93F52F', select: false },
-  { color: '#009125', select: false },
-  { color: '#6CEBFF', select: false },
-  { color: '#487CE5', select: false },
-  { color: '#6A33C1', select: false },
-  { color: '#FFB2F3', select: false },
-  { color: '#FF509F', select: false },
-  { color: '#707070', select: false },
-  { color: '#B9BDC4', select: false },
-  { color: '#000000', select: false }
+export const colorChip = [
+  { color: '#FF0000', select: false, name: '레드' },
+  { color: '#FF5001', select: false, name: '스칼렛' },
+  { color: '#FFB800', select: false, name: '오렌지' },
+  { color: '#FFE403', select: false, name: '옐로우' },
+  { color: '#93F52F', select: false, name: '옐로우그린' },
+  { color: '#009125', select: false, name: '그린' },
+  { color: '#6CEBFF', select: false, name: '스카이블루' },
+  { color: '#487CE5', select: false, name: '블루' },
+  { color: '#6A33C1', select: false, name: '바이올렛' },
+  { color: '#FFB2F3', select: false, name: '라이트핑크' },
+  { color: '#FF509F', select: false, name: '핫핑크' },
+  { color: '#707070', select: false, name: '화이트' },
+  { color: '#B9BDC4', select: false, name: '그레이' },
+  { color: '#000000', select: false, name: '블랙' }
 ]
 
 const ColorPicker = ({ selColor, ...props }) => {

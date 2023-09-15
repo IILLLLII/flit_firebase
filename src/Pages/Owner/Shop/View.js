@@ -193,7 +193,7 @@ const ShopView = () => {
 
                     </Flex>
 
-                    <Box w={'100%'} bgColor={'white'} ml={{base: '0px', md: '420px'}} borderLeft={'1px solid #d9d9d9'}>
+                    <Box w={'100%'} bgColor={'white'} ml={{base: '0px', md: '420px'}} borderLeft={{ md : '1px solid #d9d9d9', base: 'none'}}>
                     <Text {...Title_2xl} ml={4} color={'gray.800'}>
                 상점 정보
             </Text>

@@ -28,3 +28,7 @@ export const Body_lg = {
 export const Body_sm = {
     fontSize: 'sm',
 }
+
+export const fontColor = {
+    primary: '#da4359'
+}
