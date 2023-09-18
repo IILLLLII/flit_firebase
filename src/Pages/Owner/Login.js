@@ -32,7 +32,7 @@ const Login = ({...props}) => {
     const login = async() => {
         // window.location.reload();
         // 이메일로 문서를 가지고와서 비밀번호를 대조
-        let accout_ = await getAccount(inputData.id, inputData.password);
+        let accout_ = await getAccount('Owner', inputData.id.includes('@') ? 'email' : 'number', inputData.id, inputData.password);
         setAccout(accout_)
         if(accout_.email == inputData.id && accout_.password == inputData.password)
         {

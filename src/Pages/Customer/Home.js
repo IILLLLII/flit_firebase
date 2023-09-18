@@ -11,6 +11,7 @@ const Home = () => {
                 <SimpleGrid columns={5} gap={2}>
                     <Button onClick={() => navigate('/customer/category')}>카테고리</Button>
                     <Button onClick={() => navigate('/customer/submit')}>회원가입</Button>
+                    <Button onClick={() => navigate('/customer/login')}>로그인</Button>
                 </SimpleGrid>
 
             </Box>

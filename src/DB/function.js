@@ -177,8 +177,8 @@ export const getPortfolioList = async (filter) => {
   return result;
 }
 
-export const getAccount = async (email, password) => {
-  const q = query(collection(db, 'Owner'), where("email", "==", email));
+export const getAccount = async (collectionId, type, value, password) => {
+  const q = query(collection(db, collectionId), where(type, "==", value));
   const querySnapshot = await getDocs(q);
   let result = {};
   querySnapshot.forEach((doc) => {
@@ -319,4 +319,10 @@ export const getOwnerName = async (ownerId) => {
   //console.log("Data", id, _doc.data());
 
   return _doc.data().name
+}
+
+export const isDuplication = async(collectionId, field, value) => {
+  const q = query(collection(db, collectionId), where(field, "==", value))
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.size
 }

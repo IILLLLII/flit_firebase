@@ -31,9 +31,9 @@ const ProductView = () => {
 
     return (
         <Flex bgColor={'white'}>
-                            <Flex bgColor='white' w='100%' position="fixed" zIndex={9999} borderBottom={'1px solid #d9d9d9'}>
+            <Flex bgColor='white' w='100%' position="fixed" zIndex={9999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={''} />
-                </Flex>
+            </Flex>
             <Stack direction={'column'} w='100%' mt={20}>
                 <ImageSlider mt={'30px'} images={[product.thumbnail_image, ...product.product_image]} />
 
@@ -122,20 +122,20 @@ const ProductView = () => {
                         <SplitLine />
                         <Text {...Title_lg}>Shop 상품 더보기</Text>
 
-                        
+
                         <Flex overflowX='auto' className="scroll">
                             {shopProducts.map((value) => (
-                                    <Box w='35vw' mr={1} flexShrink="0" p={2}>
-                                        <ProductItem data={value} state={'판매중'}/>
-                                    </Box>
+                                <Box w='40vw' mr={1} flexShrink="0" p={2}>
+                                    <ProductItem data={value} state={'판매중'} />
+                                </Box>
                             ))}
-</Flex>
+                        </Flex>
 
-<SplitLine />
+                        <SplitLine />
                         <Text {...Title_lg}>연관상품</Text>
 
 
-          </Stack>
+                    </Stack>
 
                 </Box>
             </Stack>

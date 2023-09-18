@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Inter';
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Noto+Sans+KR&display=swap');
 
 .App-logo {
   height: 40vmin;

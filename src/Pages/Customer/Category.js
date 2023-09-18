@@ -33,7 +33,7 @@ const Category = () => {
     const [category1, setCategory1] = useState(0);
     const navigate = useNavigate();
     return (
-        <Flex bgColor={'gray.200'} h={'100vh'} flexDirection={'column'}>
+        <Flex bgColor={'white'} h={'100vh'} flexDirection={'column'}>
             <MobileStatus title={'카테고리'} />
 
             <Stack direction={'row'} h={'100%'}>
