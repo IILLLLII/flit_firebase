@@ -44,7 +44,7 @@ const Login = () => {
     }
 
     return (
-        <Center h={'100vh'} alignItems={'center'}>
+        <Center h={'100vh'} alignItems={'center'} bgColor={'white'}>
             <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
                 <Stack align={'center'} spacing={4}>
                     <Image src={require('../../Asset/Logo.png')} width={'100px'} />
