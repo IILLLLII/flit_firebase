@@ -34,9 +34,11 @@ const Category = () => {
     const navigate = useNavigate();
     return (
         <Flex bgColor={'white'} h={'100vh'} flexDirection={'column'}>
-            <MobileStatus title={'카테고리'} />
+                        <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
+                <MobileStatus title={"카테고리"}/>
+            </Flex>
 
-            <Stack direction={'row'} h={'100%'}>
+            <Stack direction={'row'} h={'100%'} mt={'72px'}>
                 <Stack direction={'column'} h={'100%'} w={'30%'} bgColor={'gray.600'} pt={'20px'}>
                     {CATEGORY.map((value, index) => (
                         <Button onClick={() => setCategory1(index)} h={'60px'} color={category1 == index ? 'gray.800' : 'white'} bgColor={category1 == index ? 'white' : 'gray.600'} _hover={{ color: 'gray.600', bgColor: 'gray.300' }} borderLeftRadius={'full'} borderRightRadius={'0'} marginLeft={'20%'} paddingRight={'20%'}>{value.title}</Button>

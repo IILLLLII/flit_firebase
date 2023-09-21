@@ -92,7 +92,9 @@ const ProductList = () => {
     }
     return (
         <Flex bgColor={'white'} h={'100vh'} flexDirection={'column'}>
-            <MobileStatus title={"상품"} isCart={true} isSearch={true} isHome={true} />
+            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
+                <MobileStatus title={"상품"} isCart={true} isSearch={true} isHome={true} />
+            </Flex>
             <Drawer
                 isOpen={isOpen}
                 placement="right"
@@ -298,20 +300,20 @@ const ProductList = () => {
                     </Accordion>
                 </DrawerContent>
             </Drawer>
-            <Stack direction={'column'}>
-            <Flex overflowX='auto' className="scroll">
-                <HStack>
-                    <IconButton onClick={() => onOpen()} icon={<FiSliders />} />
-                    <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(0); onOpen(); }} variant={'outline'} color={fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>{filter.order}</Button>
-                    <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(1); onOpen(); }} variant={'outline'} color={filter.location.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>지역</Button>
-                    <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(2); onOpen(); }} variant={'outline'} color={filter.category.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>카테고리</Button>
-                    <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(3); onOpen(); }} variant={'outline'} color={filter.range[0] == 0 && filter.range[1] == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>가격</Button>
-                    <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(4); onOpen(); }} variant={'outline'} color={filter.selColor.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>색상</Button>
-                    <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(5); onOpen(); }} variant={'outline'} color={filter.tag.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>태그</Button>
+            <Stack direction={'column'} mt={'80px'}>
+                <Flex overflowX='auto' className="scroll">
+                    <HStack>
+                        <IconButton onClick={() => onOpen()} icon={<FiSliders />} />
+                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(0); onOpen(); }} variant={'outline'} color={fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>{filter.order}</Button>
+                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(1); onOpen(); }} variant={'outline'} color={filter.location.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>지역</Button>
+                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(2); onOpen(); }} variant={'outline'} color={filter.category.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>카테고리</Button>
+                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(3); onOpen(); }} variant={'outline'} color={filter.range[0] == 0 && filter.range[1] == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>가격</Button>
+                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(4); onOpen(); }} variant={'outline'} color={filter.selColor.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>색상</Button>
+                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(5); onOpen(); }} variant={'outline'} color={filter.tag.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>태그</Button>
                     </HStack>
                 </Flex>
 
-                <HStack display={(filter.category.length > 0 || filter.location.length > 0 || filter.selColor.length > 0 || filter.tag.length > 0 || filter.range[1] > 0) ? 'flex' : 'none'} borderBottom={'1px solid #f1f1f1'} padding={2} paddingRight={10}>
+                <HStack display={(filter.category.length > 0 || filter.location.length > 0 || filter.selColor.length > 0 || filter.tag.length > 0 || filter.range[1] > 0) ? 'flex' : 'none'} borderBottom={'1px solid #f1f1f1'} padding={2}>
                     <Wrap w={'100%'} spacing={2}>
                         <HStack overflowX={'scroll'} className="scroll">
                             {filter.location.map((value, index) => (

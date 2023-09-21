@@ -12,6 +12,7 @@ const Home = () => {
                     <Button onClick={() => navigate('/customer/category')}>카테고리</Button>
                     <Button onClick={() => navigate('/customer/submit')}>회원가입</Button>
                     <Button onClick={() => navigate('/customer/login')}>로그인</Button>
+                    <Button onClick={() => navigate('/customer/cart')}>장바구니</Button>
                 </SimpleGrid>
 
             </Box>
