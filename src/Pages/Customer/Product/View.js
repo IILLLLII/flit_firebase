@@ -132,15 +132,15 @@ const ProductView = () => {
             <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={'상품상세'} isCart={true} />
             </Flex>
-            <Stack direction={'column'} w='100%' mt={20}>
-                <ImageSlider mt={'30px'} images={[product.thumbnail_image, ...product.product_image]} />
+            <Stack direction={'column'} w='100%' mt={'50px'}>
+                <ImageSlider images={[product.thumbnail_image, ...product.product_image]} />
 
-                <HStack w='100%' justifyContent={'center'} mt={4} borderBottom={'1px solid #8c8c8c'}>
+                <HStack w='100%' justifyContent={'center'} mt={6} borderBottom={'1px solid #d9d9d9'}>
                     <Button w='25%' onClick={() => setTab(0)} variant={'unstyled'} color={tab == 0 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 0 ? `5px solid ${fontColor.primary}` : 'none'}>상품조회</Button>
                     <Button w='25%' onClick={() => setTab(1)} variant={'unstyled'} color={tab == 1 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 1 ? `5px solid ${fontColor.primary}` : 'none'}>리뷰 {product.review.length}</Button>
                 </HStack>
 
-                <Box p={2} display={tab == 0 ? 'block' : 'none'}>
+                <Box m={4} display={tab == 0 ? 'block' : 'none'}>
                     <Stack direction={'column'}>
                         <HStack>
                             <Text {...Title_lg} mb={0}>{product.product_name}</Text>
@@ -223,7 +223,7 @@ const ProductView = () => {
 
                         <Flex overflowX='auto' className="scroll">
                             {shopProducts.map((value) => (
-                                <Box w='40vw' mr={1} flexShrink="0" p={2}>
+                                <Box w='40vw' flexShrink="0">
                                     <ProductItem data={value} state={'판매중'} />
                                 </Box>
                             ))}
@@ -236,11 +236,11 @@ const ProductView = () => {
                     </Stack>
 
                 </Box>
-            </Stack>
-            <Flex bgColor={'white'} position={'fixed'} w={'90%'} bottom={0} alignSelf={'center'} p={"10px"}>
+                <Center bgColor={'white'} w="100vw" position={'fixed'} bottom={0} alignSelf={'center'} p={"10px"}>
 
-                <Button onClick={() => setOpen(true)} w="100%" variant={'outline'} mb={4} colorScheme="red">구매하기</Button>
-            </Flex>
+                    <Button onClick={() => setOpen(true)} w="100%" variant={'outline'} colorScheme="red">구매하기</Button>
+                </Center>
+            </Stack>
 
             {popupOpen &&
                 <Flex zIndex={9999} bgColor={"rgba(0, 0, 0, 0.5)"} position={'fixed'} w={'100%'} h={"100%"} left={0} bottom={0} alignSelf={'center'} p={"10px"}>

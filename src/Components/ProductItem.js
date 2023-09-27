@@ -11,7 +11,7 @@ import { serverTimestamp } from "firebase/firestore";
 export default function ProductItem({ data, state }) {
   const navigate = useNavigate();
   return (
-    <Box onClick={() => navigate('/customer/product/view/' + data.id, { state: data })}>
+    <Box p={2} onClick={() => navigate('/customer/product/view/' + data.id, { state: data })}>
       <Stack w="100%" direction={'column'} borderRadius='lg'>
         <Image src={data.thumbnail_image} borderRadius={'lg'} />
 

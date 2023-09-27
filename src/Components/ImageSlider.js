@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image, Text } from '@chakra-ui/react';
+import { Box, Center, Flex, HStack, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import Slider from 'react-slick';
 //  import '../scss/_slick_theme.scss';
@@ -47,7 +47,7 @@ const ImageSlider = ({images}) => {
       prevArrow: <SamplePrevArrow />,
     };
     return (
-      <Box w='100%'>
+      <Box w={'auto'}>
         <Slider {...settings}>
           {images && images.map((value, index) => (
             <Image objectFit='cover' src={value} alt={`image${index}`} borderRadius='lg'/>

@@ -300,16 +300,16 @@ const ProductList = () => {
                     </Accordion>
                 </DrawerContent>
             </Drawer>
-            <Stack direction={'column'} mt={'80px'}>
+            <Stack direction={'column'} mt={'50px'} p={2}>
                 <Flex overflowX='auto' className="scroll">
                     <HStack>
-                        <IconButton onClick={() => onOpen()} icon={<FiSliders />} />
-                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(0); onOpen(); }} variant={'outline'} color={fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>{filter.order}</Button>
-                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(1); onOpen(); }} variant={'outline'} color={filter.location.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>지역</Button>
-                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(2); onOpen(); }} variant={'outline'} color={filter.category.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>카테고리</Button>
-                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(3); onOpen(); }} variant={'outline'} color={filter.range[0] == 0 && filter.range[1] == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>가격</Button>
-                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(4); onOpen(); }} variant={'outline'} color={filter.selColor.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>색상</Button>
-                        <Button size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(5); onOpen(); }} variant={'outline'} color={filter.tag.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>태그</Button>
+                        <IconButton mr={1} onClick={() => onOpen()} icon={<FiSliders />} />
+                        <Button mr={1} size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(0); onOpen(); }} variant={'outline'} color={fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>{filter.order}</Button>
+                        <Button mr={1} size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(1); onOpen(); }} variant={'outline'} color={filter.location.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>지역</Button>
+                        <Button mr={1} size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(2); onOpen(); }} variant={'outline'} color={filter.category.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>카테고리</Button>
+                        <Button mr={1} size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(3); onOpen(); }} variant={'outline'} color={filter.range[0] == 0 && filter.range[1] == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>가격</Button>
+                        <Button mr={1} size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(4); onOpen(); }} variant={'outline'} color={filter.selColor.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>색상</Button>
+                        <Button mr={1} size={'sm'} colorScheme="red" onClick={() => { setFilterIndex(5); onOpen(); }} variant={'outline'} color={filter.tag.length == 0 ? 'gray.400' : fontColor.primary} rightIcon={<ChevronRightIcon boxSize={'20px'} />}>태그</Button>
                     </HStack>
                 </Flex>
 
@@ -318,7 +318,7 @@ const ProductList = () => {
                         <HStack overflowX={'scroll'} className="scroll">
                             {filter.location.map((value, index) => (
                                 <WrapItem>
-                                    <Tag whiteSpace={'nowrap'} colorScheme="red" borderRadius={'full'}>
+                                    <Tag mr={1} whiteSpace={'nowrap'} colorScheme="red" borderRadius={'full'}>
                                         {value}
                                         <TagCloseButton onClick={() => {
                                             filter.location.splice(index, 1);
@@ -395,9 +395,9 @@ const ProductList = () => {
             </Stack>
 
             <Center >
-                <Wrap mt={4} spacing={0}>
+                <Wrap mt={2} spacing={0}>
                     {productList.map((value, index) => (
-                        <WrapItem width={'50%'} p={2} display={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '' : 'none' : "none"}>
+                        <WrapItem width={'50vw'} display={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '' : 'none' : "none"}>
                             <ProductItem data={value} state={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '판매중' : '판매종료' : "품절"} />
                         </WrapItem>
                     ))}
