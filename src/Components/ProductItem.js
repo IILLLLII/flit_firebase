@@ -24,7 +24,7 @@ export default function ProductItem({ data, state }) {
             {parseDate(getDate(serverTimestamp())).getDate() - parseDate(getDate(data.regist_date)).getDate() < 7 && <Badge colorScheme="yellow">new</Badge>}
             {data.sales_count > 0 && <Badge colorScheme="red">Hot</Badge>}
             </HStack>
-            <Text fontSize={'xs'} textDecoration={'line-through'} color='#8c8c8c' mb={-2}>{formattedAmount(data.sales_price)}원</Text>
+            <Text fontSize={'xs'} textDecoration={'line-through'} color='#8c8c8c' mb={-1}>{formattedAmount(data.sales_price)}원</Text>
             <HStack>
               <Text fontWeight={'900'} color='#da4359' fontSize={'smaller'}>{data.discount.value}{data.discount.unit}</Text>
               <Text {...Title_sm} mb={0}>{data.discount.unit == "%" ? formattedAmount(data.sales_price - data.sales_price * 0.01 * data.discount.value) : formattedAmount(data.sales_price - data.discount.value)}원</Text>

@@ -328,13 +328,13 @@ export function compareDate(date) {
   }
 }
 
-export const getOwnerName = async (ownerId) => {
+export const getOwner = async (ownerId) => {
   const docRef = doc(db, "Owner", ownerId);
   const _doc = await getDoc(docRef);
 
   //console.log("Data", id, _doc.data());
 
-  return _doc.data().name
+  return _doc.data()
 }
 
 export const isDuplication = async(collectionId, field, value) => {

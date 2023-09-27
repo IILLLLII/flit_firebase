@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { Badge, Box, Button, Flex, HStack, Stack, StackDivider, Tag, Text, VStack, Wrap, WrapItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, CloseButton, Center, AspectRatio } from "@chakra-ui/react"
-import { useLocation } from "react-router-dom"
+import { Badge, Box, Button, Flex, HStack, Stack, StackDivider, Tag, Text, VStack, Wrap, WrapItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, CloseButton, Center, AspectRatio, Avatar } from "@chakra-ui/react"
+import { useLocation, useNavigate } from "react-router-dom"
 import ImageSlider from "../../../Components/ImageSlider";
 import MobileStatus from "../../../Components/MobileStatus";
-import { compareDate, formattedAmount, getDate, getDocument, getShopProductList, parseDate, updateData } from "../../../DB/function";
+import { compareDate, formattedAmount, getDate, getDocument, getOwner, getShop, getShopProductList, parseDate, updateData } from "../../../DB/function";
 import { serverTimestamp } from "firebase/firestore";
 import { Body_sm, Title_lg, Title_sm, fontColor } from "../../../Style/Typograhy";
 import ProductItem from "../../../Components/ProductItem";
@@ -15,6 +15,7 @@ const SplitLine = () => {
 }
 
 const ProductView = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [shopProducts, setShopProducts] = useState([]);
     const [product, setProduct] = useState(location.state);
@@ -28,9 +29,55 @@ const ProductView = () => {
     const [totalCost, setTotalCost] = useState(product.discount.unit == "%" ? product.sales_price - product.sales_price * 0.01 * product.discount.value : product.sales_price - product.discount.value)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [modalData, setModal] = useState("")
+    const [owner, setOwner] = useState({})
+    const [shopInfo, setShopInfo] = useState({
+        shopname: '',
+        nickname: '',
+        follower: [],
+        review: [],
+        category: [],
+        delivery: ['픽업', '배송'],
+        use_bundle_delivery: false,
+        bundle_delivery: 0,
+        operate_time: {
+            week_open: '09:00',
+            week_close: '18:00',
+            weekend_open: '09:00',
+            weekend_close: '18:00',
+        },
+        reserve_time: {
+            week_open: '09:00',
+            week_close: '18:00',
+            weekend_open: '09:00',
+            weekend_close: '18:00',
+        },
+        break_time: {
+            week_open: '09:00',
+            week_close: '18:00',
+            weekend_open: '09:00',
+            weekend_close: '18:00',
+        },
+        holiday: [],
+        sns: [],
+        email: '',
+        comment: ''
+    })
+
     useEffect(() => {
+        getShopInfo();
+        getOwnerInfo();
         getShopProduct();
     }, []);
+
+    const getOwnerInfo = async () => {
+        let owner_ = await getOwner(location.state.ownerId)
+        setOwner(owner_)
+    }
+
+    const getShopInfo = async () => {
+        let shop_ = await getShop(location.state.ownerId)
+        setShopInfo(shop_)
+    }
 
     const getShopProduct = async () => {
         let shopProducts = await getShopProductList(location.state.ownerId)
@@ -133,6 +180,12 @@ const ProductView = () => {
                 <MobileStatus title={'상품상세'} isCart={true} />
             </Flex>
             <Stack direction={'column'} w='100%' mt={'50px'} mb={'80px'}>
+                <Stack>
+                    <HStack p={4} bgColor={'gray.50'} onClick={() => navigate('/customer/shopinfo', { state : {shopInfo :shopInfo, account : owner}})}>
+                        <Avatar mr={2} src={owner.profileImage}></Avatar>
+                        <Text>{shopInfo.shopname}</Text>
+                    </HStack>
+                </Stack>
                 <Center maxW={'container.sm'}>
                     <ImageSlider images={[product.thumbnail_image, ...product.product_image]} />
                 </Center>

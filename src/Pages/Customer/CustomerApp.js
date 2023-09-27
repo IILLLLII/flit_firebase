@@ -9,6 +9,7 @@ import Submit from "./Submit";
 import Login from "./Login";
 import Cart from "./Cart";
 import Purchase from "./Purchase";
+import ShopInfo from "./ShopInfo";
 
 const CustomerApp = () => {
     return (
@@ -23,6 +24,7 @@ const CustomerApp = () => {
             <Route path='/customer/login' element={<Login/>} />
             <Route path='/customer/cart' element={<Cart/>} />
             <Route path='/customer/purchase' element={<Purchase/>} />
+            <Route path='/customer/shopinfo' element={<ShopInfo/>} />
           </Routes>
         </BrowserRouter>
         // </Container>
