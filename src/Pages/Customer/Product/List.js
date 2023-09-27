@@ -102,11 +102,11 @@ const ProductList = () => {
                 returnFocusOnClose={false}
                 onOverlayClick={onClose}
                 size="xs">
-                <DrawerContent pt={4}>
+                <DrawerContent pt={4} overflowY={'scroll'}>
                     <HStack paddingX={4} justifyContent={'space-between'} alignItems={'flex-start'}>
 
                         <Text {...Title_2xl}>필터</Text>
-                        <CloseButton onClick={onClose} />
+                        <CloseButton border={'none'} onClick={onClose} />
                     </HStack>
                     <Accordion allowMultiple defaultIndex={[filterIndex]}>
                         <AccordionItem>
@@ -146,7 +146,7 @@ const ProductList = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <HStack>
-                                    <Select bgColor="white" onChange={(e) => setCity(e.target.value)}>
+                                    <Select mr={1} bgColor="white" onChange={(e) => setCity(e.target.value)}>
                                         {LOCATION.map((value, index) => (
                                             <option value={index}>{value.city}</option>
                                         ))}
@@ -165,7 +165,7 @@ const ProductList = () => {
                                 <Wrap w={'100%'} spacing={2} mt={2}>
                                     {filter.location.map((value, index) => (
                                         <WrapItem>
-                                            <Tag whiteSpace={'nowrap'}>
+                                            <Tag mr={1} whiteSpace={'nowrap'}>
                                                 {value}
                                                 <TagCloseButton onClick={() => {
                                                     filter.location.splice(index, 1);
@@ -194,12 +194,12 @@ const ProductList = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <VStack>
-                                    <Select bgColor="white" onChange={(e) => { setCategory1(e.target.value) }}>
+                                    <Select mb={2} bgColor="white" onChange={(e) => { setCategory1(e.target.value) }}>
                                         {CATEGORY.map((value, index) => (
                                             <option value={index}>{value.title}</option>
                                         ))}
                                     </Select>
-                                    <Select bgColor="white" onChange={(e) => {
+                                    <Select mb={2} bgColor="white" onChange={(e) => {
                                         if (!filter.category.includes(`${CATEGORY[category1].title + ">" + e.target.value}`))
                                             setFilter({ ...filter, category: [...filter.category, `${CATEGORY[category1].title + ">" + e.target.value}`] })
                                     }
@@ -212,7 +212,7 @@ const ProductList = () => {
                                     <Wrap w={'100%'} spacing={2}>
                                         {filter.category.map((value, index) => (
                                             <WrapItem>
-                                                <Tag whiteSpace={'nowrap'}>
+                                                <Tag mr={1} whiteSpace={'nowrap'}>
                                                     {value}
                                                     <TagCloseButton onClick={() => {
                                                         filter.category.splice(index, 1);
@@ -242,10 +242,11 @@ const ProductList = () => {
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <HStack>
                                     <Input type="number" bgColor={'white'} value={filter.range[0]} />
-                                    <Text>~</Text>
+                                    <Text m={1}>~</Text>
                                     <Input type="number" bgColor={'white'} value={filter.range[1]} />
                                 </HStack>
-                                <SliderThumbWithTooltip defaultValue={filter.range} onSetRange={(value) => setFilter({ ...filter, range: value })} />
+                                <Box m={4}>
+                                <SliderThumbWithTooltip defaultValue={filter.range} onSetRange={(value) => setFilter({ ...filter, range: value })} /></Box>
 
                             </AccordionPanel>
                         </AccordionItem>
@@ -279,13 +280,13 @@ const ProductList = () => {
 
                                         <HStack w='full'>
 
-                                            <Input bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
+                                            <Input mr={1} bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
                                             <Button onClick={() => addTag()}>추가</Button>
                                         </HStack>
                                         <Wrap mx={1}>
                                             {selTags.map((value) => (
                                                 <WrapItem>
-                                                    <Tag>
+                                                    <Tag mr={1}>
                                                         {value}
                                                         <TagCloseButton onClick={() => delTag(value)} />
                                                     </Tag>
@@ -380,7 +381,7 @@ const ProductList = () => {
 
                             {selTags.map((value) => (
                                 <WrapItem>
-                                    <Tag whiteSpace={'nowrap'} colorScheme="red" borderRadius={'full'}>
+                                    <Tag mr={1} whiteSpace={'nowrap'} colorScheme="red" borderRadius={'full'}>
                                         {value}
                                         <TagCloseButton onClick={() => delTag(value)} />
                                     </Tag>
@@ -398,7 +399,7 @@ const ProductList = () => {
             <Center >
                 <Wrap mt={2} spacing={0}>
                     {productList.map((value, index) => (
-                        <WrapItem width={'50vw'} display={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '' : 'none' : "none"}>
+                        <WrapItem width={'50%'} display={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '' : 'none' : "none"}>
                             <ProductItem data={value} state={value.count - value.sales_count > 0 ? compareDate(value.saletime.end) || value.saletime.set == "설정안함" ? '판매중' : '판매종료' : "품절"} />
                         </WrapItem>
                     ))}

@@ -36,7 +36,7 @@ const ColorPicker = ({ selColor, ...props }) => {
           {colorChip.map((value, index) => {
             const isSelected = selColor.includes(value.color)
             return (
-              <Box onClick={() => onSelectColor(value.color)} borderWidth={2} borderRadius={[2, 4]} borderColor={isSelected ? '#da4359' : '#d9d9d9'} >
+              <Box mr={1} mb={1} onClick={() => onSelectColor(value.color)} borderWidth={2} borderRadius={[2, 4]} borderColor={isSelected ? '#da4359' : '#d9d9d9'} >
                 <Center borderWidth={[1, 2]} borderRadius={[2, 4]} borderColor='white' bgColor={value.color} boxSize={['24px', '30px']}>
                   {isSelected && <CheckIcon color={'whiteAlpha.900'} />}
                 </Center>

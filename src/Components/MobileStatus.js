@@ -11,13 +11,13 @@ const MobileStatus = ({title, ...props}) => {
     return(
         <Flex width={"100%"} justifyContent={'space-between'} alignItems={'center'} bgColor={'white'} padding={1}>
             <HStack>
-            <IconButton mr={1} onClick={() => navigate(-1)} bgColor={'white'} icon={<ArrowBackIcon boxSize={'24px'}/>}/>
-            <IconButton onClick={() => navigate('/customer')} visibility={props.isHome ? 'visible' : 'hidden'} bgColor={'white'} icon={<Center><FiHome size={'24px'}/></Center>}/>
+            <IconButton border={'none'} mr={1} onClick={() => navigate(-1)} bgColor={'white'} icon={<ArrowBackIcon boxSize={'24px'}/>}/>
+            <IconButton border={'none'} onClick={() => navigate('/customer')} visibility={props.isHome ? 'visible' : 'hidden'} bgColor={'white'} icon={<Center><FiHome size={'24px'}/></Center>}/>
             </HStack>
             <Text {...Title_xl} mb={0}>{title}</Text>
             <HStack>
-            <IconButton mr={1} visibility={props.isSearch ? 'visible' : 'hidden'} bgColor={'white'} icon={<SearchIcon boxSize={'24px'}/>}/>
-            <IconButton visibility={props.isCart ? 'visible' : 'hidden'} bgColor={'white'} icon={<Center><FiShoppingCart size={'24px'}/></Center>}/>
+            <IconButton border={'none'} mr={1} visibility={props.isSearch ? 'visible' : 'hidden'} bgColor={'white'} icon={<SearchIcon boxSize={'24px'}/>}/>
+            <IconButton border={'none'} visibility={props.isCart ? 'visible' : 'hidden'} bgColor={'white'} icon={<Center><FiShoppingCart size={'24px'}/></Center>}/>
             </HStack>
         </Flex>
     )
