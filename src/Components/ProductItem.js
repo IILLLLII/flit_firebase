@@ -1,4 +1,4 @@
-import { Badge, Box, Flex, HStack, Image, Stack, Text } from "@chakra-ui/react"
+import { AspectRatio, Badge, Box, Center, Flex, HStack, Image, Stack, Text } from "@chakra-ui/react"
 import { formattedAmount, getDate, parseDate } from "../DB/function"
 import { Title_lg, Title_sm } from "../Style/Typograhy"
 import { useNavigate } from "react-router-dom"
@@ -13,7 +13,9 @@ export default function ProductItem({ data, state }) {
   return (
     <Box p={2} onClick={() => navigate('/customer/product/view/' + data.id, { state: data })}>
       <Stack w="100%" direction={'column'} borderRadius='lg'>
-        <Image src={data.thumbnail_image} borderRadius={'lg'} />
+      <AspectRatio  width={'100%'} ratio={1}>
+          <Image objectFit={'cover'} src={data.thumbnail_image} borderRadius={'lg'} />
+        </AspectRatio>
 
         <Box p={2}>
           <Stack direction={'column'}>

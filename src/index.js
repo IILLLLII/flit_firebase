@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
 import './scss/_slick.scss'
 import './scss/_slick-theme.scss'
+import './scss/_calendar.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

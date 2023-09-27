@@ -103,7 +103,7 @@ const ProductList = () => {
                 onOverlayClick={onClose}
                 size="xs">
                 <DrawerContent pt={4}>
-                    <HStack paddingInline={4} justifyContent={'space-between'} alignItems={'flex-start'}>
+                    <HStack paddingX={4} justifyContent={'space-between'} alignItems={'flex-start'}>
 
                         <Text {...Title_2xl}>필터</Text>
                         <CloseButton onClick={onClose} />
@@ -122,6 +122,7 @@ const ProductList = () => {
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <RadioGroup defaultValue={filter.order} onChange={(value) => setFilter({ ...filter, order: value })}>
                                     <Stack direction={'column'} overflowX={'scroll'}>
+                                        <Radio bgColor="white" p={1} colorScheme="red" value="거리순">{'거리순'}</Radio>
                                         <Radio bgColor="white" p={1} colorScheme="red" value="판매순">{'판매순'}</Radio>
                                         <Radio bgColor="white" p={1} colorScheme="red" value="인기순">{'인기순'}</Radio>
                                         <Radio bgColor="white" p={1} colorScheme="red" value="낮은가격순">{'낮은가격순'}</Radio>

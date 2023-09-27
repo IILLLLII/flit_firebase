@@ -1,6 +1,7 @@
 .react-calendar__month-view__weekdays {
     text-align: center;
     color: #949494;
+    cursor: default;
 }
 
 .react-calendar__month-view__days__day--neighboringMonth {
@@ -30,7 +31,7 @@
   }
 
   button {
-    width: 90%;
+    // width: 90%;
     height: 50px;
     margin: 3px;
     background-color: transparent;
@@ -74,16 +75,16 @@
     }
     
     button {
-        width: 50px;
-        height: 50px;
-        margin: auto;
-        background-color: transparent;
+        width: auto;
+        height: 45px;
+        // background-color: transparent;
         // box-shadow: 0 4px 4px rgba(#332F2F, 0.1);
         border: 0;
         border-radius: 25px;
         color: black;
         padding: 5px 0;
         font-size: 18px;
+        margin: 4px;
 
         outline: 0;
         box-shadow: none;
@@ -108,6 +109,7 @@
 
 .react-calendar__navigation {
     display: flex;
+    padding: 10px 5px;
     
     button {
         margin: 3px;
@@ -115,7 +117,6 @@
         border: 0;
         border-radius: 6px;
         color: black;
-        padding: 5px 0;
         font-size: 18px;
     
         &:hover {

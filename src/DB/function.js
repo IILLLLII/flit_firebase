@@ -200,6 +200,18 @@ export const getShop = async (ownerId) => {
   return result;
 }
 
+export const getPlan = async(ownerId, date) => {
+  const q = query(collection(db, 'Plan'), where("ownerId", "==", ownerId));
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+    console.log(getStrDate(date), getDate(date), getDate(doc.data().month))
+    if(getStrDate(date) === getDate(doc.data().month))
+      result = [...result, { ...doc.data(), id: doc.id }]
+  })
+  
+  return result;
+}
 
 
 
@@ -260,6 +272,10 @@ export function formatNumberAll(number) {
 export function getPath(str) {
   return str ? str.split('/')[str.split('/').length - 1].split('?')[0] : ""
 
+}
+
+export function getStrDate(date) {
+  return date.getFullYear() + "-" + ('0' + (date.getMonth() + 1)).slice(-2) + "-" + ('0' + date.getDate()).slice(-2)
 }
 
 export function getDate(timestamp) {
