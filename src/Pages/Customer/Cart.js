@@ -89,7 +89,7 @@ const Cart = () => {
                         <Input mb={2} type="date" defaultValue={getDate(new Date())} />
                         <Flex overflowX='auto' className="scroll">
                             <HStack>
-                                <Button>11:00</Button>
+                                <Button m={1}>11:00</Button>
                                 <Button>12:00</Button>
                                 <Button>13:00</Button>
                                 <Button>14:00</Button>
