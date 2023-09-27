@@ -38,7 +38,7 @@ const Category = () => {
                 <MobileStatus title={"카테고리"}/>
             </Flex>
 
-            <Stack direction={'row'} h={'100%'} mt={'72px'}>
+            <Stack direction={'row'} h={'100%'} mt={'42px'}>
                 <Stack direction={'column'} h={'100%'} w={'30%'} bgColor={'gray.600'} pt={'20px'}>
                     {CATEGORY.map((value, index) => (
                         <Button onClick={() => setCategory1(index)} h={'60px'} color={category1 == index ? 'gray.800' : 'white'} bgColor={category1 == index ? 'white' : 'gray.600'} _hover={{ color: 'gray.600', bgColor: 'gray.300' }} borderLeftRadius={'full'} borderRightRadius={'0'} marginLeft={'20%'} paddingRight={'20%'}>{value.title}</Button>

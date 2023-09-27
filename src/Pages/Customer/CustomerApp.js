@@ -1,5 +1,5 @@
 import React from "react";
-import { Container} from "@chakra-ui/react";
+import { Box, Container} from "@chakra-ui/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Category from "./Category";
 import Home from "./Home";
@@ -8,11 +8,11 @@ import ProductView from "./Product/View";
 import Submit from "./Submit";
 import Login from "./Login";
 import Cart from "./Cart";
+import Purchase from "./Purchase";
 
 const CustomerApp = () => {
     return (
-        <Container maxW={'container.sm'} bgColor={'gray.200'} paddingInline={0} h={'100%'}>
-
+        // <Container maxW={'container.sm'} bgColor={'gray.200'} h={'100%'}>
                 <BrowserRouter>
           <Routes>
             <Route path='/customer' element={<Home />} />
@@ -22,9 +22,10 @@ const CustomerApp = () => {
             <Route path='/customer/submit' element={<Submit/>} />
             <Route path='/customer/login' element={<Login/>} />
             <Route path='/customer/cart' element={<Cart/>} />
+            <Route path='/customer/purchase' element={<Purchase/>} />
           </Routes>
         </BrowserRouter>
-        </Container>
+        // </Container>
     )
 }
 export default CustomerApp;

@@ -28,9 +28,8 @@ const Cart = () => {
 
         let totalCost = 0;
         for (var i = 0; i < user.cart.length; i++) {
-            if(user.cart)
-            {
-                totalCost += user.cart[i].product_cost;
+            if (user.cart) {
+                totalCost += user.cart[i].total_cost;
             }
         }
 
@@ -40,22 +39,22 @@ const Cart = () => {
     return (
         <Flex bgColor={'white'} flexDirection={'column'} w="100%">
             <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
-                <MobileStatus title={`${localStorage.getItem('Cart')} 장바구니`} isHome={true} />
+                <MobileStatus title={`${localStorage.getItem('Cart') ? localStorage.getItem('Cart') : ''} 장바구니`} isHome={true} />
             </Flex>
-            
-            <Stack mt={'80px'} mb={'80px'}>
-                <HStack justifyContent={'space-between'}>
+
+            <Stack mt={'50px'} mb={'80px'} p={2}>
+                <HStack mb={2} justifyContent={'space-between'}>
                     <Checkbox>전체선택</Checkbox>
                     <Button size={'sm'}>선택삭제</Button>
                 </HStack>
                 <Stack spacing={4} bgColor={'white'} divider={<StackDivider />}>
                     {uniqueArr.map((value, index) => (
-                        <Stack w="100%" p={'10px'} borderRadius={'lg'} bgColor={'gray.50'}>
-                            <HStack w="100%" justifyContent={'space-between'}>
+                        <Stack w="auto" borderRadius={'lg'} bgColor={'gray.50'} p={2}>
+                            <HStack mb={2} w="100%" justifyContent={'space-between'}>
                                 <Checkbox />
                                 <CloseButton />
                             </HStack>
-                            <HStack w="100%" justifyContent={'space-between'}>
+                            <HStack mb={2} w="100%" justifyContent={'space-between'}>
 
                                 <Stack>
                                     <Box>{value.product.product_name}</Box>
@@ -80,15 +79,14 @@ const Cart = () => {
 
                                 <Image src={value.product.thumbnail_image} w="90px" h="90px" />
                             </HStack>
-
-                            <HStack justifyContent={'flex-end'}>
-                                <Text {...Title_lg}>{formattedAmount(value.product_cost)}원</Text>
+                            <HStack mb={2} justifyContent={'flex-end'}>
+                                <Text {...Title_lg}>{formattedAmount(parseInt(value.total_cost))}원</Text>
                             </HStack>
 
                         </Stack>
                     ))}
                     <Stack>
-                        <Input type="date" defaultValue={getDate(new Date())} />
+                        <Input mb={2} type="date" defaultValue={getDate(new Date())} />
                         <Flex overflowX='auto' className="scroll">
                             <HStack>
                                 <Button>11:00</Button>
@@ -112,22 +110,22 @@ const Cart = () => {
                     </HStack>
                 </Stack>
 
-                <Stack divider={<StackDivider borderWidth={2} borderColor={'gray.700'}/>} mt={'10px'}>
-                        <HStack justifyContent={'space-between'} p={2}>
+                <Stack divider={<StackDivider borderWidth={2} borderColor={'gray.700'} />} mt={'10px'}>
+                    <HStack justifyContent={'space-between'}>
                         <Text>총 상품 금액</Text>
                         <Text>{formattedAmount(totalCost)}원</Text>
-                        </HStack>
-                        <HStack justifyContent={'space-between'} p={2}>
+                    </HStack>
+                    <HStack justifyContent={'space-between'}>
                         <Text>결제 예정 금액</Text>
                         <Text color={fontColor.primary}>{formattedAmount(totalCost)}원</Text>
-                        </HStack>
-                    </Stack>
+                    </HStack>
+                </Stack>
             </Stack>
 
-            <Flex borderTop={'1px solid #d9d9d9'} bgColor={'white'} position={'fixed'} w={'100%'} bottom={0} alignSelf={'center'} p={"10px"}>
+            <Center borderTop={'1px solid #d9d9d9'} bgColor={'white'} position={'fixed'} w={'100%'} bottom={0} alignSelf={'center'} p={"10px"}>
 
-<Button onClick={() => setOpen(true)} w="100%" variant={'outline'} mb={0} colorScheme="red">구매하기</Button>
-</Flex>
+                <Button onClick={() => setOpen(true)} w="90%" variant={'outline'} mb={0} colorScheme="red">구매하기</Button>
+            </Center>
         </Flex>
     )
 }

@@ -10,7 +10,7 @@ export const isCustomer = window.location.pathname.includes('customer');
 function App() {
 
   return (
-    <Container maxW={''}>
+    <Container w="100vw" p={0}>
       {isAdmin ? <SidebarWithHeader/> : isCustomer ? <CustomerApp/> : <SideBar/>}
       {/* <SideBar/> */}
     </Container>

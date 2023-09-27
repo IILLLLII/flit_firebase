@@ -50,50 +50,54 @@ const Login = () => {
                     <Image src={require('../../Asset/Logo.png')} width={'100px'} />
                     <Heading fontSize={'3xl'}>로그인</Heading>
                 </Stack>
-                <Box
-                    rounded={'lg'}
-                    bg={useColorModeValue('white', 'gray.700')}
-                    boxShadow={'lg'}
-                    p={8}
-                    w={'100%'}
-                >
-                    <Stack spacing={4}>
-                        <FormControl id="email">
-                            <FormLabel>Email</FormLabel>
-                            <Input type="email" defaultValue={inputData.id} onChange={(e) => setInputData({ ...inputData, id: e.target.value })} />
-                        </FormControl>
-                        <FormControl id="password">
-                            <FormLabel>Password</FormLabel>
-                            <Input type="password" defaultValue={inputData.password}  onChange={(e) => setInputData({ ...inputData, password: e.target.value })} />
-                            {isError && <Text color='red.500'>로그인 정보를 다시 확인해주세요.</Text>}
-                        </FormControl>
-                        <Stack spacing={10}>
-                            <Button
-                                bg={'blue.400'}
-                                color={'white'}
-                                _hover={{
-                                    bg: 'blue.500',
-                                }}
-                                onClick={() => login()}
-                            >
-                                로그인
-                            </Button>
+                <Center>
+                    <Box
+                        mb={6}
+                        rounded={'lg'}
+                        bg={useColorModeValue('white', 'gray.700')}
+                        boxShadow={'lg'}
+                        p={8}
+                        w={'100%'}
+                    >
+                        <Stack spacing={4}>
+                            <FormControl id="email" mb={2}>
+                                <FormLabel>Email</FormLabel>
+                                <Input type="email" defaultValue={inputData.id} onChange={(e) => setInputData({ ...inputData, id: e.target.value })} />
+                            </FormControl>
+                            <FormControl id="password" mb={2}>
+                                <FormLabel>Password</FormLabel>
+                                <Input type="password" defaultValue={inputData.password} onChange={(e) => setInputData({ ...inputData, password: e.target.value })} />
+                                {isError && <Text color='red.500'>로그인 정보를 다시 확인해주세요.</Text>}
+                            </FormControl>
+                            <Stack spacing={10}>
+                                <Button
+                                    mb={2}
+                                    bg={'blue.400'}
+                                    color={'white'}
+                                    _hover={{
+                                        bg: 'blue.500',
+                                    }}
+                                    onClick={() => login()}
+                                >
+                                    로그인
+                                </Button>
+                            </Stack>
+                            <Stack spacing={10}>
+                                <Button
+                                    colorScheme="blue"
+                                    variant={'outline'}
+                                    onClick={() => navigate('/customer/submit')}
+                                >
+                                    회원가입
+                                </Button>
+                            </Stack>
                         </Stack>
-                        <Stack spacing={10}>
-                            <Button
-                                colorScheme="blue"
-                                variant={'outline'}
-                                onClick={() => navigate('/customer/submit')}
-                            >
-                                회원가입
-                            </Button>
-                        </Stack>
-                    </Stack>
-                </Box>
+                    </Box>
+                </Center>
 
                 <HStack justifyContent={'space-between'}>
-                    <Find title={'아이디찾기'}/>
-                    <Find title={'비밀번호찾기'}/>
+                    <Find title={'아이디찾기'} />
+                    <Find title={'비밀번호찾기'} />
                 </HStack>
             </Stack>
         </Center>

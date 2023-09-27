@@ -48,7 +48,7 @@ const ProductView = () => {
         var filter = tempArr.filter((element) => element.name == product.option.item[option].name)
         console.log(filter)
 
-        var optionList = uniqueArr ? uniqueArr : new Array(product.option.item[option].length)
+        var optionList = uniqueArr ? uniqueArr : new Array(product.option.item[option].length).fill({})
         optionList[option] = { ...product.option.item[option], count: filter.length }
         console.log("unique : ", optionList)
         setUniqueArr(optionList)
@@ -102,8 +102,8 @@ const ProductView = () => {
             setModal(`${localStorage.getItem("Cart")} 상품이 장바구니에 존재합니다.\n장바구니를 확인해주세요.`)
             return
         }
-        let cart = user.cart ? [...user.cart, { product: product, product_cost: totalCost, product_count: totalCount, option: uniqueArr, type: type }] : [{ product: product, product_count: totalCount, option: uniqueArr, type: type }]
-        console.log(cart, type)
+        let cart = user.cart ? [...user.cart, { product: product, total_cost: totalCost, product_count: totalCount, option: uniqueArr, type: type }] : [{ product: product, total_cost: totalCost, product_count: totalCount, option: uniqueArr, type: type }]
+        console.log(cart, type, totalCost)
         onClose();
         const addCartUser = { ...user, cart };
         console.log(addCartUser)
@@ -244,8 +244,8 @@ const ProductView = () => {
 
             {popupOpen &&
                 <Flex zIndex={9999} bgColor={"rgba(0, 0, 0, 0.5)"} position={'fixed'} w={'100%'} h={"100%"} left={0} bottom={0} alignSelf={'center'} p={"10px"}>
-                    <Flex bgColor={'white'} position={'fixed'} w={'100%'} h={"55%"} left={0} bottom={0} alignSelf={'center'} p={"20px"} borderTopRadius={'xl'}>
-                        <VStack w="100%" alignItems={'flex-end'}>
+                    <Flex bgColor={'white'} position={'fixed'} w={'100%'} left={0} bottom={0} alignSelf={'center'} p={"20px"} borderTopRadius={'xl'}>
+                        <VStack w="100%" alignItems={'flex-end'} mb={'80px'}>
                             <CloseButton color={'#8c8c8c'} onClick={() => setOpen(false)} />
                             <Select onChange={(e) => addOption(e.target.value)}>
                                 <option value={-1}>{'옵션없음'}</option>
