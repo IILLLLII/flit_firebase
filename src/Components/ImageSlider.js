@@ -47,12 +47,11 @@ const ImageSlider = ({ images }) => {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-
-    <Box>
-      <Flex>
+<Center maxW={'container.sm'}>
+    <Box width={'100%'} maxW={'container.sm'}>
         <Slider {...settings}>
           {images && images.map((value, index) => (
-            <Image objectFit={{ base: 'cover' }} src={value} alt={`image${index}`} borderRadius='lg' />
+            <Image objectFit={'cover'} src={value} alt={`image${index}`} borderRadius='lg' />
           ))}
         </Slider>
         {/* <HStack className="justify-content-center" style={{ margin: "40px 0" }}>
@@ -60,8 +59,8 @@ const ImageSlider = ({ images }) => {
             <img src={images[index]} style={{ width: "50px", height: "50px", margin: "5px" }} />
           ))}
         </HStack> */}
-      </Flex>
     </Box>
+    </Center>
   );
 
 }

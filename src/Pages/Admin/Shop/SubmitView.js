@@ -4,7 +4,7 @@ import { PrimaryButton } from "../../../Style/Button";
 import { DateInput, RadioInput, PhoneInput, TextInput, MailInput } from "../../../Components/Form";
 import { UserProfileEdit } from "../../../Components/UserProfileEdit";
 import { FileUploader } from "../../../Components/FileUploader";
-import { addDocument, getPath, updateData } from "../../../DB/function";
+import { addDocument, getPath, getShop, updateData } from "../../../DB/function";
 import PopupPostCode from "../../../Components/PopupPostCode";
 import { Background, Title } from "../../../Style/Form";
 import { FiArrowLeftCircle } from "react-icons/fi";
@@ -15,6 +15,38 @@ import { v4 } from "uuid";
 const SubmitView = () => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [shopInfo, setShopInfo] = useState({
+        shopname: '',
+        nickname: '',
+        follower: [],
+        review: [],
+        category: [],
+        delivery: ['픽업', '배송'],
+        use_bundle_delivery: false,
+        bundle_delivery: 0,
+        operate_time: {
+            week_open: '09:00',
+            week_close: '18:00',
+            weekend_open: '09:00',
+            weekend_close: '18:00',
+        },
+        reserve_time: {
+            week_open: '09:00',
+            week_close: '18:00',
+            weekend_open: '09:00',
+            weekend_close: '18:00',
+        },
+        break_time: {
+            week_open: '09:00',
+            week_close: '18:00',
+            weekend_open: '09:00',
+            weekend_close: '18:00',
+        },
+        holiday: [],
+        sns: [],
+        email: '',
+        comment: ''
+    })
 
     const [isPopupOpen, setIsPopupOpen] = useState(false)
 
@@ -44,6 +76,11 @@ const SubmitView = () => {
     const updateSubmit = async() => {
         let approve_ = inputData.approve === "승인" ? "미승인" : "승인";
         await updateData('Owner', inputData.id, {...inputData, grade:'Flinney', approve: approve_, password: v4().split('-')[0]})
+
+        if(approve_ == "승인" && !getShop(inputData.id))
+        {
+            await addDocument('Shop', {...shopInfo, ownerId : inputData.id});
+        }
     }
 
     return (

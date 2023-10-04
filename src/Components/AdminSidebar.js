@@ -34,6 +34,7 @@ import ProductList from '../Pages/Owner/Product/List'
 import ProductView from '../Pages/Owner/Product/View'
 import PortfolioList from '../Pages/Owner/Portfolio/List'
 import PortfolioView from '../Pages/Owner/Portfolio/View'
+import AddNotice from '../Pages/Admin/Notice/Add'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -125,7 +126,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <AccordionPanel p={0}>
               <NavItem >쿠폰</NavItem>
               <NavItem >광고</NavItem>
-              <NavItem >공지</NavItem>
+              <NavItem link={'/admin/notice/add'}>공지</NavItem>
               <NavItem >이벤트</NavItem>
               <NavItem >플릿일정</NavItem>
             </AccordionPanel>
@@ -294,6 +295,7 @@ const SidebarWithHeader = () => {
             <Route path='/admin/product/view/*' element={<ProductView />} />
             <Route path='/admin/portfolio/*' element={<PortfolioList />} />
             <Route path='/admin/portfolio/view/*' element={<PortfolioView />} />
+            <Route path='/admin/notice/add' element={<AddNotice />} />
           </Routes>
         </BrowserRouter>
         </Box>

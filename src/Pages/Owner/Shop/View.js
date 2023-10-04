@@ -143,7 +143,7 @@ const ShopView = () => {
     }
 
     const submit = async() => {
-        await addDocument('Shop', {...shopInfo, ownerId : account.id})
+        await updateData('Shop', account.id, {...shopInfo, ownerId : account.id})
     }
 
     return (

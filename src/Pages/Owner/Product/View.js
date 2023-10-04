@@ -26,8 +26,7 @@ const ProductView = () => {
 
             {product &&
                 <Stack direction={{ base: 'column', md: 'row' }}>
-                    <Box w={{ base: '100%', md: '500px' }} >
-
+                    <Box w={{ base: '100%', md: '500px' }}>
                         <ImageSlider images={product.product_image} />
                     </Box>
                     <Box w={'100%'} borderLeft={'1px solid #d9d9d9'}>
