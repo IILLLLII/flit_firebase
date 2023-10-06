@@ -1,7 +1,5 @@
 import { Box, Image, Text, Avatar, Stack } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
-import Messages from './Messages'
-import Input from './Input'
 import { getDocument, getTime, updateData } from '../../../DB/function'
 import { LinkIcon } from '@chakra-ui/icons'
 import { AiOutlinePicture } from 'react-icons/ai'
