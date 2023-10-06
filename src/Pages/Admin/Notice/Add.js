@@ -7,16 +7,18 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import { Box, Button, Checkbox, CheckboxGroup, HStack, IconButton, Input, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
 import { Title_2xl } from '../../../Style/Typograhy';
 import { addDoc, serverTimestamp } from 'firebase/firestore';
-import { addDocument } from '../../../DB/function';
+import { addDocument, deleteDocument, updateData } from '../../../DB/function';
 import { FaArrowLeft } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import ImageUploader from '../../../Components/ImageUploader';
 
 export function AddNotice() {
     const navigate = useNavigate();
+    const location = useLocation();
     const editorRef = useRef(null);
-    const [notice, setNotice] = useState({
+    const [notice, setNotice] = useState(location.state ? location.state : {
         type: '공지',
-        user: 'Customer',
+        user: ['Customer'],
         title: '',
         contents: ' ',
         date: serverTimestamp()
@@ -31,15 +33,35 @@ export function AddNotice() {
         // console.log(contents)
     }, []);
 
+
+    const deleteNotice = async() => {
+      if(window.confirm('삭제하시겠습니까?')){
+        console.log(notice)
+        await deleteDocument('Notice', notice.id)
+        navigate(-1)
+      }
+  }
+
+    const update = async() => {
+      if(window.confirm('수정하시겠습니까?')){
+        console.log(notice)
+        await updateData('Notice', notice.id, {...notice, date: serverTimestamp()})
+        navigate(-1)
+      }
+  }
+
     const submit = async() => {
+      if(window.confirm('등록하시겠습니까?')){
         console.log(notice)
         await addDocument('Notice', {...notice, date: serverTimestamp()})
+        navigate(-1)
+      }
     }
 
   return (
     <Stack spacing={4}>
         <HStack alignItems={'flex-start'}>
-        <IconButton icon={<FaArrowLeft/>}/>
+        <IconButton icon={<FaArrowLeft/>} onClick={() => navigate(-1)}/>
         <Text {...Title_2xl}>공지 / 이벤트 등록</Text>
         </HStack>
         <HStack spacing={4}>
@@ -65,10 +87,16 @@ export function AddNotice() {
       <Text w='50px'>제목</Text>
       <Input defaultValue={notice.title} onChange={(e) => setNotice({...notice, title: e.target.value})} borderColor={'gray.400'}/>
       </HStack>
+      { notice.type === "이벤트" &&
+      <HStack>
+      <Text w='50px'>썸네일</Text>
+      <ImageUploader w='450px' src={notice.thumbnail} setUrl={(value) => setNotice({ ...notice, thumbnail: value })}/>
+      </HStack>
+    }
       <Box border={'1px solid #d9d9d9'}>
       <Editor
                 ref={editorRef}
-                initialValue={' '} // 글 수정 시 사용
+                initialValue={notice.contents} // 글 수정 시 사용
                 initialEditType='wysiwyg' // wysiwyg & markdown
                 previewStyle={'vertical'} // tab, vertical
                 hideModeSwitch={true}
@@ -81,7 +109,13 @@ export function AddNotice() {
       ></Editor>
       </Box>
       <HStack justifyContent={'flex-end'}>
+        { location.state ? 
+        <HStack>
+          <Button onClick={update}>수정</Button>
+          <Button onClick={deleteNotice}>삭제</Button> 
+        </HStack>:
         <Button onClick={submit}>등록</Button>
+        }
 
       </HStack>
 

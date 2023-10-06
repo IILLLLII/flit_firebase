@@ -29,7 +29,7 @@ const ProductView = () => {
                     <Box w={{ base: '100%', md: '500px' }}>
                         <ImageSlider images={product.product_image} />
                     </Box>
-                    <Box w={'100%'} borderLeft={'1px solid #d9d9d9'}>
+                    <Box w={'100%'} borderLeft={{base: 'none', md: '1px solid #d9d9d9'}}>
                         <Stack direction={'column'} divider={<StackDivider />}>
                             <HStack justifyContent={'space-between'}>
                                 <Text ml={2} {...Title_2xl}>상품정보</Text>

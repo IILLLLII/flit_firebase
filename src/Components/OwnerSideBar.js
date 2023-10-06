@@ -41,11 +41,13 @@ import AdvertiseBuy from '../Pages/Owner/Advertise/Buy'
 import ShopView from '../Pages/Owner/Shop/View'
 import ShopPoint from '../Pages/Owner/Shop/Point'
 import Customer from '../Pages/Owner/Shop/Customer'
-import ChatList, { ChatRoom } from '../Pages/Owner/Shop/Chat'
+import ChatList from '../Pages/Owner/Shop/Chat'
 import Login from '../Pages/Owner/Login'
 import Submit from '../Pages/Owner/Submit'
 import Footer from './Footer'
 import { useState } from 'react'
+import NoticeList from '../Pages/Owner/Community/Notice'
+import NoticeView from '../Pages/Owner/Community/NotiveView'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -148,6 +150,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavItem link={'/shop/point'}>포인트 관리</NavItem>
               <NavItem link={'/shop/customer'}>고객 관리</NavItem>
               <NavItem link={'/shop/chat'}>1:1 문의</NavItem>
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <AccordionButton p={0} w={'100%'}>
+              <NavTitle>사장님 커뮤니티<AccordionIcon /></NavTitle>
+            </AccordionButton>
+            <AccordionPanel p={0}>
+              <NavItem link={'/notice/1'}>공지</NavItem>
+              <NavItem link={'/board'}>게시판</NavItem>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>
@@ -306,7 +318,8 @@ const SidebarWithHeader = () => {
             <Route path='/shop/point' element={<ShopPoint />} />
             <Route path='/shop/customer' element={<Customer />} />
             <Route path='/shop/chat' element={<ChatList />} />
-            <Route path='/shop/chat/*' element={<ChatRoom />} />
+            <Route path='/notice/*' element={<NoticeList />} />
+            <Route path='/notice/view' element={<NoticeView />} />
           </Routes>
         </BrowserRouter>
       </Box>

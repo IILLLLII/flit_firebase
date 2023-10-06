@@ -8,7 +8,7 @@ export const addDocument = async (collectionId, newData) => {
   return doc
 }
 
-export const deleteDocument = async(collectionId, docId) => {
+export const deleteDocument = async (collectionId, docId) => {
   const doc_ = doc(db, collectionId, docId);
   const res = await deleteDoc(doc_);
 }
@@ -48,7 +48,7 @@ export const getAllList = async (collectionId) => {
   querySnapshot.forEach((doc) => {
     result = [...result, { ...doc.data(), id: doc.id }]
   })
-  
+
   return result;
 
 }
@@ -87,7 +87,7 @@ export const getSubmitList = async (filter) => {
   return result;
 }
 
-export const getShopProductList = async(ownerId) => {
+export const getShopProductList = async (ownerId) => {
   const q = query(collection(db, 'Product'), where("ownerId", "==", ownerId))
 
   const querySnapshot = await getDocs(q);
@@ -115,25 +115,24 @@ export const getProductList = async (filter) => {
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
-    if(doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin)
-    {
+    if (doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin) {
       if ((filter.state.includes('품절') && (doc.data().count - doc.data().sales_count <= 0))
-      || (filter.state.includes('판매종료') && (doc.data().count - doc.data().sales_count > 0) && !compareDate(doc.data().saletime.end) && doc.data().saletime.set == "설정함")
-      || (filter.state.includes('판매중') && (doc.data().count - doc.data().sales_count > 0 && compareDate(doc.data().saletime.end) || doc.data().saletime.set == "설정안함"))) {
+        || (filter.state.includes('판매종료') && (doc.data().count - doc.data().sales_count > 0) && !compareDate(doc.data().saletime.end) && doc.data().saletime.set == "설정함")
+        || (filter.state.includes('판매중') && (doc.data().count - doc.data().sales_count > 0 && compareDate(doc.data().saletime.end) || doc.data().saletime.set == "설정안함"))) {
 
-      if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
-        if (filter.type === "상품명") {
-          if (doc.data().product_name.includes(filter.keyword)) {
-            result = [...result, { ...doc.data(), id: doc.id }]
+        if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
+          if (filter.type === "상품명") {
+            if (doc.data().product_name.includes(filter.keyword)) {
+              result = [...result, { ...doc.data(), id: doc.id }]
+            }
           }
-        }
-        else if (filter.type === "상품코드") {
-          if (doc.id.includes(filter.keyword)) {
-            result = [...result, { ...doc.data(), id: doc.id }]
+          else if (filter.type === "상품코드") {
+            if (doc.id.includes(filter.keyword)) {
+              result = [...result, { ...doc.data(), id: doc.id }]
+            }
           }
         }
       }
-    }
     }
   })
 
@@ -156,8 +155,7 @@ export const getPortfolioList = async (filter) => {
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
-    if(doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin)
-    {
+    if (doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin) {
       if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
         if (filter.type === "상품명") {
           if (doc.data().product_name.includes(filter.keyword)) {
@@ -200,16 +198,31 @@ export const getShop = async (ownerId) => {
   return result;
 }
 
-export const getPlan = async(ownerId, date) => {
+export const getPlan = async (ownerId, date) => {
   const q = query(collection(db, 'Plan'), where("ownerId", "==", ownerId));
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
     console.log(getStrDate(date), getDate(date), getDate(doc.data().month))
-    if(getStrDate(date) === getDate(doc.data().month))
+    if (getStrDate(date) === getDate(doc.data().month))
       result = [...result, { ...doc.data(), id: doc.id }]
   })
-  
+
+  return result;
+}
+
+export const getNotice = async (filter) => {
+  const q = query(collection(db, 'Notice'), where('user', 'array-contains-any', filter.user))
+
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      if (doc.data().title.includes(filter.keyword) && doc.data().type === filter.type) {
+        result = [...result, { ...doc.data(), id: doc.id }]
+      }
+  })
+
+  console.log(filter, result)
   return result;
 }
 
@@ -290,6 +303,18 @@ export function getDate(timestamp) {
   return date.getFullYear() + "-" + ('0' + (date.getMonth() + 1)).slice(-2) + "-" + ('0' + date.getDate()).slice(-2)
 }
 
+export function getTime(timestamp) {
+  var date = new Date(timestamp.seconds * 1000)
+
+  if (date.getFullYear()) {
+    date = new Date(timestamp.seconds * 1000)
+  }
+  else {
+    date = new Date;
+  }
+  return ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2)
+}
+
 export function parseDate(strDate) {
   var date = new Date();
   date.setFullYear(parseInt(strDate.split('-')[0]))
@@ -337,7 +362,7 @@ export const getOwner = async (ownerId) => {
   return _doc.data()
 }
 
-export const isDuplication = async(collectionId, field, value) => {
+export const isDuplication = async (collectionId, field, value) => {
   const q = query(collection(db, collectionId), where(field, "==", value))
   const querySnapshot = await getDocs(q);
   return querySnapshot.size

@@ -63,7 +63,7 @@ const ShopView = () => {
         },
         holiday: [],
         sns: [],
-        email: '',
+        email: account.email,
         comment: ''
     })
 
@@ -98,7 +98,8 @@ const ShopView = () => {
     const getShopInfo = async () => {
         if (localStorage.getItem('ownerToken')) {
             let shop_ = await getShop(localStorage.getItem('ownerToken'))
-            setShopInfo(shop_)
+            if(shop_.shopname)
+                setShopInfo(shop_)
         }
     }
 
@@ -143,10 +144,17 @@ const ShopView = () => {
     }
 
     const submit = async() => {
-        await updateData('Shop', account.id, {...shopInfo, ownerId : account.id})
+        if (localStorage.getItem('ownerToken')) {
+            let shop_ = await getShop(localStorage.getItem('ownerToken'))
+            if(shop_.shopname)
+            await updateData('Shop', account.id, {...shopInfo, ownerId : account.id})
+            else
+            await addDocument('Shop', {...shopInfo, ownerId : account.id})
+        }
     }
 
     return (
+        
         <Box>
             {account &&
                 <HStack width={'100%'} alignItems={'flex-start'}>
@@ -163,7 +171,7 @@ const ShopView = () => {
                                     <Text {...Body_lg}>{shopInfo.nickname}</Text>
 
                                     <HStack alignItems={'center'}>
-                                        <Text {...Body_lg}>팔로워 {shopInfo.follower.length} | 리뷰 {shopInfo.review.length}</Text>
+                                        <Text {...Body_lg}>팔로워 {shopInfo.follower ? shopInfo.follower.length : 0} | 리뷰 {shopInfo.review ? shopInfo.review.length : 0}</Text>
                                     </HStack>
                                 </VStack>
                             </Circle>
@@ -181,7 +189,7 @@ const ShopView = () => {
                                 {
                                     <Stack direction={'column'} spacing={0}>
 
-                                        {shopInfo.sns.map((value, index) => (
+                                        {shopInfo.sns && shopInfo.sns.map((value, index) => (
                                             <Text {...Body_sm} mx={-1}>{value.site} {" | "} {value.account}</Text>
                                         ))}
                                     </Stack>
@@ -423,7 +431,7 @@ const ShopView = () => {
                                                 </HStack>
                                             </VStack>
                                         </HStack>
-
+    
                                     </Stack>
                                 </AccordionPanel>
                             </AccordionItem>
@@ -452,7 +460,7 @@ const ShopView = () => {
                                         </HStack>
 
                                         <Wrap mx={1} my={4}>
-                                            {shopInfo.sns.map((value, index) => (
+                                            {shopInfo.sns && shopInfo.sns.map((value, index) => (
                                                 <WrapItem>
                                                     <Tag>
                                                         {value.site} {" | "} {value.account}
@@ -482,7 +490,7 @@ const ShopView = () => {
                                     </AccordionButton>
                                 </h2>
                                 <AccordionPanel pb={4}>
-                                    <MailInput defaultValue={shopInfo.email} isError={shopInfo.email === "" || !(shopInfo.email.includes('@') && shopInfo.email.includes('.'))} onChange={(value) => setShopInfo({ ...shopInfo, email: value })} />
+                                    <MailInput defaultValue={shopInfo.email} isError={shopInfo.email && (shopInfo.email === "" || !(shopInfo.email.includes('@') && shopInfo.email.includes('.')))} onChange={(value) => setShopInfo({ ...shopInfo, email: value })} />
                                 </AccordionPanel>
                             </AccordionItem>
 

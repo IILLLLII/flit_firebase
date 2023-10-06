@@ -13,7 +13,7 @@ const NoticeList = () => {
     const [filter, setFilter] = useState({
         keyword: '',
         option: '제목',
-        user: ['Customer', 'Shop', 'Florist'],
+        user: ['Shop', 'Florist'],
         type: '공지'
     });
 
@@ -24,12 +24,7 @@ const NoticeList = () => {
     }, []);
 
     const reset = () => {
-        setFilter({
-            keyword: '',
-            option: '제목',
-            user: ['Customer', 'Shop', 'Florist'],
-            type: '공지'
-        })
+
     }
 
     const search = async() => {
@@ -39,25 +34,12 @@ const NoticeList = () => {
 
     return (
         <Box>
-            <HStack justifyContent={'space-between'} alignItems={'flex-start'}>
-                <Text {...Title_2xl}>공지 / 이벤트 관리</Text>
-                <Button leftIcon={<AddIcon />} onClick={() => navigate('/admin/notice/add')}>공지 / 이벤트 등록</Button>
-            </HStack>
+            <Text {...Title_2xl}>공지사항</Text>
 
             <FilterSelect onReset={() => reset()} onSearch={() => search()}>
 
                 <Stack direction={'column'} divider={<StackDivider />} spacing={3}>
                     <SearchInput option={['제목']} defaultType={filter.option} defaultValue={filter.keyword} onSetField={(e) => setFilter({ ...filter, option: e.target.value })} onChange={(value) => setFilter({ ...filter, keyword: value })} />
-                    <Box>
-                        <Text {...Title_lg}>대상</Text>
-                        <CheckboxGroup onChange={(value) => setFilter({ ...filter, user: value })} colorScheme='red' defaultValue={filter.user}>
-                            <Stack spacing={[1, 5]} direction={['column', 'row']}>
-                                <Checkbox value='Customer'>Customer</Checkbox>
-                                <Checkbox value='Shop'>Shop</Checkbox>
-                                <Checkbox value='Florist'>Florist</Checkbox>
-                            </Stack>
-                        </CheckboxGroup>
-                    </Box>
                     <Box>
                         <Text {...Title_lg}>유형</Text>
                         <RadioGroup onChange={(value) => setFilter({ ...filter, type: value })} colorScheme='red' defaultValue={filter.type}>
@@ -81,7 +63,7 @@ const NoticeList = () => {
                     </Thead>
                     <Tbody>
                         {noticeList.map((value, index) => (
-                            <Tr _hover={{ bgColor: 'gray.100' }} onClick={()=> navigate('/admin/notice/add', { state : value})}>
+                            <Tr _hover={{ bgColor: 'gray.100' }} onClick={()=> navigate('/notice/view', { state : value})}>
                                 <Td><Checkbox /></Td>
                                 <Td {...TBody}>{value.title}</Td>
                                 <Td {...TBody}>{getDate(value.date)}</Td>

@@ -34,8 +34,8 @@ const Category = () => {
     const navigate = useNavigate();
     return (
         <Flex bgColor={'white'} h={'100vh'} flexDirection={'column'}>
-                        <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
-                <MobileStatus title={"카테고리"}/>
+            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
+                <MobileStatus title={"카테고리"} />
             </Flex>
 
             <Stack direction={'row'} h={'100%'} mt={'42px'}>
@@ -49,10 +49,10 @@ const Category = () => {
                 <Stack direction={'column'} h={'100%'} w={'70%'} bgColor={'white'} pt={'20px'}>
                     <Flex flexDirection={'row'} justifyContent={'space-between'}>
                         <Text {...Title_lg} ml={8} color={fontColor.primary}>{CATEGORY[category1].title}</Text>
-                        <Button border={'none'} onClick={() => navigate(`/customer/product/${category1}`, {state : {category1 : category1, category2 : '전체'}})} size={'sm'} colorScheme={'whiteAlpha'} color={'gray.700'}>전체보기</Button>
+                        <Button border={'none'} onClick={() => navigate(`/customer/product/${category1}`, { state: { category1: category1, category2: '전체' } })} size={'sm'} colorScheme={'whiteAlpha'} color={'gray.700'}>전체보기</Button>
                     </Flex>
                     {CATEGORY[category1].subItem.map((value, index) =>
-                        <Button border={'none'} onClick={() => navigate(`/customer/product/${category1}`, {state : {category1 : category1, category2 : CATEGORY[category1].subItem[index]}})}  _hover={{ color: 'gray.500', bgColor: 'gray.100' }} justifyContent={'flex-start'} borderBottom={'1px solid #d9d9d9'} borderRadius={0} marginInline={4} paddingY={6} bgColor={'white'}>
+                        <Button border={'none'} onClick={() => navigate(`/customer/product/${category1}`, { state: { category1: category1, category2: CATEGORY[category1].subItem[index] } })} _hover={{ color: 'gray.500', bgColor: 'gray.100' }} justifyContent={'flex-start'} borderBottom={'1px solid #d9d9d9'} borderRadius={0} marginInline={4} paddingY={6} bgColor={'white'}>
                             <Text>{value}</Text>
                         </Button>
                     )}

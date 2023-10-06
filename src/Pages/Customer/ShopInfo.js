@@ -1,12 +1,14 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Alert, AlertIcon, Badge, Box, Button, Card, CardHeader, Center, Checkbox, CheckboxGroup, Circle, Container, Flex, HStack, Heading, Image, Input, InputGroup, InputRightAddon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Select, Stack, Tag, TagCloseButton, TagRightIcon, Text, Textarea, VStack, Wrap, WrapItem, useDisclosure } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Alert, AlertIcon, Badge, Box, Button, ButtonGroup, Card, CardHeader, Center, Checkbox, CheckboxGroup, Circle, Container, Flex, HStack, Heading, IconButton, Image, Input, InputGroup, InputRightAddon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Select, Stack, Tag, TagCloseButton, TagRightIcon, Text, Textarea, VStack, Wrap, WrapItem, useDisclosure } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { Body_lg, Body_sm, Title_2xl, Title_lg, Title_sm } from "../../Style/Typograhy";
 import { addDocument, formattedAmount, getDocument, getShop, updateData } from "../../DB/function";
 import { Label } from '../../Components/Label'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MobileStatus from "../../Components/MobileStatus";
+import { ChatIcon } from "@chakra-ui/icons";
 
 const ShopInfo = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [account, setAccout] = useState(location.state.account ? location.state.account : {});
     const [onlyweek, setOnlyWeek] = useState(false);
@@ -52,8 +54,8 @@ const ShopInfo = () => {
     }, []);
 
     return (
-        <Box w='100%'>
-            <Flex w='100%' position={'fixed'} zIndex={999} borderBottom={'1px solid #d9d9d9'}>
+        <Flex bgColor={'white'} flexDirection={'column'} w="100%">
+            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={"상점정보"} />
             </Flex>
             <Flex maxW={'container.sm'} w='100%' justifyContent={'center'}>
@@ -99,10 +101,16 @@ const ShopInfo = () => {
                         <Label title={'소개'} text={shopInfo.comment} />
                     </Box>
 
+                    <ButtonGroup w='100%' px={6}>
+                        <HStack w='100%' justifyContent={'flex-end'}>
+                        <IconButton icon={<ChatIcon/>} onClick={() => navigate('/customer/chat', {state: account})}/>
+                        </HStack>
+                    </ButtonGroup>
+
                 </Flex>
 
             </Flex>
-        </Box>
+        </Flex>
     )
 }
 export default ShopInfo;
