@@ -7,6 +7,9 @@ import { compareDate, formattedAmount, getDate, getDocument, getOwner, getShop, 
 import { serverTimestamp } from "firebase/firestore";
 import { Body_sm, Title_lg, Title_sm, fontColor } from "../../../Style/Typograhy";
 import ProductItem from "../../../Components/ProductItem";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { FaHeart } from "react-icons/fa";
+import { FiHeart } from "react-icons/fi";
 
 const SplitLine = () => {
     return (
@@ -63,10 +66,14 @@ const ProductView = () => {
         comment: ''
     })
 
+    const [goods, setGoods] = useState(false)
+
     useEffect(() => {
         getShopInfo();
         getOwnerInfo();
         getShopProduct();
+
+        setGoods(product.goods.includes(localStorage.getItem('customerToken')))
     }, []);
 
     const getOwnerInfo = async () => {
@@ -174,6 +181,26 @@ const ProductView = () => {
         await updateData("Customer", localStorage.getItem('customerToken'), addCartUser)
     }
 
+    const addGoods = async() => {
+        if(goods)
+        {
+            let goods = product.goods.filter((element) => element !== localStorage.getItem('customerToken'))
+            setProduct({...product, goods: goods})
+            await updateData("Product", product.id, {...product, goods: goods}) 
+            console.log(goods)
+        }
+        else
+        {
+            let goods = product.goods;
+            goods.push(localStorage.getItem('customerToken'))
+            setProduct({...product, goods: goods})
+            await updateData("Product", product.id, {...product, goods: goods})
+            console.log(goods)
+        }
+
+        setGoods(!goods)
+    }
+
     return (
         <Flex bgColor={'white'}>
             <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
@@ -198,10 +225,15 @@ const ProductView = () => {
                 <Box m={4} display={tab == 0 ? 'block' : 'none'}>
                     <Stack direction={'column'} divider={<StackDivider height={'1px'} bgColor={'gray.300'} />}>
                         <Stack>
-                            <HStack>
+                            <HStack justifyContent={'space-between'}>
+                                <HStack>
                                 <Text mr={2} {...Title_lg} mb={0}>{product.product_name}</Text>
                                 {parseDate(getDate(serverTimestamp())).getDate() - parseDate(getDate(product.regist_date)).getDate() < 7 && <Badge colorScheme="yellow" mr={2}>new</Badge>}
                                 {product.sales_count > 0 && <Badge colorScheme="red">Hot</Badge>}
+                                </HStack>
+                                <HStack>
+                                    {goods ? <FaHeart onClick={() => addGoods()} color="#da4359" size={'24px'}/> : <FiHeart onClick={() => addGoods()} color="#da4359" size={'24px'}/>}
+                                </HStack>
                             </HStack>
                             <HStack mb={-1}>
                                 <Text mr={2} fontWeight={'900'} color='#da4359'>{product.discount.value}{product.discount.unit}</Text>

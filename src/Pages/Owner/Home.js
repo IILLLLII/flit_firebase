@@ -6,6 +6,7 @@ import { FaUndo } from "react-icons/fa";
 import { Title_lg } from "../../Style/Typograhy";
 import { AddIcon } from "@chakra-ui/icons";
 import Plan from "./Home/Plan";
+import Chats from "./Home/Chats";
 
 const Home = () => {
     /* plan */
@@ -99,9 +100,7 @@ const Home = () => {
 
                 </Box>
 
-                <Box margin={1} w='100%' minH="200px" bgColor={'gray.200'} borderRadius={'lg'}>
-
-                </Box>
+                <Chats/>
 
                 <Box margin={1} w='100%' minH="200px" bgColor={'gray.200'} borderRadius={'lg'}>
 

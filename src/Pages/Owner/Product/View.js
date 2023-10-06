@@ -1,9 +1,9 @@
-import { Badge, Box, Button, HStack, Stack, StackDivider, Text } from "@chakra-ui/react";
+import { Avatar, Badge, Box, Button, HStack, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, StackDivider, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import ImageSlider from "../../../Components/ImageSlider";
-import { deleteDocument, formattedAmount, getDate, parseDate } from "../../../DB/function";
+import { deleteDocument, formattedAmount, getCustomer, getDate, parseDate } from "../../../DB/function";
 import { Title_2xl, Title_lg, Title_sm } from "../../../Style/Typograhy";
 import { FaHeart } from "react-icons/fa";
 import { ChatIcon } from "@chakra-ui/icons";
@@ -14,12 +14,31 @@ const ProductView = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const [product, setProduct] = useState()
+    const [goods, setGoods] = useState([])
+    const [openGoods, setOpenGoods] = useState(false)
 
     useEffect(() => {
         if (location.state) {
             setProduct(location.state)
+            getGoods();
         }
     }, []);
+
+    const getGoods = () => {
+        console.log('goods!')
+        let goodsUserList = [];
+
+        location.state.goods.map(async(value) => 
+        {
+            let customer = await getCustomer(value)
+            goodsUserList.push(customer)
+        })
+
+        console.log(goodsUserList)
+        setGoods(goodsUserList)
+
+        // setOpenGoods(true)
+    }
 
     return (
         <Box w='100%' minW={{ base: '100%', md: '1000px' }}>
@@ -35,7 +54,7 @@ const ProductView = () => {
                                 <Text ml={2} {...Title_2xl}>상품정보</Text>
                                 <HStack>
                                     <Button leftIcon={<ChatIcon />} >리뷰 {product.review.length}</Button>
-                                    <Button leftIcon={<FaHeart />}>관심 {product.goods.length}</Button>
+                                    <Button onClick={() => setOpenGoods(true)} leftIcon={<FaHeart />}>관심 {product.goods.length}</Button>
 
                                 </HStack>
                             </HStack>
@@ -131,6 +150,24 @@ const ProductView = () => {
                     </Box>
                 </Stack>
             }
+
+            <Modal isOpen={openGoods} onClose={() => setOpenGoods(false)}>
+                <ModalOverlay/>
+                <ModalContent>
+                    <ModalHeader>관심</ModalHeader>
+                    <ModalCloseButton/>
+                    <ModalBody mb={4}>
+                        <Stack>
+                            {goods && goods.map((value) => (
+                            <HStack>
+                            <Avatar/>
+                            <Text>{value.nickname}</Text>
+                        </HStack>
+                            ))}
+                        </Stack>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
         </Box>
     )
 

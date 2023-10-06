@@ -17,13 +17,13 @@ const Chat = ({ data, user, ...props }) => {
 
     useEffect(() => {
         getChat();
-    }, [])
+    }, [data])
 
     const docRef = doc(db, 'Chat', localStorage.getItem('ownerToken') + user.uid);
     const unsubscriber = onSnapshot(docRef, (snapshot) => {
       const item = snapshot.data();
       console.log('update!')
-      getChat()
+    //   getChat()
       return item;
     });
 
@@ -64,6 +64,9 @@ const Chat = ({ data, user, ...props }) => {
             date: new Date(),
             lastMessage: message
         })
+
+
+        getChat();
       }
       
     return (
