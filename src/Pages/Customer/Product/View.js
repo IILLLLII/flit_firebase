@@ -181,7 +181,7 @@ const ProductView = () => {
             </Flex>
             <Stack direction={'column'} w='100%' mt={'50px'} mb={'80px'}>
                 <Stack>
-                    <HStack p={4} bgColor={'gray.50'} onClick={() => navigate('/customer/shopinfo', { state : {shopInfo :shopInfo, account : owner}})}>
+                    <HStack p={2} onClick={() => navigate('/customer/shopinfo', { state : {shopInfo :shopInfo, account : owner}})}>
                         <Avatar mr={2} src={owner.profileImage}></Avatar>
                         <Text>{shopInfo.shopname}</Text>
                     </HStack>

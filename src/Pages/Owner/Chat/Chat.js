@@ -23,6 +23,7 @@ const Chat = ({ data, user, ...props }) => {
     const unsubscriber = onSnapshot(docRef, (snapshot) => {
       const item = snapshot.data();
       console.log('update!')
+      getChat()
       return item;
     });
 

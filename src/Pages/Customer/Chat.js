@@ -1,9 +1,9 @@
-import { addDoc, collection, doc, getDoc, getDocs, onSnapshot, query } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, onSnapshot, query, setDoc } from 'firebase/firestore';
 import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import { db } from '../../DB/firebase-config';
 import { Avatar, Box, Button, HStack, Input, Stack, Text } from '@chakra-ui/react';
-import { addDocument, getDate, getDocument, getOwner, getTime, updateData } from '../../DB/function';
+import { addDocument, getCustomer, getDate, getDocument, getOwner, getTime, updateData } from '../../DB/function';
 import "../../scss/_chat.scss"
 import { LinkIcon } from '@chakra-ui/icons';
 import { AiOutlinePicture } from 'react-icons/ai';
@@ -12,6 +12,7 @@ const Chat = () => {
   const [chat, setChat] = useState({})
   const [chatList, setChatList] = useState([])
   const [ownerInfo, setOwnerInfo] = useState({})
+  const [customerInfo, setCustomerInfo] = useState({})
   const [message, setMessage] = useState()
 
   const scrollRef = useRef();
@@ -25,7 +26,6 @@ const Chat = () => {
     getChatList(localStorage.getItem('customerToken'))
     console.log(location.state.id + localStorage.getItem('customerToken'))
     getOwnerInfo(location.state.id);
-
   }, []);
 
   const docRef = doc(db, 'Chat', location.state.id + localStorage.getItem('customerToken'));
@@ -59,10 +59,27 @@ const updateChat = async() => {
   }
 
   const getChat = async () => {
+    let customer = await getCustomerInfo(localStorage.getItem('customerToken'))
     let combineId = location.state.id + localStorage.getItem('customerToken')
     try {
       let chat = await getDocument('Chat', combineId);
       setChat(chat)
+
+      console.log('customer!!', customer)
+      if(!chat)
+      {
+        await setDoc(doc(db, "Chat", combineId), { messages: [] })
+        await setDoc(doc(db, "userChats", combineId), { 
+          date: new Date(), 
+          lastMessage: '', 
+          userInfo: {
+            uid: localStorage.getItem('customerToken'),
+            displayName: customer.nickname,
+            photoURL: customer.profile_image
+          }})
+        setChat({ messages: [] })
+        console.log('generate new')
+      }
       console.log(new Date(), chat)
     }
     catch
@@ -77,7 +94,11 @@ const updateChat = async() => {
   const getOwnerInfo = async (id) => {
     let owner = await getOwner(id)
     setOwnerInfo(owner)
+  }
 
+  const getCustomerInfo = async(id) => {
+    let customer = await getCustomer(id)
+    return customer;
   }
 
   const sendMessage = async () => {
@@ -113,7 +134,7 @@ const updateChat = async() => {
           <Text>{ownerInfo.name}</Text>
         </HStack>
         <div ref={scrollRef} style={{ overflow: 'scroll', height: '100vh', paddingTop: '70px', paddingBottom: '70px', paddingLeft: '10px', paddingRight: '10px' }}>
-          {chat.messages && chat.messages.map((message) => (
+          {chat && chat.messages && chat.messages.map((message) => (
             <Box gap={2} marginBottom={4} color={'black'} display={'flex'} flexDirection={message.owner ? 'row' : 'row-reverse'} alignItems={'flex-end'}>
               <Box maxW={'50%'} display={'flex'} flexDirection={'column'} gap={2}>
                 {message.type == "text" ?

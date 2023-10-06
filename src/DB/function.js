@@ -362,6 +362,15 @@ export const getOwner = async (ownerId) => {
   return _doc.data()
 }
 
+export const getCustomer = async (customerId) => {
+  const docRef = doc(db, "Customer", customerId);
+  const _doc = await getDoc(docRef);
+
+  //console.log("Data", id, _doc.data());
+
+  return _doc.data()
+}
+
 export const isDuplication = async (collectionId, field, value) => {
   const q = query(collection(db, collectionId), where(field, "==", value))
   const querySnapshot = await getDocs(q);

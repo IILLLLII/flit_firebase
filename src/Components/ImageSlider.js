@@ -48,7 +48,7 @@ const ImageSlider = ({ images }) => {
   };
   return (
 <Center maxW={'container.sm'}>
-    <Box width={'100%'} height={'100%'} maxW={'container.sm'}>
+    <Box width={{md: '100%', base: '100vw'}} height={'100%'} maxW={'container.sm'}>
         <Slider {...settings}>
           {images && images.map((value, index) => (
             // <Text>{value}</Text>
