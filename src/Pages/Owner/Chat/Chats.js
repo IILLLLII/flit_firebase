@@ -1,5 +1,5 @@
 import { Avatar, Box, HStack, Image, Text } from '@chakra-ui/react'
-import { collection, getDocs, query, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
+import { collection, doc, getDocs, onSnapshot, query, serverTimestamp, setDoc, updateDoc } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../DB/firebase-config'
 import { getDate, getDocument } from '../../../DB/function'
@@ -49,7 +49,7 @@ const Chats = ({...props}) => {
                     <HStack w='100%' justifyContent={'space-between'} alignItems={'flex-end'}>
                         <Box className='userChatInfo'>
                             <span>{value.userInfo.displayName}</span>
-                            <p>{value.lastMessage}</p>
+                            {/* <p>{value.lastMessage}</p> */}
                         </Box>
 
                         <Text color={'gray.400'}>{getDate(value.date)}</Text>

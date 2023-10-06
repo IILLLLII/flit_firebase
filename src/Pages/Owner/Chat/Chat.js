@@ -57,6 +57,12 @@ const Chat = ({ data, user, ...props }) => {
           setMessage('')
         }
         // console.log(message)
+
+        await updateData('userChats',  localStorage.getItem('ownerToken') + user.uid, {
+            userInfo: user,
+            date: new Date(),
+            lastMessage: message
+        })
       }
       
     return (
