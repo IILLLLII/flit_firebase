@@ -35,7 +35,7 @@ const PortfolioView = () => {
                             <HStack justifyContent={'space-between'}>
                                 <Text ml={2} {...Title_2xl}>포트폴리오 정보</Text>
                                 <HStack>
-                                    <Button leftIcon={<ChatIcon />} >리뷰 {product.review.length}</Button>
+                                    <Button leftIcon={<ChatIcon />} >리뷰 {product.review?.length}</Button>
                                     <Button leftIcon={<FaHeart />}>관심 {product.goods.length}</Button>
 
                                 </HStack>

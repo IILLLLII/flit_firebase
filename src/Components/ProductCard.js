@@ -29,7 +29,7 @@ export default function ProductCard({ data, state }) {
             </HStack>
 
             <HStack>
-              <ChatIcon w={'10px'} /> <Text fontSize={'xs'}>{data.review.length} </Text> <FaHeart size={'12px'} /> <Text fontSize={'xs'}>{data.goods.length}</Text>
+              <ChatIcon w={'10px'} /> <Text fontSize={'xs'}>{data.review?.length} </Text> <FaHeart size={'12px'} /> <Text fontSize={'xs'}>{data.goods.length}</Text>
 
               <FiShoppingCart size={'12px'} /><Text fontSize={'xs'}>{data.sales_count} / {data.count}</Text>
             </HStack>

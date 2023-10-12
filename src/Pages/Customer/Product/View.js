@@ -219,7 +219,7 @@ const ProductView = () => {
 
                 <HStack w='100%' justifyContent={'center'} mt={6} borderBottom={'1px solid #d9d9d9'}>
                     <Button border={'none'} w='25%' onClick={() => setTab(0)} variant={'unstyled'} color={tab == 0 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 0 ? `5px solid ${fontColor.primary}` : 'none'}>상품조회</Button>
-                    <Button border={'none'} w='25%' onClick={() => setTab(1)} variant={'unstyled'} color={tab == 1 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 1 ? `5px solid ${fontColor.primary}` : 'none'}>리뷰 {product.review.length}</Button>
+                    <Button border={'none'} w='25%' onClick={() => setTab(1)} variant={'unstyled'} color={tab == 1 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 1 ? `5px solid ${fontColor.primary}` : 'none'}>리뷰 {product.review ? product.review.left : 0}</Button>
                 </HStack>
 
                 <Box m={4} display={tab == 0 ? 'block' : 'none'}>

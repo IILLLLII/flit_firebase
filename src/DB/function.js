@@ -226,6 +226,17 @@ export const getNotice = async (filter) => {
   return result;
 }
 
+export const getReview = async(productId) => {
+  const q = query(collection(db, 'Review'), where('productId', '==', productId))
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      result = [...result, { ...doc.data(), id: doc.id }]
+})
+
+return result;
+}
+
 
 
 

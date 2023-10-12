@@ -2,7 +2,7 @@ import { Badge, Box, Checkbox, CheckboxGroup, HStack, Image, Input, InputGroup, 
 import React, { useEffect, useState } from "react";
 import { Title_2xl, Title_lg } from "../../../Style/Typograhy";
 import { BorderTable, TBody, THeader } from "../../../Style/Table";
-import { compareDate, formattedAmount, getAllList, getDate, getProductList } from "../../../DB/function";
+import { compareDate, formattedAmount, getAllList, getDate, getProductList, getReview } from "../../../DB/function";
 import { useNavigate } from "react-router-dom";
 import { ChatIcon } from "@chakra-ui/icons";
 import { FaHeart } from "react-icons/fa";
@@ -53,7 +53,13 @@ const ProductList = () => {
         }
 
         let result = await getProductList(filter)
-        setProductList(result)
+        let newProductList = []
+
+        result.map(async(value) => {
+            let review = await getReview(value.id)
+            newProductList.push({...value, review : review})
+            setProductList(newProductList)
+        })
     }
 
     return (
@@ -130,7 +136,7 @@ const ProductList = () => {
                                     {value.saletime.set == "설정함" ? value.saletime.start + "~" + value.saletime.end : "상시판매"}</Td>
                                 <Td {...TBody} >
                                     <HStack justifyContent={'center'}>
-                                        <ChatIcon /> <Text>{value.review.length} </Text> <FaHeart /> <Text>{value.goods.length}</Text>
+                                        <ChatIcon /> <Text>{value.review?.length} </Text> <FaHeart /> <Text>{value.goods.length}</Text>
                                     </HStack></Td>
                                 <Td {...TBody}>{formattedAmount(value.sales_price)}원</Td>
                                 <Td {...TBody}>

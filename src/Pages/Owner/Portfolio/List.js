@@ -100,7 +100,7 @@ const PortfolioList = () => {
                                     </HStack></Td>
                                 <Td {...TBody} >
                                     <HStack justifyContent={'center'}>
-                                        <ChatIcon /> <Text>{value.review.length} </Text> <FaHeart /> <Text>{value.goods.length}</Text>
+                                        <ChatIcon /> <Text>{value.review?.length} </Text> <FaHeart /> <Text>{value.goods.length}</Text>
                                     </HStack></Td>
                                 <Td {...TBody}>{getDate(value.regist_date)}</Td>
                             </Tr>

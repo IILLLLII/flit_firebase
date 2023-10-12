@@ -73,7 +73,7 @@ const ShopInfo = () => {
                                 <Text {...Body_lg}>{shopInfo.nickname}</Text>
 
                                 <HStack alignItems={'center'}>
-                                    <Text {...Body_lg}>팔로워 {shopInfo.follower ? shopInfo.follower.length : 0} | 리뷰 {shopInfo.review ? shopInfo.review.length : 0}</Text>
+                                    <Text {...Body_lg}>팔로워 {shopInfo.follower ? shopInfo.follower.length : 0} | 리뷰 {shopInfo.review?.length}</Text>
                                 </HStack>
                             </VStack>
                         </Circle>
