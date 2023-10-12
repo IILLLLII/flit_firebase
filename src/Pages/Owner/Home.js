@@ -1,7 +1,7 @@
 import { Avatar, Box, Button, ButtonGroup, Center, HStack, Icon, IconButton, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Stack, StackDivider, Tag, Text, Textarea } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import FlitCalendar from "../../Components/FlitCalendar";
-import { addDocument, deleteDocument, formattedAmount, getDate, getList, getPlan, getStrDate, parseDate, updateData } from "../../DB/function";
+import { addDocument, deleteDocument, formattedAmount, getDate, getList, getOwner, getPlan, getStrDate, parseDate, updateData } from "../../DB/function";
 import { FaUndo } from "react-icons/fa";
 import { Title_lg } from "../../Style/Typograhy";
 import { AddIcon } from "@chakra-ui/icons";
@@ -16,10 +16,17 @@ const Home = () => {
     const [content, setContent] = useState('');
     const [plan, setPlan] = useState([]);
     const [isPlanOpen, setIsPlanOpen] = useState(false);
+    const [owner, setOwner] = useState({})
 
     useEffect(() => {
+        getOwnerInfo();
         getPlanList();
     }, [date]);
+
+    const getOwnerInfo = async() => {
+        let ownerInfo = await getOwner(localStorage.getItem('ownerToken'));
+        setOwner(ownerInfo)
+    }
 
     const getPlanList = async () => {
         console.log(date)
@@ -75,10 +82,10 @@ const Home = () => {
         <>
             <Center minH="200px" bgColor={'white'} borderRadius={'lg'} p={2}>
                 <Stack>
-                    <Avatar size={'2xl'}></Avatar>
+                    <Avatar src={owner.profileImage} size={'2xl'}></Avatar>
                     <HStack justifyContent={'center'}>
-                        <Tag>Flinney</Tag>
-                        <Text>아미화</Text>
+                        <Tag>{owner.grade}</Tag>
+                        <Text>{owner.name}</Text>
                     </HStack>
                     <HStack justifyContent={'center'}>
                         <Text color={'gray.500'} textAlign={'center'}>팔로워 {520} | 리뷰 {430}</Text>
