@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, useState } from "react"
-import { Badge, Box, Button, Flex, HStack, Stack, StackDivider, Tag, Text, VStack, Wrap, WrapItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, CloseButton, Center, AspectRatio, Avatar } from "@chakra-ui/react"
+import { Badge, Box, Button, Flex, HStack, Stack, StackDivider, Tag, Text, VStack, Wrap, WrapItem, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, useDisclosure, Select, NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, CloseButton, Center, AspectRatio, Avatar, Image, Accordion, AccordionItem, AccordionButton, AccordionIcon, AccordionPanel, Textarea } from "@chakra-ui/react"
 import { useLocation, useNavigate } from "react-router-dom"
 import ImageSlider from "../../../Components/ImageSlider";
 import MobileStatus from "../../../Components/MobileStatus";
-import { compareDate, formattedAmount, getDate, getDocument, getOwner, getShop, getShopProductList, parseDate, updateData } from "../../../DB/function";
+import { compareDate, formattedAmount, getCustomer, getDate, getDocument, getOwner, getReview, getShop, getShopProductList, parseDate, updateData } from "../../../DB/function";
 import { serverTimestamp } from "firebase/firestore";
 import { Body_sm, Title_lg, Title_sm, fontColor } from "../../../Style/Typograhy";
 import ProductItem from "../../../Components/ProductItem";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { FaHeart } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
+import { ChatIcon } from "@chakra-ui/icons";
 
 const SplitLine = () => {
     return (
@@ -67,14 +68,35 @@ const ProductView = () => {
     })
 
     const [goods, setGoods] = useState(false)
+    const [reviews, setReviews] = useState([])
 
     useEffect(() => {
         getShopInfo();
         getOwnerInfo();
         getShopProduct();
 
+        getReviews();
+
         setGoods(product.goods.includes(localStorage.getItem('customerToken')))
     }, []);
+
+    const getReviews = async () => {
+        let reviewList = await getReview(product.id)
+
+        let reviewUserList = [];
+        reviewList.map(async (value) => {
+            // console.log(value.customerId)
+            let customer = await getCustomer(value.customerId)
+            // console.log(customer)
+            let owner = await getOwner(value.ownerId)
+            setOwner(owner)
+            reviewUserList.push({ ...value, userInfo: customer, openReply: false })
+        })
+        setReviews(reviewUserList)
+
+        console.log(reviewUserList)
+
+    }
 
     const getOwnerInfo = async () => {
         let owner_ = await getOwner(location.state.ownerId)
@@ -332,6 +354,81 @@ const ProductView = () => {
 
 
                     </Stack>
+
+                </Box>
+
+                <Box m={4} display={tab == 1 ? 'block' : 'none'}>
+                <Stack divider={<StackDivider />}>
+                            {reviews && reviews.map((value, index) => (
+                                <Stack>
+
+                                    <HStack justifyContent={'space-between'} alignItems={'flex-end'}>
+                                        <HStack>
+                                            <Avatar src={value.userInfo.profile_image} />
+                                            <Text>{value.userInfo.nickname}</Text>
+                                        </HStack>
+                                        <Text color={'gray.500'}>{getDate(value.timestamp)}</Text>
+                                    </HStack>
+
+
+                                    <HStack w='100%' overflowX={'scroll'} className="scroll">
+                                        {value.photoURL.map((value) => (
+                                            <Image src={value} boxSize={'150px'} />
+
+                                        ))}
+                                    </HStack>
+                                    <Text>{value.content}</Text>
+                                    <Accordion allowMultiple defaultIndex={parseInt(localStorage.getItem('reply')?.split(',')[0]) === index ? [parseInt(localStorage.getItem('reply')?.split(',')[1])] : []} onChange={(value) => localStorage.setItem('reply', `${index},${value}`)}>
+                                        <AccordionItem border={'none'}>
+                                            {({ isExpanded }) => (
+                                                <>
+                                                    <HStack w='100%'>
+                                                        <HStack w='100%'>
+                                                            <ChatIcon boxSize={'16px'} />
+                                                            <Text>{value.reply.length}</Text>
+                                                        </HStack>
+                                                        <AccordionButton w='150px' flexDirection={'row-reverse'} _hover={{ bgColor: 'transparent' }}>
+                                                            <AccordionIcon />
+                                                            <Text>{isExpanded ? '접기' : '더보기'}</Text>
+                                                        </AccordionButton>
+                                                    </HStack>
+                                                    <AccordionPanel p={0} bgColor={'gray.50'}>
+                                                        <Stack>
+                                                            {value.reply.map((reply, idx) => (
+                                                                <Stack p={2}>
+                                                                    <HStack justifyContent={'space-between'}>
+                                                                        <HStack>
+                                                                            <Avatar src={owner.profileImage} />
+                                                                            <Text>{owner.name}</Text>
+                                                                        </HStack>
+                                       
+                                                        
+                                                                    </HStack>
+                                                                        <Text whiteSpace={'pre-wrap'}>{reply.content}</Text>
+                                                                
+
+                                                                </Stack>
+                                                            ))}
+                                                        </Stack>
+                                                    </AccordionPanel>
+                                                </>
+                                            )}
+                                        </AccordionItem>
+                                    </Accordion>
+
+                                    {value.openReply &&
+                                        <Stack>
+
+                                            <Textarea minH={'150px'}/>
+                                            <HStack justifyContent={'flex-end'}>
+                                                <Button size={'sm'}>취소</Button>
+                                                <Button size={'sm'}>등록</Button>
+                                            </HStack>
+                                        </Stack>
+                                    }
+                                </Stack>
+                            ))}
+                        </Stack>
 
                 </Box>
                 <Center bgColor={'white'} w="100vw" position={'fixed'} bottom={0} alignSelf={'center'} p={"10px"}>

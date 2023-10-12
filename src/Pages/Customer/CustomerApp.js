@@ -14,6 +14,8 @@ import Notice from "./Notice/Notice";
 import Event from "./Notice/Event";
 import NoticeView from "./Notice/View";
 import Chat from "./Chat";
+import ReviewList from './Review/List'
+import ReviewWrite from "./Review/Write";
 
 const CustomerApp = () => {
     return (
@@ -33,6 +35,8 @@ const CustomerApp = () => {
             <Route path='/customer/event' element={<Event/>} />
             <Route path='/customer/notice/view' element={<NoticeView/>} />
             <Route path='/customer/chat' element={<Chat/>} />
+            <Route path='/customer/review' element={<ReviewList/>} />
+            <Route path='/customer/review/write' element={<ReviewWrite/>} />
           </Routes>
         </BrowserRouter>
         // </Container>

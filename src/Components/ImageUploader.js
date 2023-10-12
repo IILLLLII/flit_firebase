@@ -51,14 +51,14 @@ const ImageUploader = ({ ...props }) => {
               {...getRootProps()}
               border="2px dashed gray"
               borderRadius="lg"
-              padding="10"
+              // padding="10"
               textAlign="center"
               bgColor={'white'}
               w={props.w} h={props.h} 
             >
               <Center w='100%' h='100%'>
                 <input {...getInputProps()}/>
-                <AddIcon boxSize={24} color={'gray.400'}/>
+                <AddIcon boxSize={'100%'} p={'10%'} color={'gray.400'}/>
               </Center>
             </Box>
           )}

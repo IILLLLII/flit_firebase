@@ -30,7 +30,7 @@ export const getDocument = async (collectionId, docId) => {
 
   //console.log("Data", id, _doc.data());
 
-  return _doc.data();
+  return {..._doc.data(), id: _doc.id};
 }
 
 export const updateData = async (type, id, data) => {
@@ -226,6 +226,17 @@ export const getNotice = async (filter) => {
   return result;
 }
 
+export const getReviewList = async(customerId) => {
+  const q = query(collection(db, 'Review'), where('customerId', '==', customerId))
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      result = [...result, { ...doc.data(), id: doc.id }]
+})
+
+return result;
+}
+
 export const getReview = async(productId) => {
   const q = query(collection(db, 'Review'), where('productId', '==', productId))
   const querySnapshot = await getDocs(q);
@@ -235,6 +246,18 @@ export const getReview = async(productId) => {
 })
 
 return result;
+}
+
+export const getOrder = async(customerId) => {
+  const q = query(collection(db, 'Order'), where('customerId', '==', customerId))
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      result = [...result, { ...doc.data(), id: doc.id }]
+})
+
+return result;
+
 }
 
 
