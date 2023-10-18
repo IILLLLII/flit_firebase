@@ -23,16 +23,20 @@ const Home = () => {
         getPlanList();
     }, [date]);
 
-    const getOwnerInfo = async() => {
-        let ownerInfo = await getOwner(localStorage.getItem('ownerToken'));
-        setOwner(ownerInfo)
+    const getOwnerInfo = async () => {
+        if (localStorage.getItem('ownerToken')) {
+            let ownerInfo = await getOwner(localStorage.getItem('ownerToken'));
+            setOwner(ownerInfo)
+        }
     }
 
     const getPlanList = async () => {
-        console.log(date)
-        let plan = await getPlan(localStorage.getItem('ownerToken'), date)
-        console.log(plan)
-        setPlan(plan)
+        if (localStorage.getItem('ownerToken')) {
+            console.log(date)
+            let plan = await getPlan(localStorage.getItem('ownerToken'), date)
+            console.log(plan)
+            setPlan(plan)
+        }
     }
 
     const savePlan = async () => {
@@ -82,10 +86,10 @@ const Home = () => {
         <>
             <Center minH="200px" bgColor={'white'} borderRadius={'lg'} p={2}>
                 <Stack>
-                    <Avatar src={owner.profileImage} size={'2xl'}></Avatar>
+                    <Avatar src={owner?.profileImage} size={'2xl'}></Avatar>
                     <HStack justifyContent={'center'}>
-                        <Tag>{owner.grade}</Tag>
-                        <Text>{owner.name}</Text>
+                        <Tag>{owner?.grade}</Tag>
+                        <Text>{owner?.name}</Text>
                     </HStack>
                     <HStack justifyContent={'center'}>
                         <Text color={'gray.500'} textAlign={'center'}>팔로워 {520} | 리뷰 {430}</Text>
@@ -101,13 +105,13 @@ const Home = () => {
 
             </Center>
             <SimpleGrid m={2} columns={{ base: 1, lg: 2 }} spacing={2}>
-                <Plan/>
+                <Plan />
 
                 <Box margin={1} w='100%' minH="200px" bgColor={'gray.200'} borderRadius={'lg'}>
 
                 </Box>
 
-                <Chats/>
+                <Chats />
 
                 <Box margin={1} w='100%' minH="200px" bgColor={'gray.200'} borderRadius={'lg'}>
 
