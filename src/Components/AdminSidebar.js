@@ -36,6 +36,8 @@ import PortfolioList from '../Pages/Owner/Portfolio/List'
 import PortfolioView from '../Pages/Owner/Portfolio/View'
 import AddNotice from '../Pages/Admin/Notice/Add'
 import NoticeList from '../Pages/Admin/Notice/List'
+import CouponList from '../Pages/Admin/Coupon/List'
+import CouponAdd from '../Pages/Admin/Coupon/Add'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -125,7 +127,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavTitle>공지관리<AccordionIcon /></NavTitle>
             </AccordionButton>
             <AccordionPanel p={0}>
-              <NavItem >쿠폰</NavItem>
+              <NavItem link={'/admin/coupon/1'}>쿠폰</NavItem>
               <NavItem >광고</NavItem>
               <NavItem link={'/admin/notice/list/1'}>공지/이벤트</NavItem>
               <NavItem >플릿일정</NavItem>
@@ -297,6 +299,8 @@ const SidebarWithHeader = () => {
             <Route path='/admin/portfolio/view/*' element={<PortfolioView />} />
             <Route path='/admin/notice/list/*' element={<NoticeList />} />
             <Route path='/admin/notice/add' element={<AddNotice />} />
+            <Route path='/admin/coupon/1' element={<CouponList/>} />
+            <Route path='/admin/coupon/register' element={<CouponAdd/>} />
           </Routes>
         </BrowserRouter>
         </Box>
