@@ -674,7 +674,7 @@ export const ProductAdd = () => {
                                     <HStack>
                                         <Text w='150px'>기본배송비</Text>
                                         <InputGroup maxW={'250px'}>
-                                            <Input defaultValue={productInfo.delivery_fee} onChange={(e) => setProduct({ ...productInfo, delivery_fee: e.target.value })} type="number" bgColor={'white'} placeholder="숫자만 입력" />
+                                            <Input defaultValue={productInfo.delivery_fee} onChange={(e) => setProduct({ ...productInfo, delivery_fee: parseInt(e.target.value) })} type="number" bgColor={'white'} placeholder="숫자만 입력" />
                                             <InputRightAddon>원</InputRightAddon>
                                         </InputGroup>
                                     </HStack>

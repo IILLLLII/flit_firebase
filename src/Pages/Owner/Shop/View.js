@@ -146,10 +146,10 @@ const ShopView = () => {
     const submit = async() => {
         if (localStorage.getItem('ownerToken')) {
             let shop_ = await getShop(localStorage.getItem('ownerToken'))
-            if(shop_.shopname)
+            // if(shop_.shopname)
             await updateData('Shop', account.id, {...shopInfo, ownerId : account.id})
-            else
-            await addDocument('Shop', {...shopInfo, ownerId : account.id})
+            // else
+            // await addDocument('Shop', {...shopInfo, ownerId : account.id})
         }
     }
 

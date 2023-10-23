@@ -260,6 +260,18 @@ return result;
 
 }
 
+export const getOrderList = async(filter) => {
+  const q = query(collection(db, 'Order'), where('ownerId', '==', localStorage.getItem('ownerToken')))
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      result = [...result, { ...doc.data(), id: doc.id }]
+})
+
+return result;
+
+}
+
 
 
 

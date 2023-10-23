@@ -16,6 +16,7 @@ import NoticeView from "./Notice/View";
 import Chat from "./Chat";
 import ReviewList from './Review/List'
 import ReviewWrite from "./Review/Write";
+import PurchaseComplete from "./PurchaseComplete";
 
 const CustomerApp = () => {
     return (
@@ -37,6 +38,7 @@ const CustomerApp = () => {
             <Route path='/customer/chat' element={<Chat/>} />
             <Route path='/customer/review' element={<ReviewList/>} />
             <Route path='/customer/review/write' element={<ReviewWrite/>} />
+            <Route path='/customer/purchase/complete' element={<PurchaseComplete/>} />
           </Routes>
         </BrowserRouter>
         // </Container>

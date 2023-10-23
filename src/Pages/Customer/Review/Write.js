@@ -21,13 +21,14 @@ const ReviewWrite = () => {
     const [isEditMode, setEditMode] = useState(false)
 
     useEffect(() => {
-        setEditMode(getReviewData());
+        getReviewData();
     }, [])
 
     const getReviewData = async() => {
-        console.log(location.state)
-        let reviewData = await getDocument('Review', location.state)
-        if(reviewData)
+        let reviewData = await getReview(location.state)
+
+        console.log(location.state, reviewData)
+        if(reviewData.length > 0)
         {
             let product = await getDocument('Product', reviewData.productId)
             let owner = await getDocument('Owner', reviewData.ownerId)
@@ -36,11 +37,24 @@ const ReviewWrite = () => {
             console.log(product)
             setReviewData(reviewData)
             setReviewImage(reviewData.photoURL)
-            return true
+            setEditMode(true)
         }
         else
         {
-            return false
+            let product = await getDocument('Product', location.state)
+            let owner = await getDocument('Owner', product.ownerId)
+            setProductData(product)
+            setOwner(owner)
+            setReviewData({
+                content: '',
+                customerId: localStorage.getItem('customerToken'),
+                ownerId: product.ownerId,
+                photoURL: reviewImage,
+                productId: location.state,
+                reply: [],
+                timestamp: serverTimestamp()
+            })
+            setEditMode(false)
         }
     }
 
@@ -81,12 +95,12 @@ const ReviewWrite = () => {
                     timestamp: serverTimestamp()
                 })
     
-                let orderData = await getDocument('Order', location.state.orderId)
-                orderData.isReview = true;
+                // let orderData = await getDocument('Order', location.state.orderId)
+                // orderData.isReview = true;
     
-                await updateData('Order', location.state.orderId, orderData)
+                // await updateData('Order', location.state.orderId, orderData)
     
-                console.log(orderData)
+                // console.log(orderData)
                 navigate(-1)
             }
         }
