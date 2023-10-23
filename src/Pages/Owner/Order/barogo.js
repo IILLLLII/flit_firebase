@@ -1,4 +1,6 @@
 import axios from 'axios';
+import React, { useCallback, useEffect, useState } from "react";
+import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, limit, or, orderBy, query, updateDoc, where } from "firebase/firestore"
 
 async function postOrder(){
     try{
@@ -107,3 +109,30 @@ async function postOrderchange(){
         console.error(e);
     }
 };
+async function getorder_del_all(){
+  try{
+    const response = await axios.get('https://staging-api-interlocker.gorelas.com/api/orders');
+    console.log(response);
+  }catch (e){
+    console.log(e);
+  }
+}
+async function getorder_del_one(order_id){
+  var orders_num = order_id;
+  try{
+    const response = await axios.get('https://staging-api-interlocker.gorelas.com//api/orders/'+orders_num+'');
+    console.log(response);
+  }catch (e){
+    console.log(e);
+  }
+}
+const getOrders = async (orderid) => {
+  const q = query(collection(db, collectionId));
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+    result = [...result, { ...doc.data(), id: doc.id }]
+  })
+
+  return result;
+}
