@@ -97,7 +97,20 @@ export const getShopProductList = async (ownerId) => {
   })
   return result;
 }
+export const getSaleList = async (filter) =>{
+  let field = '';
+  const q = query(collection(db, 'Order'), orderBy(field, "desc"))
 
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc)=> {
+    if(doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin){
+      result = [...result, { ...doc.data(), id: doc.id }]
+    }
+  })
+  console.log(filter, result)
+  return result;
+}
 export const getProductList = async (filter) => {
 
   let field = 'regist_date';
