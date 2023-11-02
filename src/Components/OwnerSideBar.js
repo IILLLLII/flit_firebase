@@ -36,8 +36,8 @@ import ProductView from '../Pages/Owner/Product/View'
 import PortfolioView from '../Pages/Owner/Portfolio/View'
 import SalesList from '../Pages/Owner/Sales/List'
 import AdvertiseAdd from '../Pages/Owner/Advertise/Add'
-import AdvertiseList from '../Pages/Owner/Advertise/List'
-import AdvertiseBuy from '../Pages/Owner/Advertise/Buy'
+// import AdvertiseList from '../Pages/Owner/Advertise/List'
+// import AdvertiseBuy from '../Pages/Owner/Advertise/Buy'
 import ShopView from '../Pages/Owner/Shop/View'
 import ShopPoint from '../Pages/Owner/Shop/Point'
 import Customer from '../Pages/Owner/Shop/Customer'
@@ -135,9 +135,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavTitle>광고관리<AccordionIcon /></NavTitle>
             </AccordionButton>
             <AccordionPanel p={0}>
-              <NavItem link={'/advertise/add'}>광고 신청</NavItem>
-              <NavItem link={'/advertise/1'}>광고 조회</NavItem>
-              <NavItem link={'/advertise/buy'}>티켓 구매</NavItem>
+              <NavItem link={'/advertise'}>광고 신청 & 조회</NavItem>
+              {/* <NavItem link={'/advertise/1'}>광고 조회</NavItem>
+              <NavItem link={'/advertise/buy'}>티켓 구매</NavItem> */}
             </AccordionPanel>
           </AccordionItem>
 
@@ -311,9 +311,9 @@ const SidebarWithHeader = () => {
             <Route path='/portfolio/add' element={<PortfolioAdd />} />
             <Route path='/portfolio/view/*' element={<PortfolioView />} />
             <Route path='/sales/*' element={<SalesList />} />
-            <Route path='/advertise/add' element={<AdvertiseAdd />} />
-            <Route path='/advertise/1' element={<AdvertiseList />} />
-            <Route path='/advertise/buy' element={<AdvertiseBuy />} />
+            <Route path='/advertise' element={<AdvertiseAdd />} />
+            {/* <Route path='/advertise/1' element={<AdvertiseList />} />
+            <Route path='/advertise/buy' element={<AdvertiseBuy />} /> */}
             <Route path='/shop/info' element={<ShopView />} />
             <Route path='/shop/point' element={<ShopPoint />} />
             <Route path='/shop/customer' element={<Customer />} />

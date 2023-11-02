@@ -1,4 +1,4 @@
-import { Badge, Box, Checkbox, CheckboxGroup, HStack, Image, Input, InputGroup, Radio, RadioGroup, Select, SimpleGrid, Stack, StackDivider, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, Wrap, useToast } from "@chakra-ui/react";
+import { Badge, Box, Checkbox, CheckboxGroup, HStack, Image, Input, InputGroup, Radio, RadioGroup, Select, SimpleGrid, Stack, StackDivider, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack, Wrap, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Title_2xl, Title_lg } from "../../../Style/Typograhy";
 import { BorderTable, TBody, THeader } from "../../../Style/Table";
@@ -84,8 +84,13 @@ const OrderList = () => {
                         <Tr>
                             <Th w={'20px'}><Checkbox /></Th>
                             <Th {...THeader}>주문번호</Th>
+                            <Th {...THeader}>주문일자</Th>
+                            <Th {...THeader}>주문상태</Th>
+                            <Th {...THeader}>주문방법</Th>
+                            <Th {...THeader}>예약시간</Th>
                             <Th {...THeader}>주문명</Th>
-                            <Th {...THeader}>고객이름</Th>
+                            <Th {...THeader}>주문자</Th>
+                            <Th {...THeader}>결제정보</Th>
                             {/* <Th {...THeader}>주문일</Th> */}
                         </Tr>
                     </Thead>
@@ -94,15 +99,16 @@ const OrderList = () => {
                             <Tr _hover={{ bgColor: 'gray.100' }} onClick={() => navigate('/')}>
                                 <Th w={'20px'}><Checkbox /></Th>
                                 <Td {...TBody}>{value.id.slice(0, 10)}</Td>
-                                <Td {...TBody}>
-                                    <HStack >
-                                        <Image src={value.product[0].product.thumbnail_image} w={'40px'} h={'40px'} borderRadius={'full'} />
-                                        <Text>{value.product[0].product.product_name}</Text>
-                                    </HStack></Td>
+                                <Td {...TBody}>{getDate(value.timestamp)}</Td>
+                                <Td {...TBody}>{value.order.state}</Td>
+                                <Td {...TBody}><Badge colorScheme={value.order.type === '픽업' ? 'red' : 'blue'}>{value.order.type}</Badge></Td>
+                                <Td {...TBody}>{value.order.date} | {value.order.time}</Td>
+                                <Td {...TBody}>{value.order.orderName}</Td>
+                            
                                 <Td {...TBody} >
-                                    <HStack justifyContent={'center'}>
-                                        <Text>{value.sender.name}</Text>
-                                    </HStack></Td>
+                                        <Text>{value.sender.name} | {value.sender.number}</Text>
+                               </Td>
+                               <Td {...TBody}>{value.payment.method} | {formattedAmount(value.payment.totalCost)}원</Td>
                                 {/* <Td {...TBody}>{getDate(value.order.timestamp)}</Td> */}
                             </Tr>
                         ))}
