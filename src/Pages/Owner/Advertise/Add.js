@@ -1,7 +1,7 @@
 import { Badge, Box, Button, Card, CardBody, CardHeader, Center, Checkbox, HStack, Image, Modal, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Radio, RadioGroup, Stack, StackDivider, Table, Td, Text, Th, Tr, VStack, useDisclosure } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import FlitCalendar from "../../../Components/FlitCalendar";
-import { compareDate, formattedAmount, getDate, getDocument, getShopProductList, getStrDate, parseDate } from "../../../DB/function";
+import { addDocument, compareDate, formattedAmount, getAdvertiseList, getDate, getDocument, getShopProductList, getStrDate, parseDate } from "../../../DB/function";
 import Calendar from "react-calendar";
 import moment from "moment";
 import { Title_2xl, Title_lg } from "../../../Style/Typograhy";
@@ -18,6 +18,7 @@ const AdvertiseAdd = () => {
         const [productList, setProductList] = useState([]);
         const [selProductId, setSelProductId] = useState('');
 
+        // dummy
         const adSchedule = {
             startDate : '2023-12-01',
             endDate: '2023-12-31',
@@ -26,26 +27,28 @@ const AdvertiseAdd = () => {
             ]
         }
 
-        const addList = [
-            {
-                date: '2023-12-01',
-                ownerId: 'MVYFSUnR2rkphp04q1m4',
-                productId: "86frImUMvQOq1B9N9edq",
-                state: '신청 완료',
-            },
-            {
-                date: '2023-12-03',
-                ownerId: 'MVYFSUnR2rkphp04q1m4',
-                productId: "86frImUMvQOq1B9N9edq",
-                state: '신청 완료',
-            }
-        ]
+        // const adList = [
+        //     {
+        //         date: '2023-12-01',
+        //         ownerId: 'MVYFSUnR2rkphp04q1m4',
+        //         productId: "86frImUMvQOq1B9N9edq",
+        //         state: '신청 완료',
+        //     },
+        //     {
+        //         date: '2023-12-03',
+        //         ownerId: 'MVYFSUnR2rkphp04q1m4',
+        //         productId: "86frImUMvQOq1B9N9edq",
+        //         state: '신청 완료',
+        //     }
+        // ]
         useEffect(() => {
             getAdProduct(date)
         }, [date]);
 
         const getAdProduct = async(date) => {
-            let adInfoList = addList.filter((element) => element.date === getStrDate(date));
+            let adList = await getAdvertiseList();
+            let adInfoList = adList.filter((element) => element.date === getStrDate(date));
+
             console.log(adInfoList, adInfoList[0])
             let adInfo = {}
             if(adInfoList.length > 0)
@@ -66,6 +69,17 @@ const AdvertiseAdd = () => {
             let productList = await getShopProductList(localStorage.getItem('ownerToken'));
             console.log(productList)
             setProductList(productList)
+        }
+
+        const addAdvertise = async() => {
+            await addDocument('Advertise', {
+                date: getStrDate(date),
+                ownerId: localStorage.getItem('ownerToken'),
+                productId: selProductId,
+                state: '신청 완료',
+                regist_date: new Date()
+            })
+
         }
     
     return(
@@ -133,7 +147,7 @@ const AdvertiseAdd = () => {
                 <Text> <Text>{advertise?.adProduct.discount.set == "설정함" ? 
                 advertise?.adProduct.discount.unit == "%" ? 
                 `${formattedAmount(advertise?.adProduct.sales_price - advertise?.adProduct.sales_price * 0.01 * advertise?.adProduct.discount.value)}원` 
-                : `${formattedAmount(advertise?.adProduct.sales_price - advertise?.adProduct.discount.value)}원` : ""}</Text></Text>
+                : `${formattedAmount(advertise?.adProduct.sales_price - advertise?.adProduct.discount.value)}원` : `${formattedAmount(advertise?.adProduct.sales_price)}원`}</Text></Text>
                 </HStack>
             </Stack>
             </HStack>
@@ -145,7 +159,7 @@ const AdvertiseAdd = () => {
                 <Text>
                 해당 날짜에 광고 신청 내역이 없습니다.
             </Text>
-            {(parseDate(getStrDate(date)) > parseDate(adSchedule.startDate) && parseDate(getStrDate(date)) < parseDate(adSchedule.endDate)) &&
+            {(parseDate(getStrDate(date)) >= parseDate(adSchedule.startDate) && parseDate(getStrDate(date)) <= parseDate(adSchedule.endDate)) &&
                 <Button onClick={() => {getShopProducts(); onOpen();}} colorScheme="red">광고 상품 선택하기</Button>
             }
                 </VStack>
@@ -179,7 +193,7 @@ const AdvertiseAdd = () => {
                                 <Td {...TBody}>
                                     <HStack justifyContent={'center'}>
                                         <Text color="#da4359" fontWeight={'bold'}>{value.discount.set == "설정함" ? `${value.discount.value}${value.discount.unit} ` : ""}</Text>
-                                        <Text>{value.discount.set == "설정함" ? value.discount.unit == "%" ? `${formattedAmount(value.sales_price - value.sales_price * 0.01 * value.discount.value)}원` : `${formattedAmount(value.sales_price - value.discount.value)}원` : ""}</Text>
+                                        <Text>{value.discount.set == "설정함" ? (value.discount.unit == "%" ? `${formattedAmount(value.sales_price - value.sales_price * 0.01 * value.discount.value)}원` : `${formattedAmount(value.sales_price - value.discount.value)}원`) : `${formattedAmount(value.sales_price)}원`}</Text>
                                     </HStack>
                                 </Td>
                                 <Td {...TBody}><HStack justifyContent={'center'}>
@@ -193,7 +207,7 @@ const AdvertiseAdd = () => {
                     </Stack>
 
                     <ModalFooter>
-                        <Button colorScheme="red">신청하기</Button>
+                        <Button colorScheme="red" onClick={() => {addAdvertise(); onClose();}}>신청하기</Button>
                     </ModalFooter>
 
                 </ModalContent>

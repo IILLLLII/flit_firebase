@@ -285,6 +285,17 @@ return result;
 
 }
 
+export const getAdvertiseList = async() => {
+  const q = query(collection(db, 'Advertise'), where('ownerId', '==', localStorage.getItem('ownerToken')))
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      result = [...result, { ...doc.data(), id: doc.id }]
+})
+
+return result;
+}
+
 
 
 
