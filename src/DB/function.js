@@ -153,7 +153,7 @@ export const getProductList = async (filter) => {
   return result;
 }
 
-export const getPortfolioList = async (filter) => {
+export const getPortfolioList = async (filter, ownerId) => {
 
   let field = 'regist_date';
   if (filter.order == "등록순")
@@ -168,7 +168,7 @@ export const getPortfolioList = async (filter) => {
   const querySnapshot = await getDocs(q);
   let result = []
   querySnapshot.forEach((doc) => {
-    if (doc.data().ownerId == localStorage.getItem('ownerToken') || isAdmin) {
+    if (doc.data().ownerId == ownerId || isAdmin) {
       if (parseDate(filter.start) <= parseDate(getDate(doc.data().regist_date)) && parseDate(filter.end) >= parseDate(getDate(doc.data().regist_date))) {
         if (filter.type === "상품명") {
           if (doc.data().product_name.includes(filter.keyword)) {
@@ -182,6 +182,20 @@ export const getPortfolioList = async (filter) => {
         }
       }
     }
+  })
+
+  console.log(filter, result)
+  return result;
+}
+
+export const getPortfolioListAll = async (ownerId) => {
+
+  const q = query(collection(db, 'Portfolio'), where("ownerId", "==", ownerId))
+
+  const querySnapshot = await getDocs(q);
+  let result = []
+  querySnapshot.forEach((doc) => {
+      result = [...result, { ...doc.data(), id: doc.id }]
   })
 
   console.log(filter, result)

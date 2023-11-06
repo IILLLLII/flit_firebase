@@ -41,7 +41,7 @@ const PortfolioList = () => {
     }
 
     const search = async() => {
-        let result = await getPortfolioList(filter)
+        let result = await getPortfolioList(filter, localStorage.getItem('ownerToken') )
         setProductList(result)
     }
 
