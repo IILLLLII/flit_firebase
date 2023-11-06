@@ -1,8 +1,9 @@
-import { Box, Card, CardHeader, Center, Container, Flex, HStack, Select, SimpleGrid, Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, Card, CardHeader, Center, Container, Flex, HStack, Select, SimpleGrid, Stack, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Legend, Tooltip, PieChart, Pie, Cell, BarChart, Bar, ResponsiveContainer } from "recharts"
 import axios from "axios";
 import { dayData } from "../Shop/SubmitDashboard";
+import { getDate, getList } from "../../../DB/function";
 
 export const allUsersData = [
   { title: 'Customer', subtitle: '전체 고객 수', number: '67,790', increase: '+145' },
@@ -28,6 +29,8 @@ export const ageData = [
 ];
 
 export default function AdminUser() {
+    const [customer, setCustomer] = useState([])
+    const [owner, setOwner] = useState([])
 	const [menu, setMenu] = useState('Total User');
 	const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
 
@@ -54,33 +57,18 @@ export default function AdminUser() {
 	}, []);
 
 	const getUserData = async () => {
-		try {
-			const response = await axios.get(`/api/get-user-data`);
-			console.log(response.data)
-		}
-		catch (error) {
-
-		}
+        
 	}
 
 	const getUserList = async () => {
-		try {
-			const response = await axios.get(`/api/get-user-list`);
-			console.log(response.data)
-		}
-		catch (error) {
-
-		}
+        let list = await getList('Customer', 'all');
+        setCustomer(list)
 	}
 
 	const getOwnerList = async () => {
-		try {
-			const response = await axios.get(`/api/get-shop-information`);
-			console.log(response.data)
-		}
-		catch (error) {
-
-		}
+        let list = await getList('Owner', 'all');
+        console.log(list)
+        setOwner(list)
 	}
 
 	return (
@@ -177,6 +165,57 @@ export default function AdminUser() {
 						</Card>
 					</Stack>
 				</VStack>
+
+                <TableContainer>
+  <Table variant='simple'>
+    {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
+    <Thead>
+      <Tr>
+        <Th>등급</Th>
+        <Th>이름</Th>
+        <Th>닉네임</Th>
+        <Th>메일</Th>
+        {/* <Th>주소</Th> */}
+        <Th>번호</Th>
+        {/* <Th>접속일</Th> */}
+        <Th>가입일</Th>
+      </Tr>
+    </Thead>
+    <Tbody>
+        {(menu ==='Customer') && customer.map((value, index) => (
+            <Tr key={index}>
+                <Td>{value.grade}</Td>
+                <Td>{value.name}</Td>
+                <Td>{value.nickname}</Td>
+                <Td>{value.email}</Td>
+                {/* <Td>{value.address}{value.detail_address}</Td> */}
+                <Td>{value.number}</Td>
+                {/* <Td>{value.t_access}</Td> */}
+                <Td>{getDate(value.date)}</Td>
+            </Tr>
+        ))}
+                {(menu ==='Store' || menu ==='Florist' ) && owner.map((value, index) => (
+            <Tr key={index}>
+                <Td>{value.grade}</Td>
+                <Td>{value.name}</Td>
+                <Td>{value.nickname}</Td>
+                <Td>{value.email}</Td>
+                {/* <Td>{value.address}{value.detail_address}</Td> */}
+                <Td>{value.number}</Td>
+                {/* <Td>{value.t_access}</Td> */}
+                <Td>{getDate(new Date())}</Td>
+            </Tr>
+        ))}
+    </Tbody>
+    {/* <Tfoot>
+      <Tr>
+        <Th>To convert</Th>
+        <Th>into</Th>
+        <Th isNumeric>multiply by</Th>
+      </Tr>
+    </Tfoot> */}
+  </Table>
+</TableContainer>
 
 			</Container>
 	)
