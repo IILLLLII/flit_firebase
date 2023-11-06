@@ -38,6 +38,7 @@ import AddNotice from '../Pages/Admin/Notice/Add'
 import NoticeList from '../Pages/Admin/Notice/List'
 import CouponList from '../Pages/Admin/Coupon/List'
 import CouponAdd from '../Pages/Admin/Coupon/Add'
+import SubmitDashboard from '../Pages/Admin/Shop/SubmitDashboard'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -139,7 +140,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavTitle>입점센터<AccordionIcon /></NavTitle>
             </AccordionButton>
             <AccordionPanel p={0}>
-              <NavItem>입점현황</NavItem>
+              <NavItem link={'/admin/submit/dashboard'}>입점현황</NavItem>
               <NavItem link={'/admin/submit/list/1'}>입점신청</NavItem>
             </AccordionPanel>
           </AccordionItem>
@@ -291,6 +292,7 @@ const SidebarWithHeader = () => {
         <BrowserRouter>
           <Routes>
             <Route path='/admin' element={<Home />} />
+            <Route path='/admin/submit/dashboard' element={<SubmitDashboard/>} />
             <Route path='/admin/submit/list/*' element={<SubmitList/>} />
             <Route path='/admin/submit/view/*' element={<SubmitView/>} />
             <Route path='/admin/product/*' element={<ProductList />} />
