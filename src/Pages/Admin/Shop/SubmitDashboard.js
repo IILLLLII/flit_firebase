@@ -101,7 +101,7 @@ function SubmitDashboard() {
                     <TabPanel>
                         <Box width={'100%'} h='300px' overflow={'auto'} p={2}>
                             <ResponsiveContainer >
-                                <LineChart data={dayData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                            <LineChart data={dayData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
@@ -115,7 +115,7 @@ function SubmitDashboard() {
                     <TabPanel>
                         <Box width={'100%'} h='300px' overflow={'auto'} p={2}>
                             <ResponsiveContainer >
-                                <LineChart data={weekData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                                <LineChart data={weekData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />
@@ -129,7 +129,7 @@ function SubmitDashboard() {
                     <TabPanel>
                         <Box width={'100%'} h='300px' overflow={'auto'} p={2}>
                             <ResponsiveContainer >
-                                <LineChart data={monthData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                            <LineChart data={monthData}>
                                     <CartesianGrid strokeDasharray="3 3" />
                                     <XAxis dataKey="name" />
                                     <YAxis />

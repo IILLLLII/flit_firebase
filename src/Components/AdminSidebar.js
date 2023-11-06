@@ -39,6 +39,7 @@ import NoticeList from '../Pages/Admin/Notice/List'
 import CouponList from '../Pages/Admin/Coupon/List'
 import CouponAdd from '../Pages/Admin/Coupon/Add'
 import SubmitDashboard from '../Pages/Admin/Shop/SubmitDashboard'
+import UserDashboard from '../Pages/Admin/User/UserDashboard'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -73,11 +74,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavTitle>유저 관리<AccordionIcon /></NavTitle>
             </AccordionButton>
             <AccordionPanel p={0}>
-              <NavItem >전체 유저 관리</NavItem>
-              <NavItem >Customer 관리</NavItem>
-              <NavItem >Shop 관리</NavItem>
-              <NavItem >Florist 관리</NavItem>
-              <NavItem >탈퇴 유저 관리</NavItem>
+              <NavItem link={'/admin/user/all'}>전체 유저 관리</NavItem>
+              <NavItem link={'/admin/user/user'}>Customer 관리</NavItem>
+              <NavItem link={'/admin/user/store'}>Shop 관리</NavItem>
+              <NavItem link={'/admin/user/florist'}>Florist 관리</NavItem>
+              <NavItem link={'/admin/user/seceder'}>탈퇴 유저 관리</NavItem>
             </AccordionPanel>
           </AccordionItem>
 
@@ -292,6 +293,7 @@ const SidebarWithHeader = () => {
         <BrowserRouter>
           <Routes>
             <Route path='/admin' element={<Home />} />
+            <Route path='/admin/user/*' element={<UserDashboard />} />
             <Route path='/admin/submit/dashboard' element={<SubmitDashboard/>} />
             <Route path='/admin/submit/list/*' element={<SubmitList/>} />
             <Route path='/admin/submit/view/*' element={<SubmitView/>} />
