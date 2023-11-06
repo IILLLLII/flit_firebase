@@ -96,7 +96,7 @@ const OrderList = () => {
                     </Thead>
                     <Tbody>
                         {orderList.map((value, index) => (
-                            <Tr _hover={{ bgColor: 'gray.100' }} onClick={() => navigate('/')}>
+                            <Tr _hover={{ bgColor: 'gray.100' }} onClick={() => navigate(`/order/view/${value.id}`, { state: { order: value } })}>
                                 <Th w={'20px'}><Checkbox /></Th>
                                 <Td {...TBody}>{value.id.slice(0, 10)}</Td>
                                 <Td {...TBody}>{getDate(value.timestamp)}</Td>

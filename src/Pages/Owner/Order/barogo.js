@@ -1,15 +1,14 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from "react";
 import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, limit, or, orderBy, query, updateDoc, where } from "firebase/firestore"
-import { db } from "./firebase-config"
 
-async function postOrder(){
+export async function postOrder(orderInfo){
     try{
         const response = await axios.post('https://staging-api-interlocker.gorelas.com/api/orders',{
             Authorization : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkZXZVc2VySWQiOjExNzcsImFwaUtleUlkIjoyMTAyLCJyb2xlIjoib3JkZXJBZ2VuY3lNYW5hZ2VyIiwib3JkZXJBZ2VuY3lJZHMiOlsiaWxsaV90ZXN0Il0sImlhdCI6MTY4MTQ0NjYwMywiZXhwIjoxODM5MTI2NjAzfQ.zipx3YoB5JnCinWRhddQbIyXpQdl-u7J3p3RTAcROPU",
             baseType: "ADDRESS_TO_ADDRESS",//주소(add to add)
             orderType: "FOR_DELIVERY",//연동형태(FOR_DELIVERY)
-            orderAgencyId: "gorela_chicken",//주문 제휴사 아이디
+            orderAgencyId: "gorela_chicken",//주문 제휴사 아이디s
             orderAgencyOrderId: "TEST_00000123",//주문 제휴사 주문 아이디
             orderAgencyDailyOrderId: "101",//주문 제휴사 당일 주문 아이디
             totalPayPrice: 30000, //총 결제 금액
@@ -70,6 +69,7 @@ async function postOrder(){
             orderAgencyOrderCreatedAt: 1674718800000//주문 제휴사에서 관리하는 실제 주문자(고객)의 주문 접수 일시 (timestamp
         });
         console.log(response);
+        return response;
     }catch (e){
         console.error(e);
     }

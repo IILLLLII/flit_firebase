@@ -22,6 +22,7 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
+  useColorMode,
 } from '@chakra-ui/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
@@ -48,7 +49,16 @@ import Footer from './Footer'
 import { useState } from 'react'
 import NoticeList from '../Pages/Owner/Community/Notice'
 import NoticeView from '../Pages/Owner/Community/NotiveView'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
+function ColorModeButton() {
+  const { colorMode, toggleColorMode } = useColorMode()
+  return (
+    <header>
+      <IconButton onClick={toggleColorMode} icon={colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}/>
+    </header>
+  )
+}
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
@@ -270,6 +280,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
           <HStack>
+            {/* <ColorModeButton/> */}
             <Login onLogin={() => window.location.reload()}/>
             {!localStorage.getItem('ownerToken') && <Submit />}
           </HStack>
