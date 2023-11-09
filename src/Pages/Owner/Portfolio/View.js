@@ -152,7 +152,7 @@ const PortfolioView = () => {
                             <HStack justifyContent={'space-between'}>
                                 <Text ml={2} {...Title_2xl}>포트폴리오 정보</Text>
                                 <HStack>
-                                <Button isLoading={reviews ? false : true} onClick={() => setOpenReviews(true)} leftIcon={<ChatIcon />} >리뷰 {reviews?.length}</Button>
+                                <Button isLoading={reviews ? false : true} onClick={() => setOpenReviews(true)} leftIcon={<ChatIcon />} >댓글 {reviews?.length}</Button>
                                     <Button onClick={() => setOpenGoods(true)} leftIcon={<FaHeart />}>관심 {product.goods.length}</Button>
 
                                 </HStack>
@@ -217,7 +217,7 @@ const PortfolioView = () => {
             <Modal isOpen={openReviews} onClose={() => setOpenReviews(false)} size={'xl'}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>리뷰</ModalHeader>
+                    <ModalHeader>댓글</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody mb={4}>
                         <Stack divider={<StackDivider borderColor={"#d9d9d9"} />}>

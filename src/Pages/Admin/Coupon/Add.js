@@ -53,6 +53,11 @@ export default function CouponAdd() {
 	}
 
 	const saveCoupon = async () => {
+		if(couponImageUrl == null){
+			alert("이미지를 넣어주세요!")
+			return;
+		}
+
 		console.log(checkedItems, couponName, discountType, discountValue, expireDate, couponImage)
 
 		if (location.state.mode === "edit") {
@@ -130,7 +135,7 @@ export default function CouponAdd() {
 						</HStack> */}
 						<HStack w={'100%'}>
 							<Text w={100} marginRight={4} >쿠폰이름</Text>
-							<Input borderColor={'#d9d9d9'}defaultValue={couponName} onChange={(e) => setCouponName(e.target.value)} />
+							<Input borderColor={"#d9d9d9"}defaultValue={couponName} onChange={(e) => setCouponName(e.target.value)} />
 						</HStack>
 						<HStack w={'100%'}>
 							<Text w={100} marginRight={4}>할인</Text>
@@ -142,10 +147,10 @@ export default function CouponAdd() {
 									</HStack>
 								</RadioGroup>
 								<InputGroup size={['sm', 'md']}>
-									<NumberInput value={discountValue}>
+									<NumberInput borderColor={"#d9d9d9"} value={discountValue}>
 										<NumberInputField onChange={(e) => setDiscountValue(e.target.value)} name='discount' borderRadius='8px 0 0 8px' />
 									</NumberInput>
-									<InputRightAddon borderColor={'#d9d9d9'} children={discountType} />
+									<InputRightAddon borderColor={"#d9d9d9"} children={discountType} />
 								</InputGroup>
 							</VStack>
 
@@ -153,7 +158,7 @@ export default function CouponAdd() {
 						<HStack w={'100%'}>
 							<Text w={100}>쿠폰 만료기간</Text>
 							<VStack alignItems={'flex-start'} spacing={4}>
-								<Input borderColor={'#d9d9d9'}defaultValue={expireDate} type="date" onChange={(e) => setExpireDate(e.target.value)} />
+								<Input borderColor={"#d9d9d9"}defaultValue={expireDate} type="date" onChange={(e) => setExpireDate(e.target.value)} />
 								{/* <DateTimePicker type={'date'} /> */}
 							</VStack>
 						</HStack>
@@ -162,7 +167,7 @@ export default function CouponAdd() {
 							<Text w={100} >쿠폰 이미지</Text>
 							<VStack alignItems={'flex-start'}>
 
-								<ImageUploader defaultValue={couponImageUrl} w={500} h={200} setFile={setFile} delImage={() => { setFile(null); setImageUrl(""); }} />
+								<ImageUploader defaultValue={couponImageUrl} w={500} h={200} setUrl={(value) => setCouponImage(value)} setFile={setFile} delImage={() => { setFile(null); setImageUrl(""); }} />
 								<Text fontSize={'sm'} color={"#8c8c8c"}>
 									권장 크기 : 500 x 200
 								</Text>

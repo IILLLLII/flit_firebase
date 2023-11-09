@@ -1,5 +1,6 @@
 import { Box, Button, Card, CardBody, CardHeader, Center, Checkbox, Container, Flex, Grid, GridItem, HStack, IconButton, Image, Select, StackDivider, Text, VStack, Wrap } from "@chakra-ui/react";
 import { useCallback, useEffect, useState } from "react";
+import { couponList } from "../../dummy"
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import {
@@ -18,6 +19,7 @@ import {
   doc
 } from "firebase/firestore";
 import { db, storage } from '../../../DB/firebase-config'
+import { getList } from "../../../DB/function";
 
 export default function CouponList() {
   const navigate = useNavigate()
@@ -62,7 +64,7 @@ export default function CouponList() {
 
   useEffect(() => {
     getCouponList("customer")
-    getUserList("All")
+    getUserList('all');
   }, []);
 
   const changeValue = (index, check) => {
@@ -97,26 +99,11 @@ export default function CouponList() {
     setCouponList(coupon)
   }
 
-  const getUserList = async (grade) => {
-    setGrade(grade)
-    console.log(grade)
-    var q;
-    if(type === "customer")
-    {
-      if(grade === "All")
-        q = query(collection(db, "Customer"));
-      else
-        q = query(collection(db, "Customer"), where("userInfo.grade", "==", grade));
-    }
-    
-    const querySnapshot = await getDocs(q);
-    var user = []
-    querySnapshot.forEach((doc) => {
-      user = [...user, { ...doc.data(), id: doc.id }]
-      console.log(doc.data())
-    })
-    setUserList(user)
-  }
+	const getUserList = async () => {
+    let list = await getList('Customer', 'all');
+    console.log(list)
+    setUserList(list)
+}
 
   const deleteCoupon = async (key) => {
     console.log(key)
@@ -187,7 +174,79 @@ export default function CouponList() {
 
           </Card>
 
-{/* 쿠폰 */}
+          <Card w={'100%'} p={2}>
+            <CardBody>
+              <VStack divider={<StackDivider borderColor={'#d9d9d9'}/>}>
+                <HStack w={'100%'} marginBottom={-2}>
+                  {/* <Text w={100}>조회 방식</Text> */}
+                  <Button w="50%" onClick={() => setList(0)} color={list === 0? "#da4359" : "#8c8c8c"} backgroundColor="white" _hover={{backgroundColor:'white'}}>쿠폰발송하기</Button>
+                  <Button w="50%" onClick={() => setList(1)} color={list === 1? "#da4359" : "#8c8c8c"} backgroundColor="white" _hover={{backgroundColor:'white'}}>쿠폰발송내역</Button>
+                </HStack>
+                <HStack w={'100%'}>
+                  <Text w={100}>고객 등급</Text>
+                  <Button onClick={() => getUserList("All")} colorScheme={grade === "All" ? "pink" : "gray"}>All</Button>
+                  {
+                    type === "customer" ?
+                      <>
+                        {cutomerGrade.map((value, index) => (
+                          <Button onClick={() => getUserList(value)} colorScheme={grade === value ? "pink" : "gray"}>{value}</Button>
+                        ))}
+                      </> : <>
+                        {ownerGrade.map((value, index) => (
+                          <Button onClick={() => getUserList(value)} colorScheme={grade === value ? "pink" : "gray"}>{value}</Button>
+                        ))}
+                      </>
+                  }
+                </HStack>
+              </VStack>
+
+              <HStack alignItems={'flex-start'}>
+                <VStack p={2} divider={<StackDivider borderColor={'#d9d9d9'}/>} width={"50%"}>
+                  <HStack fontWeight={'bold'} textAlign={'center'} width={'100%'} justifyContent={'space-around'} p={2} borderTop={'1px soloid #d9d9d9'}>
+                    <Checkbox colorScheme="pink" onChange={(e) => changeValue(-1, e.target.checked)} />
+                    <Text width="25%">등급</Text>
+                    <Text width="25%">이름</Text>
+                    <Text width="25%">닉네임</Text>
+                    <Text width="25%">핸드폰</Text>
+                  </HStack>
+                  {userList?.map((value, index) => (
+                    <HStack width={'100%'} textAlign={['flex-start', 'center']} justifyContent={'space-around'} p={2}>
+                      <Checkbox colorScheme="pink" onChange={(e) => { changeValue(index, e.target.checked) }} />
+                      <Text width="25%" fontSize={'sm'}>{value?.grade}</Text>
+                      <Text width="25%" fontSize={'sm'}>{value?.name}</Text>
+                      <Text width="25%" fontSize={'sm'}>{value?.nickname}</Text>
+                      <Text width="25%" fontSize={'sm'}>{value ?
+                      (value?.number.replaceAll('-', '')).slice(0, 3) + "-" + 
+                      (value?.number.replaceAll('-', '')).slice(3, 7) + "-" +
+                      (value?.number.replaceAll('-', '')).slice(7, 11) : ""
+                      }</Text>
+                    </HStack>
+                  ))}
+                </VStack>
+
+                <VStack p={2} divider={<StackDivider borderColor={'#d9d9d9'}/>} width={"50%"}>
+                  <HStack fontWeight={'bold'} textAlign={'center'} width={'100%'} justifyContent={'space-around'} p={2} borderTop={'1px soloid #d9d9d9'}>
+                    <Checkbox colorScheme="pink" />
+                    <Text width="50%">쿠폰이름</Text>
+                    <Text width="25%">할인정보</Text>
+                    <Text width="25%">유효기간</Text>
+                  </HStack>
+                  {couponList.map((value, index) => (
+                    <HStack width={'100%'} textAlign={['flex-start', 'center']} justifyContent={'space-around'} p={2}>
+                      <Checkbox colorScheme="pink" />
+                      <Text width="50%">{value.couponName}</Text>
+                      <Text width="25%">{value.discountValue}{value.discountType}</Text>
+                      <Text width="25%">{value.expireDate}</Text>
+                    </HStack>
+                  ))}
+                </VStack>
+              </HStack>
+
+              <Center m={4}>
+                <Button colorScheme="pink">발송하기</Button>
+              </Center>
+            </CardBody>
+          </Card>
         </VStack>
 
       </Container>
