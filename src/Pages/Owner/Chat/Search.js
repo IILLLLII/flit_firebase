@@ -5,7 +5,7 @@ const Search = () => {
   return (
     <Box className='search'>
         <Box className='searchForm'>
-            <Input className='input' type='text' placeholder='찾기'/>
+            <Input borderColor={'#d9d9d9'}className='input' type='text' placeholder='찾기'/>
         </Box>
     </Box>
   )

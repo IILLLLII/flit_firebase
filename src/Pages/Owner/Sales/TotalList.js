@@ -38,22 +38,22 @@ export default function SalesTotal() {
         {/* 필터 */}
         <VStack alignItems={'flex-end'}>
           <HStack spacing={6} width={"100%"} justifyContent={'flex-end'}>
-            <Select onChange={(e) => setDateRange(e.target.value)} width={"200px"} defaultValue={dateRange} >
+            <Select borderColor={"#d9d9d9"}onChange={(e) => setDateRange(e.target.value)} width={"200px"} defaultValue={dateRange} >
               <option value='일별 매출'>일별 매출</option>
               <option value='주별 매출'>주별 매출</option>
               <option value='월별 매출'>월별 매출</option>
               <option value='구간별 매출'>구간별 매출</option>
             </Select>
-            <Input display={dateRange !== "구간별 매출" ? "block" : "none"} type="date" width={"200px"} defaultValue={"2023-11-09"}/>
+            <Input borderColor={'#d9d9d9'}display={dateRange !== "구간별 매출" ? "block" : "none"} type="date" width={"200px"} defaultValue={"2023-11-09"}/>
           </HStack>
-          {dateRange === "구간별 매출" && <HStack><Input type="date"/><Input type="date"/></HStack>}
+          {dateRange === "구간별 매출" && <HStack><Input borderColor={'#d9d9d9'}type="date"/><Input borderColor={'#d9d9d9'}type="date"/></HStack>}
         </VStack>
       </Card>
 
       {/* 매출 현황 */}
       <Card width={"100%"} p={4} mt={2}>
         <Text fontSize={["1.2rem"]} fontWeight={'bold'}>매출 현황</Text>
-        <Stack mt={[4, 6]} direction={['column', 'row']} width={'100%'} height={"100%"} spacing={0} divider={<StackDivider borderColor={"#b4b4b4"} />} borderTop={"1px solid #b4b4b4"} borderBottom={"1px solid #b4b4b4"}>
+        <Stack mt={[4, 6]} direction={['column', 'row']} width={'100%'} height={"100%"} spacing={0} divider={<StackDivider borderColor={"#d9d9d9"} />} borderTop={"1px solid #b4b4b4"} borderBottom={"1px solid #b4b4b4"}>
           <Box width={["100%", "50%"]} height={"100%"}>
             <Box width={["100%"]} height={"100%"} p={[4]}>
               <VStack alignItems={'flex-start'} spacing={4}>
@@ -72,7 +72,7 @@ export default function SalesTotal() {
             </Box>
           </Box>
           <Box width={["100%", "50%"]} height={"100%"}>
-            <VStack spacing={0} divider={<StackDivider borderColor={"#b4b4b4"} />}>
+            <VStack spacing={0} divider={<StackDivider borderColor={"#d9d9d9"} />}>
               <Box width={["100%"]} height={"100%"} onClick={() => openPopup("sales")}>
                 <Flex justifyContent={"space-between"} alignItems={'center'} p={4}>
                   <Text fontSize={"1rem"}>총 매출액</Text>
@@ -84,14 +84,14 @@ export default function SalesTotal() {
                 </Flex>
 
                 <Popup width={["94%", "47%"]} display={popup === "sales" ? "block" : "none"}>
-                  <VStack width={"100%"} divider={<StackDivider borderColor={"#b4b4b4"} />}>
+                  <VStack width={"100%"} divider={<StackDivider borderColor={"#d9d9d9"}/>}>
                     <Flex width={"100%"} alignItems={'center'} justifyContent={'space-between'} p={3} pb={1}>
                       <Text fontSize={"1.2rem"}>총 매출액</Text>
                       <Text></Text>
                       <MdCancel style={{ cursor: "pointer" }} color='#da4359' size={25} onClick={closePopup} />
 
                     </Flex>
-                    <HStack width={"100%"} divider={<StackDivider borderColor={"#b4b4b4"} />} alignItems={'flex-start'}>
+                    <HStack width={"100%"} divider={<StackDivider borderColor={"#d9d9d9"} />} alignItems={'flex-start'}>
                       <VStack width={"50%"} pr={4} pl={4} pt={2} pb={2}>
                         <Text>플릿</Text>
                         {salesData.salesFlit.map(({ name, cost, count }, index) => (
@@ -128,14 +128,14 @@ export default function SalesTotal() {
                 </Flex>
 
                 <Popup width={["94%", "47%"]} display={popup === "purchase" ? "block" : "none"}>
-                  <VStack width={"100%"} divider={<StackDivider borderColor={"#b4b4b4"} />}>
+                  <VStack width={"100%"} divider={<StackDivider borderColor={"#d9d9d9"} />}>
                     <Flex width={"100%"} alignItems={'center'} justifyContent={'space-between'} p={3} pb={1}>
                       <Text fontSize={"1.2rem"}>총 매입액</Text>
                       <Text></Text>
                       <MdCancel style={{ cursor: "pointer" }} color='#da4359' size={25} onClick={closePopup} />
 
                     </Flex>
-                    <HStack width={"100%"} divider={<StackDivider borderColor={"#b4b4b4"} />} alignItems={'flex-start'}>
+                    <HStack width={"100%"} divider={<StackDivider borderColor={"#d9d9d9"} />} alignItems={'flex-start'}>
                       <VStack width={"50%"} pr={4} pl={4} pt={2} pb={2}>
                         <Text>플릿</Text>
                         {salesData.purchaseFlit.map(({ name, cost, count }, index) => (
@@ -213,7 +213,7 @@ export default function SalesTotal() {
           </InputGroup>
         </Stack>
 
-        <VStack width="100%" justifyContent={'center'} divider={<StackDivider borderColor={"#b4b4b4"} />} mt={2} p={[2]} borderTop={"1px solid #b4b4b4"} borderBottom={"1px solid #b4b4b4"}>
+        <VStack width="100%" justifyContent={'center'} divider={<StackDivider borderColor={"#d9d9d9"} />} mt={2} p={[2]} borderTop={"1px solid #b4b4b4"} borderBottom={"1px solid #b4b4b4"}>
           {salesListData.map((value, index) => (
             <Box width={'100%'} p={[0, 2]}>
             <HStack width="100%" spacing={10} justifyContent={'space-between'}>

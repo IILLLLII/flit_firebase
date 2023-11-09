@@ -148,7 +148,7 @@ const ProductView = () => {
                         <ImageSlider images={product.product_image} />
                     </Box>
                     <Box w={'100%'} borderLeft={{ base: 'none', md: '1px solid #d9d9d9' }}>
-                        <Stack direction={'column'} divider={<StackDivider />}>
+                        <Stack direction={'column'} divider={<StackDivider borderColor={"#d9d9d9"} />}>
                             <HStack justifyContent={'space-between'}>
                                 <Text ml={2} {...Title_2xl}>상품정보</Text>
                                 <HStack>
@@ -274,7 +274,7 @@ const ProductView = () => {
                     <ModalHeader>리뷰</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody mb={4}>
-                        <Stack divider={<StackDivider />}>
+                        <Stack divider={<StackDivider borderColor={"#d9d9d9"} />}>
                             {reviews && reviews.map((value, index) => (
                                 <Stack>
 
@@ -294,7 +294,7 @@ const ProductView = () => {
                                         ))}
                                     </HStack>
                                     <Text>{value.content}</Text>
-                                    <Accordion allowMultiple defaultIndex={parseInt(localStorage.getItem('reply')?.split(',')[0]) === index ? [parseInt(localStorage.getItem('reply')?.split(',')[1])] : []} onChange={(value) => localStorage.setItem('reply', `${index},${value}`)}>
+                                    <Accordion borderColor={'white'} allowMultiple defaultIndex={parseInt(localStorage.getItem('reply')?.split(',')[0]) === index ? [parseInt(localStorage.getItem('reply')?.split(',')[1])] : []} onChange={(value) => localStorage.setItem('reply', `${index},${value}`)}>
                                         <AccordionItem border={'none'}>
                                             {({ isExpanded }) => (
                                                 <>
@@ -326,7 +326,7 @@ const ProductView = () => {
                                                                         }
                                                                     </HStack>
                                                                     {editReplyIndex == idx ?
-                                                                        <Textarea onChange={(e) => setNewReply(e.target.value)} bgColor={'white'} whiteSpace={'pre-wrap'}>{reply.content}</Textarea> :
+                                                                        <Textarea borderColor={"#d9d9d9"} onChange={(e) => setNewReply(e.target.value)} bgColor={'white'} whiteSpace={'pre-wrap'}>{reply.content}</Textarea> :
                                                                         <Text whiteSpace={'pre-wrap'}>{reply.content}</Text>
                                                                     }
                                                                     <HStack justifyContent={'space-between'}>
@@ -353,7 +353,7 @@ const ProductView = () => {
                                     {value.openReply &&
                                         <Stack>
 
-                                            <Textarea minH={'150px'} onChange={(e) => setNewReply(e.target.value)} />
+                                            <Textarea borderColor={"#d9d9d9"} minH={'150px'} onChange={(e) => setNewReply(e.target.value)} />
                                             <HStack justifyContent={'flex-end'}>
                                                 <Button onClick={() => setOpenReply(index, false)} size={'sm'}>취소</Button>
                                                 <Button onClick={() => submitReply(false, index)} size={'sm'}>등록</Button>

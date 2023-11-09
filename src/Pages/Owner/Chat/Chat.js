@@ -1,4 +1,4 @@
-import { Box, Image, Text, Avatar, Stack } from '@chakra-ui/react'
+import { Box, Image, Text, Avatar, Stack, Input } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
 import { getDocument, getTime, updateData } from '../../../DB/function'
 import { LinkIcon } from '@chakra-ui/icons'
@@ -94,10 +94,10 @@ const Chat = ({ data, user, ...props }) => {
 
     </div>
     <div className='input'>
-        <input type='text' value={message} placeholder='내용을 입력하세요...' onChange={(e) => setMessage(e.target.value)}/>
+        <Input borderColor={'#d9d9d9'}type='text' value={message} placeholder='내용을 입력하세요...' onChange={(e) => setMessage(e.target.value)}/>
         <div className='send'>
             <LinkIcon width={'24px'} height={'20px'} color={'#8c8c8c'}/>
-            <input type='file' style={{display: 'none'}} id='file' />
+            <Input borderColor={'#d9d9d9'}type='file' style={{display: 'none'}} id='file' />
             <label htmlFor='file'>
                 <AiOutlinePicture size={'24px'} color={'#8c8c8c'}/>
             </label>

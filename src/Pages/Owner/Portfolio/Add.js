@@ -92,7 +92,7 @@ export const ProductAdd = () => {
                 </Box>
 
                 <Card w={'full'}>
-                    <Accordion defaultIndex={[0, 1, 2, 3]} allowMultiple>
+                    <Accordion borderColor={'white'} defaultIndex={[0, 1, 2, 3]} allowMultiple>
 
                         <AccordionItem>
                             <h2>
@@ -109,8 +109,8 @@ export const ProductAdd = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={panelColor}>
                                 <InputGroup maxW={'300px'}>
-                                    <Input bgColor={'white'} maxLength={15} defaultValue={productInfo.product_name} onChange={(e) => setProduct({ ...productInfo, product_name: e.target.value })}></Input>
-                                    <InputRightAddon><Text color={productInfo.product_name.length > 15 ? 'red' : 'black'}>{productInfo.product_name.length}</Text> /15</InputRightAddon>
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} maxLength={15} defaultValue={productInfo.product_name} onChange={(e) => setProduct({ ...productInfo, product_name: e.target.value })}></Input>
+                                    <InputRightAddon borderColor={'#d9d9d9'}><Text color={productInfo.product_name.length > 15 ? 'red' : 'black'}>{productInfo.product_name.length}</Text> /15</InputRightAddon>
                                 </InputGroup>
                                 <Text mt={1} {...Body_sm} color={'gray.500'} mx={2}>판매 상품과 직접 관련이 없는 다른 사품명, 스팸성 키워드 입력 시 관리자에 의해 판매 금지될 수 있습니다.</Text>
 
@@ -180,7 +180,7 @@ export const ProductAdd = () => {
                                 </AccordionButton>
                             </h2>
                             <AccordionPanel pb={4} justifyContent={'flex-end'} bgColor={panelColor}>
-                                <Textarea bgColor={'white'} minH={'280px'} maxLength={5000} defaultValue={productInfo.comment} onChange={(e) => setProduct({ ...productInfo, comment: e.target.value })} />
+                                <Textarea borderColor={"#d9d9d9"} bgColor={'white'} minH={'280px'} maxLength={5000} defaultValue={productInfo.comment} onChange={(e) => setProduct({ ...productInfo, comment: e.target.value })} />
                                 <Text textAlign={'right'}>({productInfo.comment.length}/5000)</Text>
 
                             </AccordionPanel>
@@ -189,7 +189,7 @@ export const ProductAdd = () => {
                 </Card>
 
                 <Card w={'full'}>
-                    <Accordion >
+                    <Accordion borderColor={'white'}>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -214,7 +214,7 @@ export const ProductAdd = () => {
                 </Card>
 
                 <Card w={'full'}>
-                    <Accordion allowMultiple defaultIndex={[0]}>
+                    <Accordion borderColor={'white'} allowMultiple defaultIndex={[0]}>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -232,7 +232,7 @@ export const ProductAdd = () => {
 
                                         <HStack w='full'>
 
-                                            <Input bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
+                                            <Input borderColor={'#d9d9d9'}bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
                                             <Button onClick={() => addTag()}>추가</Button>
                                         </HStack>
                                         <Wrap mx={1}>

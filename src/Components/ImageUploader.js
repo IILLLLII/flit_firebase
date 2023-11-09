@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Flex, Text, Image, Button, Center, IconButton, CloseButton, Skeleton } from '@chakra-ui/react';
+import { Box, Flex, Text, Image, Button, Center, IconButton, CloseButton, Skeleton, Input } from '@chakra-ui/react';
 import Dropzone from 'react-dropzone';
 import {
   addDoc,
@@ -57,7 +57,7 @@ const ImageUploader = ({ ...props }) => {
               w={props.w} h={props.h} 
             >
               <Center w='100%' h='100%'>
-                <input {...getInputProps()}/>
+                <Input {...getInputProps()} borderColor={'#d9d9d9'} />
                 <AddIcon boxSize={'100%'} p={'10%'} color={'gray.400'}/>
               </Center>
             </Box>

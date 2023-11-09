@@ -31,14 +31,14 @@ export default function AccountRegister() {
                             <FormControl isRequired>
                                 <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                     <FormLabel width={120} mt={1}>날짜 설정</FormLabel>
-                                    <Input type="date" />
+                                    <Input borderColor={'#d9d9d9'}type="date" />
                                 </Stack>
                             </FormControl>
 
                             <FormControl isRequired>
                                 <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                     <FormLabel width={120} mt={1}>시간 설정</FormLabel>
-                                    <Input type="time" />
+                                    <Input borderColor={'#d9d9d9'}type="time" />
                                 </Stack>
                             </FormControl>
 
@@ -63,7 +63,7 @@ export default function AccountRegister() {
                             <FormControl isRequired>
                                 <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                     <FormLabel width={120} mt={1}>시간 설정</FormLabel>
-                                    <Input type="time" />
+                                    <Input borderColor={'#d9d9d9'}type="time" />
                                 </Stack>
                             </FormControl>
 
@@ -72,21 +72,21 @@ export default function AccountRegister() {
                                     <FormControl isRequired>
                                         <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                             <FormLabel width={120} mt={1}>상품명</FormLabel>
-                                            <Input type="text" />
+                                            <Input borderColor={'#d9d9d9'}type="text" />
                                         </Stack>
                                     </FormControl>
 
                                     <FormControl>
                                         <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                             <FormLabel width={120} mt={1}>원가</FormLabel>
-                                            <Input type="text" />
+                                            <Input borderColor={'#d9d9d9'}type="text" />
                                         </Stack>
                                     </FormControl>
 
                                     <FormControl isRequired>
                                         <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                             <FormLabel width={120} mt={1}>판매가</FormLabel>
-                                            <Input type="text" />
+                                            <Input borderColor={'#d9d9d9'}type="text" />
                                         </Stack>
                                     </FormControl>
                                 </VStack>
@@ -97,14 +97,14 @@ export default function AccountRegister() {
                                     <FormControl isRequired>
                                         <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                             <FormLabel width={120} mt={1}>제목</FormLabel>
-                                            <Input type="text" />
+                                            <Input borderColor={'#d9d9d9'}type="text" />
                                         </Stack>
                                     </FormControl>
 
                                     <FormControl isRequired>
                                         <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                             <FormLabel width={120} mt={1}>금액</FormLabel>
-                                            <Input type="text" />
+                                            <Input borderColor={'#d9d9d9'}type="text" />
                                         </Stack>
                                     </FormControl>
                                 </VStack>
@@ -139,19 +139,19 @@ export default function AccountRegister() {
                                             <VStack width={'100%'} backgroundColor={"#f5f5f5"} p={4}>
                                                 <HStack width={'100%'}>
                                                     <FormLabel width={120} mt={1}>주문자</FormLabel>
-                                                    <Input backgroundColor={'white'} />
+                                                    <Input borderColor={'#d9d9d9'}backgroundColor={'white'} />
                                                 </HStack>
                                                 <HStack width={'100%'}>
                                                     <FormLabel width={120} mt={1}>수령인</FormLabel>
-                                                    <Input backgroundColor={'white'} />
+                                                    <Input borderColor={'#d9d9d9'}backgroundColor={'white'} />
                                                 </HStack>
                                                 <HStack width={'100%'} mt={1}>
                                                     <FormLabel width={120}>주소</FormLabel>
-                                                    <Input backgroundColor={'white'} />
+                                                    <Input borderColor={'#d9d9d9'}backgroundColor={'white'} />
                                                 </HStack>
                                                 <HStack width={'100%'} mt={1}>
                                                     <FormLabel width={120}>상세주소</FormLabel>
-                                                    <Input backgroundColor={'white'} />
+                                                    <Input borderColor={'#d9d9d9'}backgroundColor={'white'} />
                                                 </HStack>
                                             </VStack>
                                         </VStack>
@@ -162,7 +162,7 @@ export default function AccountRegister() {
                             <FormControl>
                                 <Stack direction={['column', 'row']} p={2} alignItems={['flex-start', 'center']}>
                                     <FormLabel width={120} mt={1}>상세내용</FormLabel>
-                                    <Textarea type="text" />
+                                    <Textarea borderColor={"#d9d9d9"} type="text" />
                                 </Stack>
                             </FormControl>
 

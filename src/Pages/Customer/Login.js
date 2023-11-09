@@ -62,11 +62,11 @@ const Login = () => {
                         <Stack spacing={4}>
                             <FormControl id="email" mb={2}>
                                 <FormLabel>Email</FormLabel>
-                                <Input type="email" defaultValue={inputData.id} onChange={(e) => setInputData({ ...inputData, id: e.target.value })} />
+                                <Input borderColor={'#d9d9d9'}type="email" defaultValue={inputData.id} onChange={(e) => setInputData({ ...inputData, id: e.target.value })} />
                             </FormControl>
                             <FormControl id="password" mb={2}>
                                 <FormLabel>Password</FormLabel>
-                                <Input type="password" defaultValue={inputData.password} onChange={(e) => setInputData({ ...inputData, password: e.target.value })} />
+                                <Input borderColor={'#d9d9d9'}type="password" defaultValue={inputData.password} onChange={(e) => setInputData({ ...inputData, password: e.target.value })} />
                                 {isError && <Text color='red.500'>로그인 정보를 다시 확인해주세요.</Text>}
                             </FormControl>
                             <Stack spacing={10}>

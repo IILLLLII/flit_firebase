@@ -22,7 +22,6 @@ import {
   AccordionButton,
   AccordionIcon,
   AccordionPanel,
-  useColorMode,
 } from '@chakra-ui/react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { FiMenu } from 'react-icons/fi'
@@ -54,15 +53,8 @@ import SalesTotal from '../Pages/Owner/Sales/TotalList'
 import SalesFlit from '../Pages/Owner/Sales/FlitList'
 import SalesAccount from '../Pages/Owner/Sales/AccountList'
 import AccountRegister from '../Pages/Owner/Sales/AccountRegister'
+import Calculate from '../Pages/Owner/Calculate.js/Calculate'
 
-function ColorModeButton() {
-  const { colorMode, toggleColorMode } = useColorMode()
-  return (
-    <header>
-      <IconButton onClick={toggleColorMode} icon={colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}/>
-    </header>
-  )
-}
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
     <Box
@@ -90,7 +82,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Stack spacing={0}>
         <NavItem link={'/'}>HOME</NavItem>
 
-        <Accordion defaultIndex={[parseInt(localStorage.getItem('openIndex'))]} onChange={(e) => localStorage.setItem('openIndex', e)}>
+        <Accordion borderColor={'white'} defaultIndex={[parseInt(localStorage.getItem('openIndex'))]} onChange={(e) => localStorage.setItem('openIndex', e)}>
           <AccordionItem>
             <AccordionButton p={0} w={'100%'}>
               <NavTitle>주문 관리<AccordionIcon /></NavTitle>
@@ -141,6 +133,15 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavItem link={'/sales/all'}>전체 매출</NavItem>
               <NavItem link={'/sales/flit'}>플릿 매출</NavItem>
               <NavItem link={'/sales/account'}>가계부</NavItem>
+            </AccordionPanel>
+          </AccordionItem>
+
+          <AccordionItem>
+            <AccordionButton p={0} w={'100%'}>
+              <NavTitle>정산관리<AccordionIcon /></NavTitle>
+            </AccordionButton>
+            <AccordionPanel p={0}>
+              <NavItem link={'/calculate'}>정산 관리</NavItem>
             </AccordionPanel>
           </AccordionItem>
 
@@ -338,6 +339,7 @@ const SidebarWithHeader = () => {
             <Route path='/shop/chat' element={<ChatList />} />
             <Route path='/notice/*' element={<NoticeList />} />
             <Route path='/notice/view' element={<NoticeView />} />
+            <Route path='/calculate' element={<Calculate />} />
           </Routes>
         </BrowserRouter>
       </Box>

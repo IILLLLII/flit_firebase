@@ -119,13 +119,13 @@ const Find = ({ ...props }) => {
                         </HStack> */}
 
                             <Text>이름</Text>
-                            <Input onChange={(e) => setInputData({ ...inputData, name: e.target.value })} />
+                            <Input borderColor={'#d9d9d9'}onChange={(e) => setInputData({ ...inputData, name: e.target.value })} />
 
                             {inputData.certification == "휴대전화" &&
                                 <>
                                     <Text>휴대전화</Text>
                                     <HStack>
-                                        <Input value={inputData.number} maxLength={11} onChange={(e) => setInputData({ ...inputData, number: e.target.value.replaceAll('-', '') })} />
+                                        <Input borderColor={'#d9d9d9'}value={inputData.number} maxLength={11} onChange={(e) => setInputData({ ...inputData, number: e.target.value.replaceAll('-', '') })} />
                                         <Button>인증하기</Button>
                                     </HStack>
                                 </>
@@ -134,8 +134,8 @@ const Find = ({ ...props }) => {
                             {(findPw && title == "비밀번호찾기") &&
                                 <Center p={4} bgColor={'gray.100'}>
                                     <Stack w="100%">
-                                        <Input bgColor="white" type="password" placeholder="변경할 비밀번호 입력" onChange={(e) => { setPassword(e.target.value); validatePassword(e.target.value) }} />
-                                        <Input bgColor="white" type="password" placeholder="변경할 비밀번호 확인" onChange={(e) => { setConfirmPassword(e.target.value); validatePassword(e.target.value) }} />
+                                        <Input borderColor={'#d9d9d9'}bgColor="white" type="password" placeholder="변경할 비밀번호 입력" onChange={(e) => { setPassword(e.target.value); validatePassword(e.target.value) }} />
+                                        <Input borderColor={'#d9d9d9'}bgColor="white" type="password" placeholder="변경할 비밀번호 확인" onChange={(e) => { setConfirmPassword(e.target.value); validatePassword(e.target.value) }} />
                                     </Stack>
                                 </Center>
                             }
@@ -144,7 +144,7 @@ const Find = ({ ...props }) => {
 <>
                         <Text>이메일</Text>
                         <HStack>
-                        <Input onChange={(e) => setInputData({...inputData, email: e.target.value})}/>
+                        <Input borderColor={'#d9d9d9'}onChange={(e) => setInputData({...inputData, email: e.target.value})}/>
                         <Button>인증하기</Button>
                         </HStack>
                         </>

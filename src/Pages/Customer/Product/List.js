@@ -108,7 +108,7 @@ const ProductList = () => {
                         <Text {...Title_2xl}>필터</Text>
                         <CloseButton border={'none'} onClick={onClose} />
                     </HStack>
-                    <Accordion allowMultiple defaultIndex={[filterIndex]}>
+                    <Accordion borderColor={'white'} allowMultiple defaultIndex={[filterIndex]}>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -146,12 +146,12 @@ const ProductList = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <HStack>
-                                    <Select mr={1} bgColor="white" onChange={(e) => setCity(e.target.value)}>
+                                    <Select borderColor={"#d9d9d9"}mr={1} bgColor="white" onChange={(e) => setCity(e.target.value)}>
                                         {LOCATION.map((value, index) => (
                                             <option value={index}>{value.city}</option>
                                         ))}
                                     </Select>
-                                    <Select bgColor="white" onChange={(e) => {
+                                    <Select borderColor={"#d9d9d9"}bgColor="white" onChange={(e) => {
                                         if (!filter.location.includes(`${LOCATION[city].city + ">" + e.target.value}`))
                                             setFilter({ ...filter, location: [...filter.location, `${LOCATION[city].city + ">" + e.target.value}`] })
                                     }
@@ -194,12 +194,12 @@ const ProductList = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <VStack>
-                                    <Select mb={2} bgColor="white" onChange={(e) => { setCategory1(e.target.value) }}>
+                                    <Select borderColor={"#d9d9d9"}mb={2} bgColor="white" onChange={(e) => { setCategory1(e.target.value) }}>
                                         {CATEGORY.map((value, index) => (
                                             <option value={index}>{value.title}</option>
                                         ))}
                                     </Select>
-                                    <Select mb={2} bgColor="white" onChange={(e) => {
+                                    <Select borderColor={"#d9d9d9"}mb={2} bgColor="white" onChange={(e) => {
                                         if (!filter.category.includes(`${CATEGORY[category1].title + ">" + e.target.value}`))
                                             setFilter({ ...filter, category: [...filter.category, `${CATEGORY[category1].title + ">" + e.target.value}`] })
                                     }
@@ -241,9 +241,9 @@ const ProductList = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={'gray.50'}>
                                 <HStack>
-                                    <Input type="number" bgColor={'white'} value={filter.range[0]} />
+                                    <Input borderColor={'#d9d9d9'}type="number" bgColor={'white'} value={filter.range[0]} />
                                     <Text m={1}>~</Text>
-                                    <Input type="number" bgColor={'white'} value={filter.range[1]} />
+                                    <Input borderColor={'#d9d9d9'}type="number" bgColor={'white'} value={filter.range[1]} />
                                 </HStack>
                                 <Box m={4}>
                                 <SliderThumbWithTooltip defaultValue={filter.range} onSetRange={(value) => setFilter({ ...filter, range: value })} /></Box>
@@ -280,7 +280,7 @@ const ProductList = () => {
 
                                         <HStack w='full'>
 
-                                            <Input mr={1} bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
+                                            <Input borderColor={'#d9d9d9'}mr={1} bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
                                             <Button onClick={() => addTag()}>추가</Button>
                                         </HStack>
                                         <Wrap mx={1}>

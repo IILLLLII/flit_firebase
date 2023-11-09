@@ -108,7 +108,7 @@ const AdvertiseAdd = () => {
 
             <Box p={4} margin={1} w='100%' minH="200px" bgColor={'white'} border={'1px solid #d9d9d9'} borderRadius={'xl'}>
 							<Text {...Title_lg} mb={2}>플릿 광고 공지</Text>
-								<VStack divider={<StackDivider />}>
+								<VStack  divider={<StackDivider borderColor={"#d9d9d9"} />}>
 					
 										<Text width={'100%'} p={1}>{'제목'}</Text>
                                         <Text width={'100%'} p={1}>{'제목'}</Text>

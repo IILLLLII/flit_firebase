@@ -115,8 +115,8 @@ const Purchase = () => {
                         <HStack justifyContent={'space-between'}>
                             <HStack>
                                 <CalendarIcon />
-                                <Input type="date" defaultValue={orderInfo.order.date}/>
-                                <Input type="time" defaultValue={orderInfo.order.time}/>
+                                <Input borderColor={'#d9d9d9'}type="date" defaultValue={orderInfo.order.date}/>
+                                <Input borderColor={'#d9d9d9'}type="time" defaultValue={orderInfo.order.time}/>
                                 {/* <Text>{parseDate(date).getMonth() + 1}/{parseDate(date).getDate()}({days[parseDate(date).getDay()]})</Text>
                                 <Text>{time}</Text> */}
                             </HStack>
@@ -139,7 +139,7 @@ const Purchase = () => {
                         </HStack>
                         {openDate &&
                             <Stack>
-                                <Input type="date" defaultValue={getDate(new Date())} />
+                                <Input borderColor={'#d9d9d9'}type="date" defaultValue={getDate(new Date())} />
                                 <Flex overflowX='auto' className="scroll">
                                     <HStack>
                                         <Button>11:00</Button>
@@ -163,7 +163,7 @@ const Purchase = () => {
                             <Avatar mr={1} src={userInfo.profile_image}></Avatar>
                             <Text>{userInfo.name}</Text>
                         </HStack>
-                        <Input mb={1} w='auto' defaultValue={userInfo.number} onChange={(e) => setUserInfo({...userInfo, number: e.target.value})} />
+                        <Input borderColor={'#d9d9d9'}mb={1} w='auto' defaultValue={userInfo.number} onChange={(e) => setUserInfo({...userInfo, number: e.target.value})} />
                         <HStack mb={1} alignItems={'flex-end'}>
                             <Checkbox mr={2}>안심번호 사용</Checkbox>
                             <Text fontSize='sm' color="gray.500">자세히</Text>
@@ -175,7 +175,7 @@ const Purchase = () => {
                         <Text {...Title_lg}>배송정보</Text>
 
                         <Text>{userInfo.address}</Text>
-                        <Input defaultValue={userInfo.detail_address} />
+                        <Input borderColor={'#d9d9d9'}defaultValue={userInfo.detail_address} />
                     </Stack>
                 }
                 {localStorage.getItem('Cart') === "배송" &&
@@ -183,13 +183,13 @@ const Purchase = () => {
                         <Stack>
                             <Text {...Title_lg}>받는 분</Text>
 
-                            <Input placeholder="이름"></Input>
-                            <Input placeholder="핸드폰 번호"></Input>
+                            <Input borderColor={'#d9d9d9'}placeholder="이름"></Input>
+                            <Input borderColor={'#d9d9d9'}placeholder="핸드폰 번호"></Input>
                         </Stack>
                         <Stack>
 
                             <Text {...Title_lg}>보내는 분</Text>
-                            <Input defaultValue={userInfo.nickname}></Input>
+                            <Input borderColor={'#d9d9d9'}defaultValue={userInfo.nickname}></Input>
                             <Checkbox colorScheme="red" defaultChecked={true}>닉네임 사용</Checkbox>
                         </Stack>
                     </Stack>
@@ -198,12 +198,12 @@ const Purchase = () => {
                     <Text {...Title_lg}>요청사항</Text>
                     <Stack>
                         <Text mb={1}>가게 사장님께</Text>
-                        <Input w='auto' placeholder="예)" onChange={(e) => setCommentOwner(e.target.value)}></Input>
+                        <Input borderColor={'#d9d9d9'}w='auto' placeholder="예)" onChange={(e) => setCommentOwner(e.target.value)}></Input>
                     </Stack>
                     {localStorage.getItem('Cart') === "배송" &&
                         <Stack>
                             <Text>라이더님께</Text>
-                            <Input placeholder="예)"></Input>
+                            <Input borderColor={'#d9d9d9'}placeholder="예)"></Input>
                         </Stack>
                     }
                 </Stack>
@@ -253,7 +253,7 @@ const Purchase = () => {
                     <Text {...Title_lg}>플릿포인트</Text>
                     <HStack justifyContent={'space-between'}>
 
-                        <Input type="number" onChange={(e) => setPointDiscount({...pointDiscount, discount : e.target.value})} placeholder={`${pointDiscount.total}원 사용 가능`} maxWidth={'150px'} />
+                        <Input borderColor={'#d9d9d9'}type="number" onChange={(e) => setPointDiscount({...pointDiscount, discount : e.target.value})} placeholder={`${pointDiscount.total}원 사용 가능`} maxWidth={'150px'} />
                         <RadioGroup defaultValue={pointDiscount.use} onChange={(value) => setPointDiscount({...pointDiscount, use : value})}>
                             <HStack>
                                 <Radio colorScheme="red" mr={2} value="미사용">미사용</Radio>

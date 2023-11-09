@@ -151,11 +151,11 @@ const updateChat = async() => {
         </div>
         <HStack h='70px' bgColor={'white'} w='100%' position={'fixed'} bottom={0} p={2}>
           <LinkIcon width={'24px'} height={'20px'} color={'#8c8c8c'} />
-          <input type='file' style={{ display: 'none' }} id='file' />
+          <Input borderColor={'#d9d9d9'}type='file' style={{ display: 'none' }} id='file' />
           <label htmlFor='file'>
             <AiOutlinePicture size={'24px'} color={'#8c8c8c'} />
           </label>
-          <Input w='70%' value={message} placeholder='내용을 입력하세요...' onChange={(e) => setMessage(e.target.value)} />
+          <Input borderColor={'#d9d9d9'}w='70%' value={message} placeholder='내용을 입력하세요...' onChange={(e) => setMessage(e.target.value)} />
           <Button colorScheme='red' onClick={() => sendMessage()}>전송</Button>
         </HStack>
       </Stack>

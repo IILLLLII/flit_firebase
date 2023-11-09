@@ -60,7 +60,7 @@ const SubmitList = () => {
             <HStack>
                 <FilterSelect isOpen={isOpen} onReset={() => reset()} onSearch={() => search()}>
 
-                    <Stack direction={'column'} divider={<StackDivider />} spacing={3}>
+                    <Stack direction={'column'} divider={<StackDivider borderColor={"#d9d9d9"} />} spacing={3}>
 
                         <SearchInput option={['이름', '이메일', '전화번호', '주소']} defaultType={filter.type} defaultValue={filter.keyword} onSetField={(e) => setFilter({ ...filter, type : e.target.value})} onChange={(value) => setFilter({ ...filter, keyword: value })} />
 

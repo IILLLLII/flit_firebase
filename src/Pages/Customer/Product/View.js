@@ -245,7 +245,7 @@ const ProductView = () => {
                 </HStack>
 
                 <Box m={4} display={tab == 0 ? 'block' : 'none'}>
-                    <Stack direction={'column'} divider={<StackDivider height={'1px'} bgColor={'gray.300'} />}>
+                    <Stack direction={'column'} divider={<StackDivider borderColor={"#d9d9d9"} />}>
                         <Stack>
                             <HStack justifyContent={'space-between'}>
                                 <HStack>
@@ -358,7 +358,7 @@ const ProductView = () => {
                 </Box>
 
                 <Box m={4} display={tab == 1 ? 'block' : 'none'}>
-                <Stack divider={<StackDivider />}>
+                <Stack divider={<StackDivider borderColor={"#d9d9d9"} />}>
                             {reviews && reviews.map((value, index) => (
                                 <Stack>
 
@@ -378,7 +378,7 @@ const ProductView = () => {
                                         ))}
                                     </HStack>
                                     <Text>{value.content}</Text>
-                                    <Accordion allowMultiple defaultIndex={parseInt(localStorage.getItem('reply')?.split(',')[0]) === index ? [parseInt(localStorage.getItem('reply')?.split(',')[1])] : []} onChange={(value) => localStorage.setItem('reply', `${index},${value}`)}>
+                                    <Accordion borderColor={'white'} allowMultiple defaultIndex={parseInt(localStorage.getItem('reply')?.split(',')[0]) === index ? [parseInt(localStorage.getItem('reply')?.split(',')[1])] : []} onChange={(value) => localStorage.setItem('reply', `${index},${value}`)}>
                                         <AccordionItem border={'none'}>
                                             {({ isExpanded }) => (
                                                 <>
@@ -419,7 +419,7 @@ const ProductView = () => {
                                     {value.openReply &&
                                         <Stack>
 
-                                            <Textarea minH={'150px'}/>
+                                            <Textarea borderColor={"#d9d9d9"} minH={'150px'}/>
                                             <HStack justifyContent={'flex-end'}>
                                                 <Button size={'sm'}>취소</Button>
                                                 <Button size={'sm'}>등록</Button>
@@ -442,7 +442,7 @@ const ProductView = () => {
                     <Flex bgColor={'white'} position={'fixed'} w={'100%'} left={0} bottom={0} alignSelf={'center'} p={"20px"} borderTopRadius={'xl'}>
                         <VStack w="100%" alignItems={'flex-end'} mb={'80px'}>
                             <CloseButton color={'#8c8c8c'} onClick={() => setOpen(false)} />
-                            <Select onChange={(e) => addOption(e.target.value)}>
+                            <Select borderColor={"#d9d9d9"}onChange={(e) => addOption(e.target.value)}>
                                 <option value={-1}>{'옵션없음'}</option>
                                 {product.option.item.map((value, index) => (
                                     <option value={index}>{value.name}</option>

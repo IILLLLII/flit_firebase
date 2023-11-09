@@ -197,7 +197,7 @@ export const ProductAdd = () => {
                 </Box>
 
                 <Card w={'full'}>
-                    <Accordion defaultIndex={[0, 1, 2, 3]} allowMultiple>
+                    <Accordion borderColor={'white'} defaultIndex={[0, 1, 2, 3]} allowMultiple>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -212,14 +212,14 @@ export const ProductAdd = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={panelColor}>
                                 <HStack>
-                                    <Select bgColor={'white'} defaultValue={productInfo.category1} onChange={(e) => setProduct({ ...productInfo, category1: e.target.value })}>
+                                    <Select borderColor={"#d9d9d9"}bgColor={'white'} defaultValue={productInfo.category1} onChange={(e) => setProduct({ ...productInfo, category1: e.target.value })}>
                                         <option value={"꽃"}>꽃</option>
                                         <option value={"식물"}>식물</option>
                                         <option value={"화환"}>화환</option>
                                         <option value={"조경"}>조경</option>
                                         <option value={"프리미엄"}>프리미엄</option>
                                     </Select>
-                                    <Select bgColor={'white'} defaultValue={productInfo.category2} onChange={(e) => setProduct({ ...productInfo, category2: e.target.value })}>
+                                    <Select borderColor={"#d9d9d9"}bgColor={'white'} defaultValue={productInfo.category2} onChange={(e) => setProduct({ ...productInfo, category2: e.target.value })}>
                                         {productInfo.category1 == "꽃" &&
                                             category.flower.map((value) => (
                                                 <option value={value}>{value}</option>
@@ -267,8 +267,8 @@ export const ProductAdd = () => {
                             </h2>
                             <AccordionPanel pb={4} bgColor={panelColor}>
                                 <InputGroup maxW={'300px'}>
-                                    <Input bgColor={'white'} maxLength={15} defaultValue={productInfo.product_name} onChange={(e) => setProduct({ ...productInfo, product_name: e.target.value })}></Input>
-                                    <InputRightAddon><Text color={productInfo.product_name.length > 15 ? 'red' : 'black'}>{productInfo.product_name.length}</Text> /15</InputRightAddon>
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} maxLength={15} defaultValue={productInfo.product_name} onChange={(e) => setProduct({ ...productInfo, product_name: e.target.value })}></Input>
+                                    <InputRightAddon borderColor={"#d9d9d9"}><Text color={productInfo.product_name.length > 15 ? 'red' : 'black'}>{productInfo.product_name.length}</Text> /15</InputRightAddon>
                                 </InputGroup>
                                 <Text mt={1} {...Body_sm} color={'gray.500'} mx={2}>판매 상품과 직접 관련이 없는 다른 사품명, 스팸성 키워드 입력 시 관리자에 의해 판매 금지될 수 있습니다.</Text>
 
@@ -338,7 +338,7 @@ export const ProductAdd = () => {
                                 </AccordionButton>
                             </h2>
                             <AccordionPanel pb={4} justifyContent={'flex-end'} bgColor={panelColor}>
-                                <Textarea bgColor={'white'} minH={'280px'} maxLength={5000} defaultValue={productInfo.comment} onChange={(e) => setProduct({ ...productInfo, comment: e.target.value })} />
+                                <Textarea borderColor={"#d9d9d9"} bgColor={'white'} minH={'280px'} maxLength={5000} defaultValue={productInfo.comment} onChange={(e) => setProduct({ ...productInfo, comment: e.target.value })} />
                                 <Text textAlign={'right'}>({productInfo.comment.length}/5000)</Text>
 
                             </AccordionPanel>
@@ -347,7 +347,7 @@ export const ProductAdd = () => {
                 </Card>
 
                 <Card w={'full'}>
-                    <Accordion allowMultiple defaultIndex={[0, 1, 2, 3, 4, 5, 6]}>
+                    <Accordion borderColor={'white'} allowMultiple defaultIndex={[0, 1, 2, 3, 4, 5, 6]}>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -363,8 +363,8 @@ export const ProductAdd = () => {
                             <AccordionPanel pb={4} bgColor={panelColor}>
                                 <InputGroup maxW={'300px'} >
 
-                                    <Input bgColor={'white'} type='number' value={productInfo.count} placeholder="개수를 입력하세요." onChange={(e) => setProduct({ ...productInfo, count: e.target.value })} />
-                                    <InputRightAddon>개</InputRightAddon>
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} type='number' value={productInfo.count} placeholder="개수를 입력하세요." onChange={(e) => setProduct({ ...productInfo, count: e.target.value })} />
+                                    <InputRightAddon borderColor={"#d9d9d9"}>개</InputRightAddon>
                                 </InputGroup>
                             </AccordionPanel>
                         </AccordionItem>
@@ -383,8 +383,8 @@ export const ProductAdd = () => {
                             <AccordionPanel pb={4} bgColor={panelColor}>
                                 <InputGroup maxW={'300px'} >
 
-                                    <Input bgColor={'white'} type='number' value={productInfo.original_price} placeholder="금액을 입력하세요." onChange={(e) => setProduct({ ...productInfo, original_price: e.target.value })} />
-                                    <InputRightAddon>원</InputRightAddon>
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} type='number' value={productInfo.original_price} placeholder="금액을 입력하세요." onChange={(e) => setProduct({ ...productInfo, original_price: e.target.value })} />
+                                    <InputRightAddon borderColor={"#d9d9d9"}>원</InputRightAddon>
                                 </InputGroup>
                                 <Text mt={1} {...Body_sm} color={'gray.500'} mx={2}>매출 계산 시 적용됩니다.</Text>
                             </AccordionPanel>
@@ -405,8 +405,8 @@ export const ProductAdd = () => {
                             <AccordionPanel pb={4} bgColor={panelColor}>
                                 <InputGroup maxW={'300px'} >
 
-                                    <Input bgColor={'white'} type='number' value={productInfo.sales_price} placeholder="금액을 입력하세요." onChange={(e) => setProduct({ ...productInfo, sales_price: e.target.value })} />
-                                    <InputRightAddon>원</InputRightAddon>
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} type='number' value={productInfo.sales_price} placeholder="금액을 입력하세요." onChange={(e) => setProduct({ ...productInfo, sales_price: e.target.value })} />
+                                    <InputRightAddon borderColor={"#d9d9d9"}>원</InputRightAddon>
                                 </InputGroup>
                                 <Text mt={1} {...Body_sm} color={'gray.500'} mx={2}>플릿을 통한 거래는 수수료가 발생합니다. <Text as={'a'} href="#">{'> 수수료안내'}</Text></Text>
                             </AccordionPanel>
@@ -436,8 +436,8 @@ export const ProductAdd = () => {
                                     <Text w={'100px'}>기본할인</Text>
                                     <Stack direction={'column'}>
                                         <InputGroup maxW={'300px'}>
-                                            <Input bgColor={'white'} type="number" defaultValue={productInfo.discount.value} onChange={(e) => setProduct({ ...productInfo, discount: { ...productInfo.discount, value: e.target.value } })} />
-                                            <InputRightAddon cursor={'pointer'} onClick={() => setProduct({ ...productInfo, discount: { ...productInfo.discount, unit: productInfo.discount.unit == "%" ? "원" : "%" } })}>
+                                            <Input borderColor={'#d9d9d9'}bgColor={'white'} type="number" defaultValue={productInfo.discount.value} onChange={(e) => setProduct({ ...productInfo, discount: { ...productInfo.discount, value: e.target.value } })} />
+                                            <InputRightAddon borderColor={"#d9d9d9"} cursor={'pointer'} onClick={() => setProduct({ ...productInfo, discount: { ...productInfo.discount, unit: productInfo.discount.unit == "%" ? "원" : "%" } })}>
                                                 {productInfo.discount.unit}
                                             </InputRightAddon>
                                         </InputGroup>
@@ -448,9 +448,9 @@ export const ProductAdd = () => {
                                 <HStack >
                                     <Text w={'100px'}>할인기간</Text>
                                     <HStack>
-                                        <Input bgColor={'white'} type="date" defaultValue={productInfo.discount.start} onChange={(e) => setProduct({ ...productInfo, discount: { ...productInfo.discount, start: e.target.value } })} />
+                                        <Input borderColor={'#d9d9d9'}bgColor={'white'} type="date" defaultValue={productInfo.discount.start} onChange={(e) => setProduct({ ...productInfo, discount: { ...productInfo.discount, start: e.target.value } })} />
                                         <Text>~</Text>
-                                        <Input bgColor={'white'} type="date" defaultValue={productInfo.discount.end} onChange={(e) => setProduct({ ...productInfo, discount: { ...productInfo.discount, end: e.target.value } })} />
+                                        <Input borderColor={'#d9d9d9'}bgColor={'white'} type="date" defaultValue={productInfo.discount.end} onChange={(e) => setProduct({ ...productInfo, discount: { ...productInfo.discount, end: e.target.value } })} />
                                     </HStack>
 
                                 </HStack>
@@ -481,8 +481,8 @@ export const ProductAdd = () => {
                                     <HStack>
                                         <Checkbox defaultChecked={productInfo.point.buy.set} colorScheme="red" w={'150px'}>상품구매시</Checkbox>
                                         <InputGroup maxW={'300px'}>
-                                            <Input bgColor={'white'} type="number" defaultValue={productInfo.point.buy.value} onChange={(e) => setProduct({ ...productInfo, point: { ...productInfo.point, buy: { ...productInfo.point.buy, value: e.target.value } } })} />
-                                            <InputRightAddon cursor={'pointer'} onClick={() => setProduct({ ...productInfo, point: { ...productInfo.point, buy: { ...productInfo.point.buy, unit: productInfo.point.buy.unit == "%" ? "원" : "%" } } })}>
+                                            <Input borderColor={'#d9d9d9'}bgColor={'white'} type="number" defaultValue={productInfo.point.buy.value} onChange={(e) => setProduct({ ...productInfo, point: { ...productInfo.point, buy: { ...productInfo.point.buy, value: e.target.value } } })} />
+                                            <InputRightAddon borderColor={"#d9d9d9"} cursor={'pointer'} onClick={() => setProduct({ ...productInfo, point: { ...productInfo.point, buy: { ...productInfo.point.buy, unit: productInfo.point.buy.unit == "%" ? "원" : "%" } } })}>
                                                 {productInfo.point.buy.unit}
                                             </InputRightAddon>
                                         </InputGroup>
@@ -490,8 +490,8 @@ export const ProductAdd = () => {
                                     <HStack>
                                         <Checkbox defaultChecked={productInfo.point.review.set} colorScheme="red" w={'150px'}>리뷰작성시</Checkbox>
                                         <InputGroup maxW={'300px'}>
-                                            <Input bgColor={'white'} type="number" defaultValue={productInfo.point.review.value} onChange={(e) => setProduct({ ...productInfo, point: { ...productInfo.point, review: { ...productInfo.point.review, value: e.target.value } } })} />
-                                            <InputRightAddon cursor={'pointer'} onClick={() => setProduct({ ...productInfo, point: { ...productInfo.point, review: { ...productInfo.point.review, unit: productInfo.point.review.unit == "%" ? "원" : "%" } } })}>
+                                            <Input borderColor={'#d9d9d9'}bgColor={'white'} type="number" defaultValue={productInfo.point.review.value} onChange={(e) => setProduct({ ...productInfo, point: { ...productInfo.point, review: { ...productInfo.point.review, value: e.target.value } } })} />
+                                            <InputRightAddon borderColor={"#d9d9d9"} cursor={'pointer'} onClick={() => setProduct({ ...productInfo, point: { ...productInfo.point, review: { ...productInfo.point.review, unit: productInfo.point.review.unit == "%" ? "원" : "%" } } })}>
                                                 {productInfo.point.review.unit}
                                             </InputRightAddon>
                                         </InputGroup>
@@ -530,9 +530,9 @@ export const ProductAdd = () => {
                                 </ButtonGroup>
 
                                 <HStack mt={2}>
-                                    <Input bgColor={'white'} type="date" value={productInfo.saletime.start} onChange={(e) => setProduct({ ...productInfo, saletime: { ...productInfo.saletime, start: e.target.value } })} />
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} type="date" value={productInfo.saletime.start} onChange={(e) => setProduct({ ...productInfo, saletime: { ...productInfo.saletime, start: e.target.value } })} />
                                     <Text>~</Text>
-                                    <Input bgColor={'white'} type="date" value={productInfo.saletime.end} onChange={(e) => setProduct({ ...productInfo, saletime: { ...productInfo.saletime, end: e.target.value } })} />
+                                    <Input borderColor={'#d9d9d9'}bgColor={'white'} type="date" value={productInfo.saletime.end} onChange={(e) => setProduct({ ...productInfo, saletime: { ...productInfo.saletime, end: e.target.value } })} />
                                 </HStack>
 
                             </AccordionPanel >
@@ -560,7 +560,7 @@ export const ProductAdd = () => {
                 </Card>
 
                 <Card w={'full'}>
-                    <Accordion >
+                    <Accordion borderColor={'white'} >
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -585,7 +585,7 @@ export const ProductAdd = () => {
                                     <HStack>
                                         <Text w="150px">정렬순서</Text>
                                         <Box w='full'>
-                                            <Select defaultValue={productInfo.option.order} onChange={(value) => setProduct({ ...productInfo, option: { ...productInfo.option, order: value } })} bgColor={'white'}>
+                                            <Select borderColor={"#d9d9d9"}defaultValue={productInfo.option.order} onChange={(value) => setProduct({ ...productInfo, option: { ...productInfo.option, order: value } })} bgColor={'white'}>
                                                 <option value={'등록순'}>{'등록순'}</option>
                                                 <option value={'가격순'}>{'가격순'}</option>
                                             </Select>
@@ -594,10 +594,10 @@ export const ProductAdd = () => {
                                     <HStack>
                                         <Text w="150px">옵션입력</Text>
                                         <HStack w='full'>
-                                            <Input onChange={(e) => setOption({ ...option, name: e.target.value })} bgColor={'white'} placeholder="옵션명" />
+                                            <Input borderColor={'#d9d9d9'}onChange={(e) => setOption({ ...option, name: e.target.value })} bgColor={'white'} placeholder="옵션명" />
                                             <InputGroup>
-                                                <Input type="number" onChange={(e) => setOption({ ...option, price: e.target.value })} bgColor={'white'} placeholder="옵션가격" />
-                                                <InputRightAddon>원</InputRightAddon>
+                                                <Input borderColor={'#d9d9d9'}type="number" onChange={(e) => setOption({ ...option, price: e.target.value })} bgColor={'white'} placeholder="옵션가격" />
+                                                <InputRightAddon borderColor={"#d9d9d9"}>원</InputRightAddon>
                                             </InputGroup>
                                             <IconButton colorScheme="red" icon={<AddIcon />} onClick={() => { console.log({ option: { ...productInfo.option, item: [...productInfo.option.item, { name: option.name, price: option.price, use: true }] } }); setProduct({ ...productInfo, option: { ...productInfo.option, item: [...productInfo.option.item, { name: option.name, price: option.price, use: true }] } }) }} />
                                         </HStack>
@@ -642,7 +642,7 @@ export const ProductAdd = () => {
                 </Card>
 
                 <Card w={'full'}>
-                    <Accordion allowMultiple defaultIndex={[0, 1]}>
+                    <Accordion borderColor={'white'} allowMultiple defaultIndex={[0, 1]}>
                         <AccordionItem>
                             <h2>
                                 <AccordionButton>
@@ -674,8 +674,8 @@ export const ProductAdd = () => {
                                     <HStack>
                                         <Text w='150px'>기본배송비</Text>
                                         <InputGroup maxW={'250px'}>
-                                            <Input defaultValue={productInfo.delivery_fee} onChange={(e) => setProduct({ ...productInfo, delivery_fee: parseInt(e.target.value) })} type="number" bgColor={'white'} placeholder="숫자만 입력" />
-                                            <InputRightAddon>원</InputRightAddon>
+                                            <Input borderColor={'#d9d9d9'}defaultValue={productInfo.delivery_fee} onChange={(e) => setProduct({ ...productInfo, delivery_fee: parseInt(e.target.value) })} type="number" bgColor={'white'} placeholder="숫자만 입력" />
+                                            <InputRightAddon borderColor={"#d9d9d9"}>원</InputRightAddon>
                                         </InputGroup>
                                     </HStack>
                                     <HStack>
@@ -693,7 +693,7 @@ export const ProductAdd = () => {
                                                 <Button onClick={() => {setIsPopupOpen(true); setAddress(true);}}>주소검색</Button>
                                             </HStack>
 
-                                            <Input bgColor='white' defaultValue={productInfo.detail_address} placeholder="상세주소를 입력하세요" onChange={(e) => setProduct({ ...productInfo, detail_address: e.target.value })} />
+                                            <Input borderColor={'#d9d9d9'}bgColor='white' defaultValue={productInfo.detail_address} placeholder="상세주소를 입력하세요" onChange={(e) => setProduct({ ...productInfo, detail_address: e.target.value })} />
                                         </VStack>
                                     </HStack>
                                     <HStack alignItems={'flex-start'}>
@@ -704,7 +704,7 @@ export const ProductAdd = () => {
                                                 <Button onClick={() => {setIsPopupOpen(true); setAddress(false);}}>주소검색</Button>
                                             </HStack>
 
-                                            <Input bgColor='white' defaultValue={productInfo.detail_address_2} placeholder="상세주소를 입력하세요" onChange={(e) => setProduct({ ...productInfo, detail_address_2: e.target.value })} />
+                                            <Input borderColor={'#d9d9d9'}bgColor='white' defaultValue={productInfo.detail_address_2} placeholder="상세주소를 입력하세요" onChange={(e) => setProduct({ ...productInfo, detail_address_2: e.target.value })} />
                                         </VStack>
                                     </HStack>
                                 </Stack>
@@ -728,7 +728,7 @@ export const ProductAdd = () => {
 
                                         <HStack w='full'>
 
-                                            <Input bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
+                                            <Input borderColor={'#d9d9d9'}bgColor={'white'} onChange={(e) => setTag(e.target.value)} />
                                             <Button onClick={() => addTag()}>추가</Button>
                                         </HStack>
                                         <Wrap mx={1}>

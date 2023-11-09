@@ -34,7 +34,7 @@ export function FileUploader({ isRequired, label, file, ...props }) {
         <FormControl id="userName" isRequired={isRequired}>
             <FormLabel>{label}</FormLabel>
             <Stack direction={['column', 'row']}>
-                <Input defaultValue={getPath(file)} disabled={true} _disabled={{ color: 'black' }} placeholder={`${label} (${props.accept} 첨부)`} />
+                <Input borderColor={'#d9d9d9'}defaultValue={getPath(file)} disabled={true} _disabled={{ color: 'black' }} placeholder={`${label} (${props.accept} 첨부)`} />
                 <Button onClick={() => handleClick()}>첨부파일</Button>
                 <Button as={'a'} href={file}>미리보기</Button>
                 <input

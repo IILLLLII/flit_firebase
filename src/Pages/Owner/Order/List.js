@@ -52,17 +52,17 @@ const OrderList = () => {
 
             <FilterSelect onReset={() => reset()} onSearch={() => search()}>
 
-                <Stack direction={'column'} divider={<StackDivider />} spacing={3}>
+                <Stack direction={'column'}  divider={<StackDivider borderColor={"#d9d9d9"} />} spacing={3}>
 
                     <SearchInput option={['상품코드', '상품명']} defaultType={filter.type} defaultValue={filter.keyword} onSetField={(e) => setFilter({ ...filter, type: e.target.value })} onChange={(value) => setFilter({ ...filter, keyword: value })} />
 
                     <HStack >
-                        <Select defaultValue={filter.date} onChange={(e) => setFilter({ ...filter, date: e.target.value })}>
+                        <Select borderColor={"#d9d9d9"}defaultValue={filter.date} onChange={(e) => setFilter({ ...filter, date: e.target.value })}>
                             <option value={'등록일'}>{'등록일'}</option>
                         </Select>
-                        <Input type='date' defaultValue={filter.start} onChange={(e) => setFilter({ ...filter, start: e.target.value })}></Input>
+                        <Input borderColor={'#d9d9d9'}type='date' defaultValue={filter.start} onChange={(e) => setFilter({ ...filter, start: e.target.value })}></Input>
                         <Text>~</Text>
-                        <Input type='date' defaultValue={filter.end} onChange={(e) => setFilter({ ...filter, end: e.target.value })}></Input>
+                        <Input borderColor={'#d9d9d9'}type='date' defaultValue={filter.end} onChange={(e) => setFilter({ ...filter, end: e.target.value })}></Input>
 
                     </HStack>
                     <Box>

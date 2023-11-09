@@ -85,7 +85,7 @@ export function AddNotice() {
       </HStack>
       <HStack spacing={4}>
       <Text w='50px'>제목</Text>
-      <Input defaultValue={notice.title} onChange={(e) => setNotice({...notice, title: e.target.value})} borderColor={'gray.400'}/>
+      <Input borderColor={'#d9d9d9'}defaultValue={notice.title} onChange={(e) => setNotice({...notice, title: e.target.value})} borderColor={'gray.400'}/>
       </HStack>
       { notice.type === "이벤트" &&
       <HStack>

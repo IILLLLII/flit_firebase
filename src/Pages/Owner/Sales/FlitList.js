@@ -36,16 +36,16 @@ export default function SalesFlit() {
           </RadioGroup>
         <VStack>
           <HStack spacing={6} width={dateRange !== "구간별 매출" ? "390px" : "100%"}>
-            <Select size={['sm', 'md']}  onChange={(e) => setDateRange(e.target.value)} defaultValue={dateRange} >
+            <Select borderColor={"#d9d9d9"}size={['sm', 'md']}  onChange={(e) => setDateRange(e.target.value)} defaultValue={dateRange} >
               <option value='일별 매출'>일별 매출</option>
               <option value='주별 매출'>주별 매출</option>
               <option value='월별 매출'>월별 매출</option>
               <option value='구간별 매출'>구간별 매출</option>
             </Select>
-            <Input display={dateRange !== "구간별 매출" ? "block" : "none"} type="date" size={['sm', 'md']}  defaultValue={'2023-01-01'}/>
+            <Input borderColor={'#d9d9d9'}display={dateRange !== "구간별 매출" ? "block" : "none"} type="date" size={['sm', 'md']}  defaultValue={'2023-01-01'}/>
           </HStack>
           <Flex width="100%">
-          {dateRange === "구간별 매출" && <HStack><Input type="date"/> <Input type="date"/></HStack>} 
+          {dateRange === "구간별 매출" && <HStack><Input borderColor={'#d9d9d9'}type="date"/> <Input borderColor={'#d9d9d9'}type="date"/></HStack>} 
           </Flex>
         </VStack>
         </Stack>

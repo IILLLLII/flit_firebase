@@ -85,7 +85,7 @@ const ReviewList = () => {
 
 
         {tab == 1 &&
-          <Stack divider={<StackDivider />}>
+          <Stack divider={<StackDivider borderColor={"#d9d9d9"} />}>
             {review?.review?.map((value, index) => (
               <Stack p={2}>
                 <HStack onClick={() => navigate(`/customer/product/view/${review?.product.id}`, { state: review?.product })} justifyContent={'space-between'} w='100%' bgColor={'gray.100'} borderRadius={'lg'} overflow={'hidden'}>

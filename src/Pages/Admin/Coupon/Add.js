@@ -130,7 +130,7 @@ export default function CouponAdd() {
 						</HStack> */}
 						<HStack w={'100%'}>
 							<Text w={100} marginRight={4} >쿠폰이름</Text>
-							<Input defaultValue={couponName} onChange={(e) => setCouponName(e.target.value)} />
+							<Input borderColor={'#d9d9d9'}defaultValue={couponName} onChange={(e) => setCouponName(e.target.value)} />
 						</HStack>
 						<HStack w={'100%'}>
 							<Text w={100} marginRight={4}>할인</Text>
@@ -145,7 +145,7 @@ export default function CouponAdd() {
 									<NumberInput value={discountValue}>
 										<NumberInputField onChange={(e) => setDiscountValue(e.target.value)} name='discount' borderRadius='8px 0 0 8px' />
 									</NumberInput>
-									<InputRightAddon children={discountType} />
+									<InputRightAddon borderColor={'#d9d9d9'} children={discountType} />
 								</InputGroup>
 							</VStack>
 
@@ -153,7 +153,7 @@ export default function CouponAdd() {
 						<HStack w={'100%'}>
 							<Text w={100}>쿠폰 만료기간</Text>
 							<VStack alignItems={'flex-start'} spacing={4}>
-								<Input defaultValue={expireDate} type="date" onChange={(e) => setExpireDate(e.target.value)} />
+								<Input borderColor={'#d9d9d9'}defaultValue={expireDate} type="date" onChange={(e) => setExpireDate(e.target.value)} />
 								{/* <DateTimePicker type={'date'} /> */}
 							</VStack>
 						</HStack>

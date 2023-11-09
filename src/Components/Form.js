@@ -5,7 +5,7 @@ export const TextInput = ({ label, defaultValue, isRequired, ...props }) => {
     return (
         <FormControl isRequired={isRequired}>
             <FormLabel>{label}</FormLabel>
-            <Input bgColor='white' _disabled={{ color: 'black' }} disabled={props.disabled} defaultValue={defaultValue} placeholder={props.placeholder} onChange={(e) => props.onChange(e.target.value)} />
+            <Input borderColor={'#d9d9d9'}bgColor='white' _disabled={{ color: 'black' }} disabled={props.disabled} defaultValue={defaultValue} placeholder={props.placeholder} onChange={(e) => props.onChange(e.target.value)} />
         </FormControl>
     )
 }
@@ -32,7 +32,7 @@ export const DateInput = ({ label, isRequired, defaultValue, ...props }) => {
     return (
         <FormControl isRequired={isRequired}>
             <FormLabel>{label}</FormLabel>
-            <Input type="date" defaultValue={defaultValue} placeholder={props.placeholder} onChange={(e) => props.onChange(e.target.value)} />
+            <Input borderColor={'#d9d9d9'}type="date" defaultValue={defaultValue} placeholder={props.placeholder} onChange={(e) => props.onChange(e.target.value)} />
         </FormControl>
     )
 }
@@ -41,7 +41,7 @@ export const MailInput = ({ label, isRequired, defaultValue, isError, ...props }
     return (
         <FormControl isRequired={isRequired} isInvalid={isError}>
             <FormLabel>{label}</FormLabel>
-            <Input type='email' defaultValue={defaultValue} onChange={(e) => props.onChange(e.target.value)} />
+            <Input borderColor={'#d9d9d9'}type='email' defaultValue={defaultValue} onChange={(e) => props.onChange(e.target.value)} />
             {isError && <FormErrorMessage>정확한 이메일 주소를 입력하세요.</FormErrorMessage>}
 
         </FormControl>
@@ -51,13 +51,13 @@ export const MailInput = ({ label, isRequired, defaultValue, isError, ...props }
 export const SearchInput = ({ label, defaultValue, isRequired, option, ...props }) => {
     return (
         <InputGroup >
-            <Select defaultValue={props.defaultType} onChange={(value) => props.onSetField(value)}>
+            <Select borderColor={"#d9d9d9"}defaultValue={props.defaultType} onChange={(value) => props.onSetField(value)}>
                 {option.map((val) => (
                     <option value={val}>{val}</option>
                 ))}
             </Select>
-            <Input defaultValue={defaultValue} onChange={(e) => props.onChange(e.target.value)} placeholder="검색어를 입력하세요."></Input>
-            <InputRightAddon bgColor={'red.500'}>
+            <Input borderColor={'#d9d9d9'}defaultValue={defaultValue} onChange={(e) => props.onChange(e.target.value)} placeholder="검색어를 입력하세요."></Input>
+            <InputRightAddon borderColor={'#d9d9d9'} bgColor={'red.500'}>
                 <SearchIcon color={'white'} />
             </InputRightAddon>
         </InputGroup>

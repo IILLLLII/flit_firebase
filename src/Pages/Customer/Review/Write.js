@@ -131,7 +131,7 @@ const ReviewWrite = () => {
 
                 <Flex>
 
-                    <Textarea defaultValue={reviewData.content} onChange={(e) => setContent(e.target.value)} border={'none'} focusBorderColor={'transparent'} minH={'60vh'} />
+                    <Textarea borderColor={"#d9d9d9"} defaultValue={reviewData.content} onChange={(e) => setContent(e.target.value)} border={'none'} focusBorderColor={'transparent'} minH={'60vh'} />
                 </Flex>
             </Stack>
 

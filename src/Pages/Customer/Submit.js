@@ -241,18 +241,18 @@ const Submit = () => {
             <Stack direction={'column'}>
                 <HStack mb={2}>
 
-                    <Input type="email" placeholder="이메일" onChange={(e) => setInputData({ ...inputData, email: e.target.value })} />
+                    <Input borderColor={'#d9d9d9'}type="email" placeholder="이메일" onChange={(e) => setInputData({ ...inputData, email: e.target.value })} />
                     <Button colorScheme={isEmail ? 'green' : 'gray'} onClick={() => checkDuplication('email', inputData.email)}>
                         {/* <Text>중복확인</Text> */}
                         <CheckIcon />
                     </Button>
                 </HStack>
-                <Input mb={2} type="text" placeholder="이름" onChange={(e) => setInputData({ ...inputData, name: e.target.value })} />
-                <Input mb={2} isInvalid={!isPasswordValid} borderColor={isPasswordValid ? 'gray.200' : '#da4359'} type="password" placeholder="비밀번호" onChange={(e) => { setPassword(e.target.value); validatePassword(e.target.value) }} />
-                <Input mb={2} isInvalid={!isPasswordValid} borderColor={isPasswordValid ? 'gray.200' : '#da4359'} type="password" placeholder="비밀번호 확인" onChange={(e) => { setConfirmPassword(e.target.value); validatePassword(e.target.value) }} />
+                <Input borderColor={'#d9d9d9'}mb={2} type="text" placeholder="이름" onChange={(e) => setInputData({ ...inputData, name: e.target.value })} />
+                <Input borderColor={'#d9d9d9'}mb={2} isInvalid={!isPasswordValid} borderColor={isPasswordValid ? 'gray.200' : '#da4359'} type="password" placeholder="비밀번호" onChange={(e) => { setPassword(e.target.value); validatePassword(e.target.value) }} />
+                <Input borderColor={'#d9d9d9'}mb={2} isInvalid={!isPasswordValid} borderColor={isPasswordValid ? 'gray.200' : '#da4359'} type="password" placeholder="비밀번호 확인" onChange={(e) => { setConfirmPassword(e.target.value); validatePassword(e.target.value) }} />
                 <HStack mb={2}>
 
-                    <Input type="text" placeholder="전화번호" value={inputData.number} maxLength={11} onChange={(e) => setInputData({ ...inputData, number: (e.target.value.replaceAll('-', '')) })} />
+                    <Input borderColor={'#d9d9d9'}type="text" placeholder="전화번호" value={inputData.number} maxLength={11} onChange={(e) => setInputData({ ...inputData, number: (e.target.value.replaceAll('-', '')) })} />
                     <Button>인증하기</Button>
                 </HStack>
                 <HStack mb={2}>
@@ -261,12 +261,12 @@ const Submit = () => {
                     <Button onClick={() => setInputData({ ...inputData, gender: '선택안함' })} colorScheme={inputData.gender === "선택안함" ? 'red' : 'gray'} variant={inputData.gender === "선택안함" ? 'solid' : 'outline'} w='100%'>선택안함</Button>
                 </HStack>
                 <HStack mb={2} alignItems={'flex-end'}>
-                    <Input type="text" defaultValue={inputData.address} disabled={true} _disabled={{ colorScheme: 'gray' }} placeholder="주소" />
+                    <Input borderColor={'#d9d9d9'}type="text" defaultValue={inputData.address} disabled={true} _disabled={{ colorScheme: 'gray' }} placeholder="주소" />
                     <Button onClick={() => setIsPopupOpen(true)}>주소검색</Button>
                 </HStack>
-                <Input mb={2} type="text" placeholder="상세주소" onChange={(e) => setInputData({ ...inputData, detail_address: e.target.value })} />
+                <Input borderColor={'#d9d9d9'}mb={2} type="text" placeholder="상세주소" onChange={(e) => setInputData({ ...inputData, detail_address: e.target.value })} />
                 <HStack mb={2}>
-                    <Input type="text" placeholder="닉네임" onChange={(e) => { setIsNickname(false); setInputData({ ...inputData, nickname: e.target.value }) }} />
+                    <Input borderColor={'#d9d9d9'}type="text" placeholder="닉네임" onChange={(e) => { setIsNickname(false); setInputData({ ...inputData, nickname: e.target.value }) }} />
                     <Button colorScheme={isNickname ? 'green' : 'gray'} onClick={() => checkDuplication('nickname', inputData.nickname)}>
                         {/* <Text>중복확인</Text> */}
                         <CheckIcon />

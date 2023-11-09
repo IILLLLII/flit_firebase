@@ -68,7 +68,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       <Stack spacing={0}>
         <NavItem link={'/admin'}>HOME</NavItem>
 
-        <Accordion defaultIndex={parseInt(localStorage.getItem('openIndex'))} onChange={(e) => localStorage.setItem('openIndex', e)}>
+        <Accordion borderColor={'white'} defaultIndex={parseInt(localStorage.getItem('openIndex'))} onChange={(e) => localStorage.setItem('openIndex', e)}>
           <AccordionItem>
             <AccordionButton p={0} w={'100%'}>
               <NavTitle>유저 관리<AccordionIcon /></NavTitle>

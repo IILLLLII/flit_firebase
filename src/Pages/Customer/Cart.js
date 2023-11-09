@@ -149,7 +149,7 @@ const Cart = () => {
                     ))}
                        
                     <Stack>
-                        <Input mb={2} type="date" defaultValue={date} onChange={(e) => setDate(e.target.value)}/>
+                        <Input borderColor={'#d9d9d9'}mb={2} type="date" defaultValue={date} onChange={(e) => setDate(e.target.value)}/>
                         <Flex overflowX='auto' className="scroll">
                             <HStack>
                                 {timeList.map((value) => (
@@ -168,7 +168,7 @@ const Cart = () => {
                     </HStack>
                 </Stack>
 
-                <Stack divider={<StackDivider borderWidth={2} borderColor={'gray.700'} />} mt={'10px'}>
+                <Stack divider={<StackDivider borderColor={"#d9d9d9"} />} mt={'10px'}>
                     <HStack justifyContent={'space-between'}>
                         <Text>총 상품 금액</Text>
                         <Text>{formattedAmount(totalCost)}원</Text>

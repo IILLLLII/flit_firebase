@@ -36,7 +36,7 @@ const OrderView = () => {
                     </CardHeader>
 
                     <CardBody>
-                        <Stack divider={<StackDivider />} spacing='4'>
+                        <Stack divider={<StackDivider borderColor={"#d9d9d9"} />} spacing='4'>
                             <Box>
                                 <HStack alignItems={'center'}>
                                     <Text fontSize='sm' textTransform='uppercase'>
@@ -195,7 +195,7 @@ const OrderView = () => {
                     배송 정보
                   </Heading>
                   <VStack alignItems='flex-start' pt={4}>
-                    <Select variant='outline' onChange={(e) => setOrderType(JSON.parse(e.target.value))}>
+                    <Select borderColor={"#d9d9d9"}variant='outline' onChange={(e) => setOrderType(JSON.parse(e.target.value))}>
                       <option value={0}>{'바로고배송'}</option>
                       <option value={1}>{'일반배송'}</option>
                     </Select>
@@ -249,11 +249,11 @@ const OrderView = () => {
                 <Box>
                   <VStack alignItems='flex-start' p={4}>
                     <Text fontWeight={'bold'} fontSize={'sm'} width="100px">배송사</Text>
-                    <Input />
+                    <Input borderColor={'#d9d9d9'}/>
                     <Text fontWeight={'bold'} fontSize={'sm'} width="100px">라이더 이름</Text>
-                    <Input />
+                    <Input borderColor={'#d9d9d9'}/>
                     <Text fontWeight={'bold'} fontSize={'sm'} width="100px">라이더 전화번호</Text>
-                    <Input />
+                    <Input borderColor={'#d9d9d9'}/>
                   </VStack>
                   <VStack alignItems={'flex-end'}>
                     <Text color='#8c8c8c' fontSize={'sm'}>해당 내용은 고객에게 제공됩니다.</Text>

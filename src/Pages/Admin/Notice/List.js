@@ -46,7 +46,7 @@ const NoticeList = () => {
 
             <FilterSelect onReset={() => reset()} onSearch={() => search()}>
 
-                <Stack direction={'column'} divider={<StackDivider />} spacing={3}>
+                <Stack direction={'column'} divider={<StackDivider borderColor={"#d9d9d9"} />} spacing={3}>
                     <SearchInput option={['제목']} defaultType={filter.option} defaultValue={filter.keyword} onSetField={(e) => setFilter({ ...filter, option: e.target.value })} onChange={(value) => setFilter({ ...filter, keyword: value })} />
                     <Box>
                         <Text {...Title_lg}>대상</Text>

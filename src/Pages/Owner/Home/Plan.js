@@ -81,7 +81,7 @@ const Plan = () => {
                             <Text {...Title_lg}>일정관리</Text>
                             <IconButton onClick={() => { setPlanEditMode({ mode: false, index: -1 }); setIsPlanOpen(true); }} size={'xs'} borderRadius={'full'} variant={"outline"} border={'2px solid black'} icon={<AddIcon />} />
                         </HStack>
-                        <Stack divider={<StackDivider />} spacing={0}>
+                        <Stack divider={<StackDivider borderColor={"#d9d9d9"} />} spacing={0}>
                             {
                                 plan.map((value, index) => (
                                     <HStack onClick={() => { setPlanEditMode({ mode: true, index: index }); setIsPlanOpen(true); }} justifyContent={'space-between'} _hover={{ bgColor: 'gray.100' }} p={2}>
@@ -108,11 +108,11 @@ const Plan = () => {
                         <Stack>
                             <HStack>
                                 <Text w='150px' {...Title_lg}>시간설정</Text>
-                                <Input defaultValue={planEditMode.mode ? plan[planEditMode.index].time : ''} onChange={(e) => setTime(e.target.value)} borderColor={'gray.300'} type="time"></Input>
+                                <Input borderColor={'#d9d9d9'}defaultValue={planEditMode.mode ? plan[planEditMode.index].time : ''} onChange={(e) => setTime(e.target.value)} type="time"></Input>
                             </HStack>
                             <Stack>
                                 <Text w='150px' {...Title_lg}>내용입력</Text>
-                                <Textarea defaultValue={planEditMode.mode ? plan[planEditMode.index].content : ''} onChange={(e) => setContent(e.target.value)} minH={'200px'} borderColor={'gray.300'} />
+                                <Textarea borderColor={"#d9d9d9"} defaultValue={planEditMode.mode ? plan[planEditMode.index].content : ''} onChange={(e) => setContent(e.target.value)} minH={'200px'} />
                             </Stack>
                         </Stack>
                     </ModalBody>

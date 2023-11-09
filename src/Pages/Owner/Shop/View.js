@@ -205,7 +205,7 @@ const ShopView = () => {
                     <Text {...Title_2xl} ml={4} color={'gray.800'}>
                 상점 정보
             </Text>
-                        <Accordion allowMultiple defaultIndex={[0, 1, 2, 3, 4, 5, 6, 7]}>
+                        <Accordion borderColor={'white'} allowMultiple defaultIndex={[0, 1, 2, 3, 4, 5, 6, 7]}>
                             <AccordionItem>
                                 <h2>
                                     <AccordionButton>
@@ -221,9 +221,9 @@ const ShopView = () => {
                                         <ImageUploader w={'200px'} h={'200px'} src={account.profileImage} setUrl={(value) => setAccout({ ...account, profileImage: value })} />
                                         <VStack alignItems={'flex-start'} w={"100%"} p={6}>
                                             <Text>Shop 이름</Text>
-                                            <Input maxLength={15} defaultValue={shopInfo.shopname} onChange={(e) => setShopInfo({ ...shopInfo, shopname: e.target.value })}></Input>
+                                            <Input borderColor={'#d9d9d9'}maxLength={15} defaultValue={shopInfo.shopname} onChange={(e) => setShopInfo({ ...shopInfo, shopname: e.target.value })}></Input>
                                             <Text>닉네임</Text>
-                                            <Input maxLength={15} defaultValue={shopInfo.nickname} onChange={(e) => setShopInfo({ ...shopInfo, nickname: e.target.value })}></Input>
+                                            <Input borderColor={'#d9d9d9'}maxLength={15} defaultValue={shopInfo.nickname} onChange={(e) => setShopInfo({ ...shopInfo, nickname: e.target.value })}></Input>
                                         </VStack>
                                     </HStack>
                                 </AccordionPanel>
@@ -240,9 +240,9 @@ const ShopView = () => {
                                 </h2>
                                 <AccordionPanel pb={4}>
                                     <VStack alignItems={'flex-end'}>
-                                        <Input value={password.oldPassword} type="password" placeholder="기존 비밀번호" onChange={(e) => setPassword({ ...password, oldPassword: e.target.value })} />
-                                        <Input value={password.newPassword} type="password" placeholder="재설정할 비밀번호를 입력해주세요" onChange={(e) => setPassword({ ...password, newPassword: e.target.value })} />
-                                        <Input value={password.confirnPassword} type="password" placeholder="비밀번호를 재입력해주세요" onChange={(e) => setPassword({ ...password, confirnPassword: e.target.value })} />
+                                        <Input borderColor={'#d9d9d9'}value={password.oldPassword} type="password" placeholder="기존 비밀번호" onChange={(e) => setPassword({ ...password, oldPassword: e.target.value })} />
+                                        <Input borderColor={'#d9d9d9'}value={password.newPassword} type="password" placeholder="재설정할 비밀번호를 입력해주세요" onChange={(e) => setPassword({ ...password, newPassword: e.target.value })} />
+                                        <Input borderColor={'#d9d9d9'}value={password.confirnPassword} type="password" placeholder="비밀번호를 재입력해주세요" onChange={(e) => setPassword({ ...password, confirnPassword: e.target.value })} />
                                         {passwordError && <Alert status="error"><AlertIcon />{"입력한 정보를 다시 확인해주세요."}</Alert>}
                                         <Button colorScheme="red" onClick={() => changePassword()}>변경</Button>
                                     </VStack>
@@ -259,7 +259,7 @@ const ShopView = () => {
                                     </AccordionButton>
                                 </h2>
                                 <AccordionPanel pb={4}>
-                                    <Select onChange={(e) => addTag(e.target.value)}>
+                                    <Select borderColor={"#d9d9d9"}onChange={(e) => addTag(e.target.value)}>
                                         {category.map((value) => (
                                             <option value={value}>{value}</option>
                                         ))}
@@ -312,7 +312,7 @@ const ShopView = () => {
                                                     <Button onClick={() => setIsPopupOpen(true)}>주소검색</Button>
                                                 </HStack>
 
-                                                <Input defaultValue={account.detail_address} placeholder="상세주소를 입력하세요" onChange={(e) => setAccout({ ...account, detail_address: e.target.value })} />
+                                                <Input borderColor={'#d9d9d9'}defaultValue={account.detail_address} placeholder="상세주소를 입력하세요" onChange={(e) => setAccout({ ...account, detail_address: e.target.value })} />
                                             </VStack>
 
                                         </HStack>
@@ -322,7 +322,7 @@ const ShopView = () => {
                                                     <Checkbox isChecked={shopInfo.use_bundle_delivery} onChange={(e) => setShopInfo({ ...shopInfo, use_bundle_delivery: e.target.checked })} value={'묶음배송'} minW={'200px'} colorScheme="red">묶음배송 배송비 부과 기준</Checkbox>
                                                 <InputGroup w={'100%'} >
 
-                                                    <Input type='number' value={shopInfo.bundle_delivery} placeholder="금액을 입력하세요." onChange={(e) => setShopInfo({ ...shopInfo, bundle_delivery: e.target.value })} />
+                                                    <Input borderColor={'#d9d9d9'}type='number' value={shopInfo.bundle_delivery} placeholder="금액을 입력하세요." onChange={(e) => setShopInfo({ ...shopInfo, bundle_delivery: e.target.value })} />
                                                     <InputRightAddon>원</InputRightAddon>
                                                 </InputGroup>
                                             </VStack>
@@ -384,15 +384,15 @@ const ShopView = () => {
                                             <VStack w={'100%'}>
                                                 <HStack w="100%">
                                                     <Text w={'100px'}>평일</Text>
-                                                    <Input type="time" defaultValue={shopInfo.operate_time.week_open} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, week_open: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.operate_time.week_open} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, week_open: e.target.value } })} />
                                                     <Text>~</Text>
-                                                    <Input type="time" defaultValue={shopInfo.operate_time.week_close} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, week_close: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.operate_time.week_close} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, week_close: e.target.value } })} />
                                                 </HStack>
                                                 <HStack w="100%">
                                                     <Text w={'100px'}>주말</Text>
-                                                    <Input type="time" defaultValue={shopInfo.operate_time.weekend_open} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, weekend_open: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.operate_time.weekend_open} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, weekend_open: e.target.value } })} />
                                                     <Text>~</Text>
-                                                    <Input type="time" defaultValue={shopInfo.operate_time.weekend_close} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, weekend_close: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.operate_time.weekend_close} onChange={(e) => setShopInfo({ ...shopInfo, operate_time: { ...shopInfo.operate_time, weekend_close: e.target.value } })} />
                                                 </HStack>
                                             </VStack>
                                         </HStack>
@@ -401,15 +401,15 @@ const ShopView = () => {
                                             <VStack w={'100%'}>
                                                 <HStack w="100%">
                                                     <Text w={'100px'}>평일</Text>
-                                                    <Input type="time" defaultValue={shopInfo.reserve_time.week_open} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, week_open: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.reserve_time.week_open} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, week_open: e.target.value } })} />
                                                     <Text>~</Text>
-                                                    <Input type="time" defaultValue={shopInfo.reserve_time.week_close} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, week_close: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.reserve_time.week_close} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, week_close: e.target.value } })} />
                                                 </HStack>
                                                 <HStack w="100%">
                                                     <Text w={'100px'}>주말</Text>
-                                                    <Input type="time" defaultValue={shopInfo.reserve_time.weekend_open} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, weekend_open: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.reserve_time.weekend_open} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, weekend_open: e.target.value } })} />
                                                     <Text>~</Text>
-                                                    <Input type="time" defaultValue={shopInfo.reserve_time.weekend_close} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, weekend_close: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.reserve_time.weekend_close} onChange={(e) => setShopInfo({ ...shopInfo, reserve_time: { ...shopInfo.reserve_time, weekend_close: e.target.value } })} />
                                                 </HStack>
                                             </VStack>
 
@@ -419,15 +419,15 @@ const ShopView = () => {
                                             <VStack w={'100%'}>
                                                 <HStack w="100%">
                                                     <Text w={'100px'}>평일</Text>
-                                                    <Input type="time" defaultValue={shopInfo.break_time.week_open} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, week_open: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.break_time.week_open} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, week_open: e.target.value } })} />
                                                     <Text>~</Text>
-                                                    <Input type="time" defaultValue={shopInfo.break_time.week_close} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, week_close: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.break_time.week_close} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, week_close: e.target.value } })} />
                                                 </HStack>
                                                 <HStack w="100%">
                                                     <Text w={'100px'}>주말</Text>
-                                                    <Input type="time" defaultValue={shopInfo.break_time.weekend_open} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, weekend_open: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.break_time.weekend_open} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, weekend_open: e.target.value } })} />
                                                     <Text>~</Text>
-                                                    <Input type="time" defaultValue={shopInfo.break_time.weekend_close} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, weekend_close: e.target.value } })} />
+                                                    <Input borderColor={'#d9d9d9'}type="time" defaultValue={shopInfo.break_time.weekend_close} onChange={(e) => setShopInfo({ ...shopInfo, break_time: { ...shopInfo.break_time, weekend_close: e.target.value } })} />
                                                 </HStack>
                                             </VStack>
                                         </HStack>
@@ -448,13 +448,13 @@ const ShopView = () => {
                                 <AccordionPanel pb={4}>
                                     <VStack alignItems={'flex-start'}>
                                         <HStack w={'100%'}>
-                                            <Select w={'50%'} onChange={(e) => setSite(e.target.value)}>
+                                            <Select borderColor={"#d9d9d9"}w={'50%'} onChange={(e) => setSite(e.target.value)}>
                                                 <option value={'Instagram'}>Instagram</option>
                                                 <option value={'Twitter'}>Twitter</option>
                                                 <option value={'Facebook'}>Facebook</option>
                                                 <option value={'Kakao'}>Kakao</option>
                                             </Select>
-                                            <Input onChange={(e) => setSnsId(e.target.value)}></Input>
+                                            <Input borderColor={'#d9d9d9'}onChange={(e) => setSnsId(e.target.value)}></Input>
                                             <Button colorScheme="red" onClick={() => setShopInfo({ ...shopInfo, sns: [...shopInfo.sns, { site: snsSite, account: snsId }] })}>등록</Button>
                                             {/**setShopInfo({...shopInfo, sns : [...shopInfo.sns, {site: snsSite, account: snsId}]}) */}
                                         </HStack>
@@ -504,7 +504,7 @@ const ShopView = () => {
                                     </AccordionButton>
                                 </h2>
                                 <AccordionPanel pb={4}>
-                                    <Textarea w={'100%'} defaultValue={shopInfo.comment} onChange={(e) => setShopInfo({ ...shopInfo, comment: e.target.value })} />
+                                    <Textarea borderColor={"#d9d9d9"} w={'100%'} defaultValue={shopInfo.comment} onChange={(e) => setShopInfo({ ...shopInfo, comment: e.target.value })} />
                                 </AccordionPanel>
                             </AccordionItem>
 
