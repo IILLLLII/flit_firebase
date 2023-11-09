@@ -40,6 +40,7 @@ import CouponList from '../Pages/Admin/Coupon/List'
 import CouponAdd from '../Pages/Admin/Coupon/Add'
 import SubmitDashboard from '../Pages/Admin/Shop/SubmitDashboard'
 import UserDashboard from '../Pages/Admin/User/UserDashboard'
+import Plan from '../Pages/Admin/Plan'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -132,7 +133,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavItem link={'/admin/coupon/1'}>쿠폰</NavItem>
               <NavItem >광고</NavItem>
               <NavItem link={'/admin/notice/list/1'}>공지/이벤트</NavItem>
-              <NavItem >플릿일정</NavItem>
+              <NavItem link={'/admin/plan'}>플릿일정</NavItem>
             </AccordionPanel>
           </AccordionItem>
 
@@ -305,6 +306,7 @@ const SidebarWithHeader = () => {
             <Route path='/admin/notice/add' element={<AddNotice />} />
             <Route path='/admin/coupon/1' element={<CouponList/>} />
             <Route path='/admin/coupon/register' element={<CouponAdd/>} />
+            <Route path='/admin/plan' element={<Plan/>} />
           </Routes>
         </BrowserRouter>
         </Box>
