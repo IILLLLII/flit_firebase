@@ -35,7 +35,7 @@ import PortfolioList from '../Pages/Owner/Portfolio/List'
 import PortfolioAdd from '../Pages/Owner/Portfolio/Add'
 import ProductView from '../Pages/Owner/Product/View'
 import PortfolioView from '../Pages/Owner/Portfolio/View'
-import SalesList from '../Pages/Owner/Sales/List'
+import SalesList from '../Pages/Owner/Sales/TotalList'
 import AdvertiseAdd from '../Pages/Owner/Advertise/Add'
 // import AdvertiseList from '../Pages/Owner/Advertise/List'
 // import AdvertiseBuy from '../Pages/Owner/Advertise/Buy'
@@ -50,6 +50,10 @@ import { useState } from 'react'
 import NoticeList from '../Pages/Owner/Community/Notice'
 import NoticeView from '../Pages/Owner/Community/NotiveView'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import SalesTotal from '../Pages/Owner/Sales/TotalList'
+import SalesFlit from '../Pages/Owner/Sales/FlitList'
+import SalesAccount from '../Pages/Owner/Sales/AccountList'
+import AccountRegister from '../Pages/Owner/Sales/AccountRegister'
 
 function ColorModeButton() {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -321,7 +325,10 @@ const SidebarWithHeader = () => {
             <Route path='/portfolio/*' element={<PortfolioList />} />
             <Route path='/portfolio/add' element={<PortfolioAdd />} />
             <Route path='/portfolio/view/*' element={<PortfolioView />} />
-            <Route path='/sales/*' element={<SalesList />} />
+            <Route path='/sales/all' element={<SalesTotal />} />
+            <Route path='/sales/flit' element={<SalesFlit />} />
+            <Route path='/sales/account' element={<SalesAccount />} />
+            <Route path='/sales/register' element={<AccountRegister />} />
             <Route path='/advertise' element={<AdvertiseAdd />} />
             {/* <Route path='/advertise/1' element={<AdvertiseList />} />
             <Route path='/advertise/buy' element={<AdvertiseBuy />} /> */}

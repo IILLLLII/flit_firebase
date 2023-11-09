@@ -318,7 +318,7 @@ return result;
 
 
 export const formattedAmount = (amount) => {
-  return `${(amount).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+  return `${(amount)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
 }
 
 const numberUnits = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
