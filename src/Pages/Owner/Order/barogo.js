@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useCallback, useEffect, useState } from "react";
 import { addDoc, and, collection, deleteDoc, doc, getDoc, getDocs, limit, or, orderBy, query, updateDoc, where } from "firebase/firestore"
-const express = require('express');
-const bodyParser = require('body-parser');
+// const express = require('express');
 const my_api_key = 'Bearer ${illi499949920047751515151}'
 export async function ordersuc_post(orders){//주문조회
   try{
@@ -110,32 +109,33 @@ export async function postOrder(orderInfo){//주문 접수
     }
 };
 export async function order_cancel(orderInfo){
+  const cancelTypes = 'ETC'
   if(orderInfo.canceltype == '1'){//다른배달사 이용
-    const canceltype = 'OTHER_DELIVERY_AGENCY'
+    cancelTypes = 'OTHER_DELIVERY_AGENCY'
   }else if(orderInfo.canceltype == '2'){//중복 주문
-    const canceltype = 'DUPLICATE_ORDER'
+    cancelTypes = 'DUPLICATE_ORDER'
   }else if(orderInfo.canceltype == '3'){//상정요청
-    const canceltype = 'CANCEL_BY_STORE'
+    cancelTypes = 'CANCEL_BY_STORE'
   }else if(orderInfo.canceltype == '4'){//고객 요청
-    const canceltype = 'CANCEL_BY_CUSTOMER'
+    cancelTypes = 'CANCEL_BY_CUSTOMER'
   }else if(orderInfo.canceltype == '5'){//관리자 권한
-    const canceltype = 'CANCEL_BY_ADMIN'
+    cancelTypes = 'CANCEL_BY_ADMIN'
   }else if(orderInfo.canceltype == '6'){//고객 불만
-    const canceltype = 'COMPLAIN_BY_CUSTOMER'
+    cancelTypes = 'COMPLAIN_BY_CUSTOMER'
   }else if(orderInfo.canceltype == '7'){//주문 수락 시간 초과
-    const canceltype = 'CANCEL_BY_TIMEOUT'
+    cancelTypes = 'CANCEL_BY_TIMEOUT'
   }else if(orderInfo.canceltype == '8'){//배달 지연
-    const canceltype = 'DELAY_DELIVERY'
+    cancelTypes = 'DELAY_DELIVERY'
   }else if(orderInfo.canceltype == '9'){//불피요한 주문으로 판단
-    const canceltype = 'UNNECESSARY_ORDER'
+    cancelTypes = 'UNNECESSARY_ORDER'
   }else{//기타사유
-    const canceltype = 'ETC'
+    cancelTypes = 'ETC'
   }
   try{
     const response = await axios.put('https://staging-api-interlocker.gorelas.com/api/orders/{'+orderInfo.orderid+'}/status/cancel',
     {
       "time": orderInfo.canceltime,
-      "cancelType": canceltype,
+      "cancelType": cancelTypes,
       "cancelReason": orderInfo.cancelreason
     },{
       headers : {
@@ -151,50 +151,50 @@ export async function order_cancel(orderInfo){
 };
 
 
-const app = express();
-const port = 3001;
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
+// const app = express();
+// const port = 3001;
+// app.use(express.json());
+// app.use(express.urlencoded({ extended:true }));
 
-app.post('/api/barogo/order/status', (req,res)=>{//주문상태변경 바로고 > 플릿
-  const customHeader = req.headers['Authorization'];
-  if(!customHeader || customHeader !== my_api_key){
-    return res.status(404).json({ error: 'not found'})
-  }
-  const requestData = req.body;
-  console.log(requestData);
-  res.status(200).json({ message: 'suc', data: requestData })
-});
-app.listen(port, () =>{
-  console.log('barogo_server_ active ${port}');
-});
+// app.post('/api/barogo/order/status', (req,res)=>{//주문상태변경 바로고 > 플릿
+//   const customHeader = req.headers['Authorization'];
+//   if(!customHeader || customHeader !== my_api_key){
+//     return res.status(404).json({ error: 'not found'})
+//   }
+//   const requestData = req.body;
+//   console.log(requestData);
+//   res.status(200).json({ message: 'suc', data: requestData })
+// });
+// app.listen(port, () =>{
+//   console.log('barogo_server_ active ${port}');
+// });
 
-app.post('/api/barogo/delivery/pickup-expected-at', (req,res)=>{//배달정보 바로고 > 플릿
-  const customHeader = req.headers['Authorization'];
-  if(!customHeader || customHeader !== my_api_key){
-    return res.status(404).json({ error: 'not found'})
-  }
-  const requestData = req.body;
-  console.log(requestData);
-  res.status(200).json({ message: 'suc', data: requestData }) 
-});
+// app.post('/api/barogo/delivery/pickup-expected-at', (req,res)=>{//배달정보 바로고 > 플릿
+//   const customHeader = req.headers['Authorization'];
+//   if(!customHeader || customHeader !== my_api_key){
+//     return res.status(404).json({ error: 'not found'})
+//   }
+//   const requestData = req.body;
+//   console.log(requestData);
+//   res.status(200).json({ message: 'suc', data: requestData }) 
+// });
 
-app.post('/api/barogo/order/accept', (req,res)=>{// 주문 수락 바로고 > 플릿
-  const customHeader = req.headers['Authorization'];
-  if(!customHeader || customHeader !== my_api_key){
-    return res.status(404).json({ error: 'not found'})
-  }
-  const requestData = req.body;
-  console.log(requestData);
-  res.status(200).json({ message: 'suc', data: requestData }) 
-});
+// app.post('/api/barogo/order/accept', (req,res)=>{// 주문 수락 바로고 > 플릿
+//   const customHeader = req.headers['Authorization'];
+//   if(!customHeader || customHeader !== my_api_key){
+//     return res.status(404).json({ error: 'not found'})
+//   }
+//   const requestData = req.body;
+//   console.log(requestData);
+//   res.status(200).json({ message: 'suc', data: requestData }) 
+// });
 
-app.post('/api/barogo/order/reject', (req,res)=>{//주문 거절 바로고 > 플릿
-  const customHeader = req.headers['Authorization'];
-  if(!customHeader || customHeader !== my_api_key){
-    return res.status(404).json({ error: 'not found'})
-  }
-  const requestData = req.body;
-  console.log(requestData);
-  res.status(200).json({ message: 'suc', data: requestData }) 
-});
+// app.post('/api/barogo/order/reject', (req,res)=>{//주문 거절 바로고 > 플릿
+//   const customHeader = req.headers['Authorization'];
+//   if(!customHeader || customHeader !== my_api_key){
+//     return res.status(404).json({ error: 'not found'})
+//   }
+//   const requestData = req.body;
+//   console.log(requestData);
+//   res.status(200).json({ message: 'suc', data: requestData }) 
+// });
