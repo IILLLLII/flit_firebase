@@ -441,9 +441,43 @@ export const getOwner = async (ownerId) => {
   const docRef = doc(db, "Owner", ownerId);
   const _doc = await getDoc(docRef);
 
-  //console.log("Data", id, _doc.data());
+  //\console.log("Data", id, _doc.data());
 
   return _doc.data()
+}
+
+export const getOwnersettlementday = async (ownerId) => {
+  const q = doc(db, "Owner", ownerId);
+  const _doc = await getDoc(q);
+  const settlement = _doc.data().settlement;
+  const type = settlement.type;
+  const day = settlement.date;
+  let settlementtime = null;
+  try{
+    if(type === "1"){//월단위
+      settlementtime = day;
+    }else{
+      if(day === 1){//일요일
+        settlementtime = '일요일';
+      }else if(day === 2){//월요일
+        settlementtime = '월요일';
+      }else if(day === 3){//화요일
+        settlementtime = '화요일';
+      }else if(day === 4){//수요일
+        settlementtime = '수요일';
+      }else if(day === 5){//목요일
+        settlementtime = '목요일';
+      }else if(day === 6){//금요일
+        settlementtime = '금요일';
+      }else if(day === 7){//토요일
+        settlementtime = '토요일';
+      }
+    }
+  }catch(e){
+    console.error(e);
+  }
+  
+  return settlementtime;
 }
 
 export const getCustomer = async (customerId) => {
