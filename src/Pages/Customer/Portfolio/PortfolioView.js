@@ -13,8 +13,10 @@ function PortfolioView() {
     const [portfolioList, setPortfiolioList] = useState([]);
     const [owner, setOwner] = useState({});
     const [shopInfo, setShopInfo] = useState({});
+    const [follower, setFollower] = useState(false);
     useEffect(() => {
         if (location.state) {
+            setFollower(location.state.shopInfo.follower.includes(localStorage.getItem('customerToken')));
             getPortfolioList();
             getOwnerInfo();
             getShopInfo();
@@ -46,7 +48,7 @@ function PortfolioView() {
                         <Avatar mr={2} src={owner?.profileImage}></Avatar>
                         <Text>{shopInfo?.shopname}</Text>
                     </HStack>
-                    <Badge colorScheme='red'>Following</Badge>
+                    <Badge colorScheme={follower? 'red' : 'gray'}>{follower ? 'following' : 'follow'}</Badge>
             </HStack>
         </Flex>
             </Flex>
