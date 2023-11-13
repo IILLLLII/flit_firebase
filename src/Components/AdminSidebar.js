@@ -41,6 +41,8 @@ import CouponAdd from '../Pages/Admin/Coupon/Add'
 import SubmitDashboard from '../Pages/Admin/Shop/SubmitDashboard'
 import UserDashboard from '../Pages/Admin/User/UserDashboard'
 import Plan from '../Pages/Admin/Plan'
+import Order from '../Pages/Admin/Order/Order'
+import OrderView from '../Pages/Admin/Order/View'
 
 const SidebarContent = ({ onClose, ...rest }) => {
   return (
@@ -98,8 +100,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
               <NavTitle>거래 관리<AccordionIcon /></NavTitle>
             </AccordionButton>
             <AccordionPanel p={0}>
-              <NavItem>주문 관리</NavItem>
-              <NavItem>수발주 관리</NavItem>
+              <NavItem link={'/admin/order'}>주문 관리</NavItem>
+              {/* <NavItem>수발주 관리</NavItem> */}
               <NavItem>취소건 관리</NavItem>
             </AccordionPanel>
           </AccordionItem>
@@ -307,6 +309,8 @@ const SidebarWithHeader = () => {
             <Route path='/admin/coupon/1' element={<CouponList/>} />
             <Route path='/admin/coupon/register' element={<CouponAdd/>} />
             <Route path='/admin/plan' element={<Plan/>} />
+            <Route path='/admin/order' element={<Order/>} />
+            <Route path='/order/view/*' element={<OrderView/>} />
           </Routes>
         </BrowserRouter>
         </Box>

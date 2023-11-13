@@ -41,9 +41,17 @@ const OrderList = () => {
     }
 
     const search = async() => {
-        let result = await getOrderList(filter)
-        console.log(result)
-        setOrderList(result)
+        if(isAdmin) {
+            let result = await getAllList('Order')
+            console.log(result)
+            setOrderList(result)
+        }
+        else
+        {
+            let result = await getOrderList(filter)
+            console.log(result)
+            setOrderList(result)
+        }
     }
 
     return (
