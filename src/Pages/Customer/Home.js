@@ -18,6 +18,7 @@ const Home = () => {
                     <Button onClick={() => navigate('/customer/event')}>이벤트</Button>
                     <Button onClick={() => navigate('/customer/review')}>리뷰작성</Button>
                     <Button onClick={() => navigate('/customer/info')}>정보수정</Button>
+                    <Button onClick={() => navigate('/customer/order')}>주문관리</Button>
                 </SimpleGrid>
 
             </Box>

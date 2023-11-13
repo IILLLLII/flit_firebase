@@ -50,6 +50,7 @@ const Purchase = () => {
         await addDocument('Order', {
             ...orderInfo,
             timestamp: serverTimestamp(),
+            isReview: false,
             sender: {
                 name: userInfo.name,
                 number: userInfo.number,

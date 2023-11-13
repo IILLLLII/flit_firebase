@@ -20,13 +20,16 @@ const ReviewList = () => {
 
   const getPossibleReviewList = async () => {
     let orderList = await getOrder(localStorage.getItem('customerToken')); // 기간을 정해야함
-    let productList = []
-    orderList.map(async (value) => {
+    let tempList = []
+    orderList?.map(async (value) => {
+      console.log('Value: ', value)
       if (!value.isReview) {
-        let product = await getDocument('Product', value.productId)
-        let owner = await getOwner(value.ownerId)
-        productList.push({ ...product, owner: owner, orderId: value.id })
-        setProductList(productList)
+        value.product.map(async(item, index) => {
+          let product = await getDocument('Product', item.product.id)
+          let owner = await getOwner(value.ownerId)
+          tempList.push({ ...product, owner: owner, orderId: value.id })
+          setProductList(tempList)
+        })
       }
       else {
         let product = await getDocument('Product', value.productId)
@@ -64,20 +67,19 @@ const ReviewList = () => {
 
       <Stack mt={'100px'} mb={'80px'} p={2}>
 
-        {tab == 0 && productList.map((value) => (
+        {tab == 0 && productList?.map((value) => (
           <HStack p={2}>
-
             <Image src={value.thumbnail_image} boxSize={'120px'} />
             <Stack w='100%' gap={0}>
               <Text fontWeight={'bold'}>{value?.product_name}</Text>
               <Text fontSize={'sm'} color={'gray.500'}>{value?.owner.name}</Text>
               <HStack>
-                <Text color="#da4359" fontWeight={'bold'}>{value.discount.set == "설정함" ? `${value.discount.value}${value.discount.unit} ` : ""}</Text>
-                <Text>{value.discount.set == "설정함" ? value.discount.unit == "%" ? `${formattedAmount(value.sales_price - value.sales_price * 0.01 * value.discount.value)}원` : `${formattedAmount(value.sales_price - value.discount.value)}원` : ""}</Text>
+                <Text color="#da4359" fontWeight={'bold'}>{value?.discount.set == "설정함" ? `${value?.discount.value}${value?.discount.unit} ` : ""}</Text>
+                <Text>{value?.discount.set == "설정함" ? value?.discount.unit == "%" ? `${formattedAmount(value?.sales_price - value?.sales_price * 0.01 * value?.discount.value)}원` : `${formattedAmount(value?.sales_price - value?.discount.value)}원` : ""}</Text>
 
               </HStack>
 
-              <Button onClick={() => navigate('/customer/review/write', { state: value.id })}>리뷰쓰기</Button>
+              <Button onClick={() => navigate('/customer/review/write', { state: value?.id })}>리뷰쓰기</Button>
             </Stack>
 
           </HStack>
