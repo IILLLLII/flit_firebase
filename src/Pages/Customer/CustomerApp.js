@@ -1,5 +1,4 @@
 import React from "react";
-import { Box, Container} from "@chakra-ui/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Category from "./Category";
 import Home from "./Home";
@@ -17,6 +16,7 @@ import Chat from "./Chat";
 import ReviewList from './Review/List'
 import ReviewWrite from "./Review/Write";
 import PurchaseComplete from "./PurchaseComplete";
+import Info from "./Info";
 
 const CustomerApp = () => {
     return (
@@ -24,6 +24,7 @@ const CustomerApp = () => {
                 <BrowserRouter>
           <Routes>
             <Route path='/customer' element={<Home />} />
+            <Route path='/customer/info' element={<Info />} />
             <Route path='/customer/category' element={<Category />} />
             <Route path='/customer/product/*' element={<ProductList/>} />
             <Route path='/customer/product/view/*' element={<ProductView/>} />

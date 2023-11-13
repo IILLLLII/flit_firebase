@@ -5,6 +5,11 @@
   font-family: 'Inter';
 }
 
+div {
+  border-color: #d9d9d9;
+  background-color: white;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&family=Noto+Sans+KR&display=swap');
 
 .App-logo {

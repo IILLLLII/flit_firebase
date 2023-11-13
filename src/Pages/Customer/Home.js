@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Container, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const Home = () => {
@@ -17,6 +17,7 @@ const Home = () => {
                     <Button onClick={() => navigate('/customer/notice')}>공지</Button>
                     <Button onClick={() => navigate('/customer/event')}>이벤트</Button>
                     <Button onClick={() => navigate('/customer/review')}>리뷰작성</Button>
+                    <Button onClick={() => navigate('/customer/info')}>정보수정</Button>
                 </SimpleGrid>
 
             </Box>
