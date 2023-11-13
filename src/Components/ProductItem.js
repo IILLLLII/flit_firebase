@@ -9,7 +9,7 @@ import { isAdmin } from "../App";
 import { serverTimestamp } from "firebase/firestore";
 import { useEffect, useState } from "react";
 
-export default function ProductItem({ data, state }) {
+export default function ProductItem({ data, state}) {
   const navigate = useNavigate();
   const [goods, setGoods] = useState(false)
 
@@ -44,7 +44,7 @@ export default function ProductItem({ data, state }) {
         <AspectRatio  width={'100%'} ratio={1}>
           <Image onClick={() => navigate('/customer/product/view/' + data.id, { state: data })} objectFit={'cover'} src={data.thumbnail_image} borderRadius={'lg'} />
           </AspectRatio>
-          <Center position={'absolute'} w='30px' h="30px" bottom={0} right={0}>
+          <Center bgColor={'transparent'} position={'absolute'} w='30px' h="30px" bottom={0} right={0}>
           {<FaHeart onClick={() => addGoods()} color={goods ? "#da4359" : "white"} opacity={goods ? 1 : 0.5} size={'24px'}/>}
           </Center>
 </Box>

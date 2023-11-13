@@ -1,4 +1,4 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Alert, AlertIcon, Badge, Box, Button, ButtonGroup, Card, CardHeader, Center, Checkbox, CheckboxGroup, Circle, Container, Flex, HStack, Heading, IconButton, Image, Input, InputGroup, InputRightAddon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Select, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Tag, TagCloseButton, TagRightIcon, Text, Textarea, VStack, Wrap, WrapItem, useDisclosure } from "@chakra-ui/react";
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Alert, AlertIcon, AspectRatio, Badge, Box, Button, ButtonGroup, Card, CardHeader, Center, Checkbox, CheckboxGroup, Circle, Container, Flex, HStack, Heading, IconButton, Image, Input, InputGroup, InputRightAddon, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Select, SimpleGrid, Stack, Tab, TabList, TabPanel, TabPanels, Tabs, Tag, TagCloseButton, TagRightIcon, Text, Textarea, VStack, Wrap, WrapItem, useDisclosure } from "@chakra-ui/react";
 import React, { useCallback, useEffect, useState } from "react";
 import { Body_lg, Body_sm, Title_2xl, Title_lg, Title_sm } from "../../Style/Typograhy";
 import { addDocument, formattedAmount, getDocument, getPortfolioListAll, getShop, updateData } from "../../DB/function";
@@ -6,6 +6,8 @@ import { Label } from '../../Components/Label'
 import { useLocation, useNavigate } from "react-router-dom";
 import MobileStatus from "../../Components/MobileStatus";
 import { ChatIcon } from "@chakra-ui/icons";
+import { FaHeart } from "react-icons/fa";
+import PortfolioItem from "../../Components/PortfolioItem";
 
 const ShopInfo = () => {
     const navigate = useNavigate();
@@ -46,7 +48,6 @@ const ShopInfo = () => {
         comment: ''
     })
     const [portfolioList, setPortfiolioList] = useState([])
-
     useEffect(() => {
         if (location.state) {
             setShopInfo(location.state.shopInfo)
@@ -60,7 +61,6 @@ const ShopInfo = () => {
         console.log(result)
         setPortfiolioList(result)
     }
-
 
     return (
         <Stack>
@@ -131,7 +131,7 @@ const ShopInfo = () => {
     <TabPanel>
       <SimpleGrid columns={3}>
         {portfolioList.map((value)=>(
-        <Image src={value.thumbnail_image}/>
+            <PortfolioItem data={value} state={location.state}/>
         ))}
       </SimpleGrid>
     </TabPanel>

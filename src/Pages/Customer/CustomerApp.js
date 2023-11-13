@@ -17,6 +17,7 @@ import ReviewList from './Review/List'
 import ReviewWrite from "./Review/Write";
 import PurchaseComplete from "./PurchaseComplete";
 import Info from "./Info";
+import PortfolioView from "./Portfolio/PortfolioView";
 
 const CustomerApp = () => {
     return (
@@ -40,6 +41,7 @@ const CustomerApp = () => {
             <Route path='/customer/review' element={<ReviewList/>} />
             <Route path='/customer/review/write' element={<ReviewWrite/>} />
             <Route path='/customer/purchase/complete' element={<PurchaseComplete/>} />
+            <Route path='/customer/portfolio/view' element={<PortfolioView/>} />
           </Routes>
         </BrowserRouter>
         // </Container>
