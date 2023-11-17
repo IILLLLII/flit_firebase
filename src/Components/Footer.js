@@ -21,7 +21,7 @@ const ListHeader = ({ children }) => {
 export default function Footer() {
     return (
         <Box
-            w="100%"
+            w="100vw"
             bg={useColorModeValue('gray.50', 'gray.900')}
             color={useColorModeValue('gray.700', 'gray.200')}>
             {/* <Container as={Stack} maxW={'6xl'} py={10}>
@@ -73,7 +73,7 @@ export default function Footer() {
         </SimpleGrid>
             </Container> */}
 
-            <Box
+            {/* <Box
                 borderTopWidth={1}
                 borderStyle={'solid'}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}>
@@ -87,7 +87,16 @@ export default function Footer() {
                     align={{ md: 'center' }}>
                     <Text>© 2023 ILLI. All rights reserved</Text>
                 </Container>
-            </Box>
+            </Box> */}
+
+<Box bgColor={'gray.200'} p={4}>
+          <Text >{'상호명 : ILLI(일리)'}</Text>
+          <Text>{'사업자번호 : 209-27-65193'}</Text>
+          <Text>{'주소 : 서울특별시 노원구 동일로 174길 27'}</Text>
+          <Text>{'대표명 : 전엄지'}</Text>
+          <Text>{'대표번호(전화번호) : 070-7777-9272'}</Text>
+          <Text >{'통신판매업번호 : 제 2022-서울노원-1749 호'}</Text>
+        </Box>
         </Box>
     )
 }

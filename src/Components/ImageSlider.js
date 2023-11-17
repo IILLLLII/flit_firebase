@@ -9,7 +9,7 @@ import {
   AiFillRightCircle
 } from 'react-icons/ai'
 
-const ImageSlider = ({ images }) => {
+const ImageSlider = ({ images, ...props }) => {
 
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -43,18 +43,37 @@ const ImageSlider = ({ images }) => {
     // speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
+  };
+
+  const home = {
+    dots: false,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
   };
   return (
 <Center maxW={'container.sm'}>
-    <Box width={{md: '100%', base: '100vw'}} height={'100%'} maxW={'container.sm'}>
+    <Box width={{md: '100%', base: '100vw'}} height={'100%'} maxW={'container.sm'} p={2}>
+      {props.isHome ?
+       <Slider {...home}>
+          {images && images.map((value, index) => (
+            // <Text>{value}</Text>
+            <Image objectFit={'center'} src={value} alt={`image${index}`} borderRadius='lg' />
+          ))}
+        </Slider> :
         <Slider {...settings}>
           {images && images.map((value, index) => (
             // <Text>{value}</Text>
             <Image objectFit={'cover'} src={value} alt={`image${index}`} borderRadius='lg' />
           ))}
         </Slider>
+}
         {/* <HStack className="justify-content-center" style={{ margin: "40px 0" }}>
           {images && images.map(({ }, index) => (
             <img src={images[index]} style={{ width: "50px", height: "50px", margin: "5px" }} />
