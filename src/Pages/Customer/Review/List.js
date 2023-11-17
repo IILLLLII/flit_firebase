@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, ButtonGroup, Flex, HStack, Image, Stack, StackDivider, Text } from '@chakra-ui/react';
+import { Avatar, Box, Button, ButtonGroup, Flex, HStack, Image, Stack, StackDivider, Text, VStack } from '@chakra-ui/react';
 import React, { useCallback, useEffect, useState } from 'react'
 import MobileStatus from '../../../Components/MobileStatus';
 import { fontColor } from '../../../Style/Typograhy';
@@ -13,6 +13,8 @@ const ReviewList = () => {
   const [review, setReview] = useState({})
   const [, updateState] = useState();
   const forceUpdate = useCallback(() => updateState({}), []);
+
+  const isWrite = window.location.pathname.includes('post') ? true : false;
 
   useEffect(() => {
     getPossibleReviewList();
@@ -55,22 +57,23 @@ const ReviewList = () => {
               <Stack>
       <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
 
-        <MobileStatus title={'리뷰 관리'} isHome={true} />
+        <MobileStatus title={'리뷰'} isHome={true} />
       </Flex>
-      <Flex w='100%' bgColor={'white'} left={0} top={'49px'} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
+      {/* <Flex w='100%' bgColor={'white'} left={0} top={'49px'} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
       <HStack w='100%' justifyContent={'center'} borderBottom={'1px solid #d9d9d9'}>
           <Button border={'none'} w='25%' onClick={() => setTab(0)} variant={'unstyled'} color={tab == 0 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 0 ? `5px solid ${fontColor.primary}` : 'none'}>리뷰 작성</Button>
           <Button border={'none'} w='25%' onClick={() => setTab(1)} variant={'unstyled'} color={tab == 1 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 1 ? `5px solid ${fontColor.primary}` : 'none'}>작성한 리뷰</Button>
         </HStack>
-        </Flex>
+        </Flex> */}
       </Stack>
 
-      <Stack mt={'100px'} mb={'80px'} p={2}>
+      <Stack p={2} mt={'50px'} mb={'80px'} divider={<StackDivider />}>
 
-        {tab == 0 && productList?.map((value) => (
-          <HStack p={2}>
-            <Image src={value.thumbnail_image} boxSize={'120px'} />
-            <Stack w='100%' gap={0}>
+        {isWrite && productList?.map((value) => (
+          <HStack p={2} >
+            <Image w='20%' src={value.thumbnail_image} />
+            <HStack w='80%'>
+            <Stack w='70%' gap={0}>
               <Text fontWeight={'bold'}>{value?.product_name}</Text>
               <Text fontSize={'sm'} color={'gray.500'}>{value?.owner.name}</Text>
               <HStack>
@@ -78,15 +81,18 @@ const ReviewList = () => {
                 <Text>{value?.discount.set == "설정함" ? value?.discount.unit == "%" ? `${formattedAmount(value?.sales_price - value?.sales_price * 0.01 * value?.discount.value)}원` : `${formattedAmount(value?.sales_price - value?.discount.value)}원` : ""}</Text>
 
               </HStack>
-
-              <Button onClick={() => navigate('/customer/review/write', { state: value?.id })}>리뷰쓰기</Button>
             </Stack>
+            <VStack>
+              <Text color={'red.500'}>{value?.point.set == "설정함" ? value?.point.value !== 0 ? `${value?.point.value}${value?.point.unit} 적립` : "" : ""}</Text>
+            <Button colorScheme='red' onClick={() => navigate('/customer/review/write', { state: value?.id })}>리뷰쓰기</Button>
+            </VStack>
+            </HStack>
 
           </HStack>
         ))}
 
-
-        {tab == 1 &&
+          {/** 준비중 */}
+        {/* {!isWrite &&
           <Stack divider={<StackDivider borderColor={"#d9d9d9"} />}>
             {review?.review?.map((value, index) => (
               <Stack p={2}>
@@ -122,7 +128,7 @@ const ReviewList = () => {
             ))}
 
           </Stack>
-        }
+        } */}
       </Stack>
     </Flex>
   )

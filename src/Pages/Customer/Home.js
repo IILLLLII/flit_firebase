@@ -27,6 +27,7 @@ import { MdHome, MdLocationPin } from "react-icons/md";
 import MobileStatus from "../../Components/MobileStatus";
 import { FiGrid, FiHome, FiSearch, FiUser } from "react-icons/fi";
 import Footer from "../../Components/Footer";
+import CustomerNavBar from "../../Components/CustomerNavBar";
 
 
 const Home = () => {
@@ -179,7 +180,9 @@ const Home = () => {
                 </Box>
             </Box>
 
-            <Box position={'fixed'} bottom={0} right={0} zIndex={999} w='100%' h='8vh' bgColor={'white'} px={4}>
+            <CustomerNavBar/>
+
+            {/* <Box position={'fixed'} bottom={0} right={0} zIndex={999} w='100%' h='8vh' bgColor={'white'} px={4}>
                 <HStack alignItems={'center'} justifyContent={'space-between'} h={'100%'}>
                     <IconButton onClick={() => navigate('/customer')} variant={'unstyled'} size={'lg'} icon={<FiHome size={'40px'}/>}/>
                     <IconButton variant={'unstyled'} size={'lg'} icon={<FiSearch size={'40px'}/>}/>
@@ -187,7 +190,7 @@ const Home = () => {
                     <IconButton onClick={() => navigate('/customer/mypage')} variant={'unstyled'} size={'lg'} icon={<FiUser size={'40px'}/>}/>
                     <IconButton variant={'unstyled'} size={'lg'} icon={<FiGrid size={'40px'}/>}/>
                 </HStack>
-            </Box>
+            </Box> */}
         </Container>
     )
 }

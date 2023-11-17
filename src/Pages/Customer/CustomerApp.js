@@ -41,7 +41,8 @@ const CustomerApp = () => {
             <Route path='/customer/event' element={<Event/>} />
             <Route path='/customer/notice/view' element={<NoticeView/>} />
             <Route path='/customer/chat' element={<Chat/>} />
-            <Route path='/customer/review' element={<ReviewList/>} />
+            <Route path='/customer/review/post' element={<ReviewList/>} />
+            <Route path='/customer/review/list' element={<ReviewList/>} />
             <Route path='/customer/review/write' element={<ReviewWrite/>} />
             <Route path='/customer/purchase/complete' element={<PurchaseComplete/>} />
             <Route path='/customer/portfolio/view' element={<PortfolioView/>} />
