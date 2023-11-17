@@ -74,7 +74,7 @@ const Home = () => {
                     <Button borderRadius={'full'} variant={'outline'} borderColor={'gray.300'} w='100%' leftIcon={<MdLocationPin size={'20px'}/>} textAlign={'left'} justifyContent={'flex-start'}>
                         <Text color={'gray.500'}>위치를 설정해주세요</Text>
                         </Button>
-                    <IconButton variant={'unstyled'} onClick={() => navigate('/customer/notice')} icon={<BellIcon boxSize={'30px'}/>} />
+                    {/* <IconButton variant={'unstyled'} onClick={() => navigate('/customer/notice')} icon={<BellIcon boxSize={'30px'}/>} /> */}
                     <IconButton variant={'unstyled'} onClick={() => navigate('/customer/category')} icon={<HamburgerIcon boxSize={'30px'}/>} />
                 </HStack>
             </Box>
@@ -161,7 +161,7 @@ const Home = () => {
                     </Stack>
 
                 </Box>
-
+                <Button onClick={() => navigate('/customer/login')}>로그인</Button>
                 {/* <SimpleGrid columns={4} gap={2}>
                     <Button onClick={() => navigate('/customer/category')}>카테고리</Button>
                     <Button onClick={() => navigate('/customer/submit')}>회원가입</Button>
@@ -181,10 +181,10 @@ const Home = () => {
 
             <Box position={'fixed'} bottom={0} right={0} zIndex={999} w='100%' h='8vh' bgColor={'white'} px={4}>
                 <HStack alignItems={'center'} justifyContent={'space-between'} h={'100%'}>
-                    <IconButton variant={'unstyled'} size={'lg'} icon={<FiHome size={'40px'}/>}/>
+                    <IconButton onClick={() => navigate('/customer')} variant={'unstyled'} size={'lg'} icon={<FiHome size={'40px'}/>}/>
                     <IconButton variant={'unstyled'} size={'lg'} icon={<FiSearch size={'40px'}/>}/>
                     <IconButton variant={'unstyled'} size={'lg'} icon={<Image src={require('../../Asset/Logo.png')} boxSize={'40px'}/>}/>
-                    <IconButton variant={'unstyled'} size={'lg'} icon={<FiUser size={'40px'}/>}/>
+                    <IconButton onClick={() => navigate('/customer/mypage')} variant={'unstyled'} size={'lg'} icon={<FiUser size={'40px'}/>}/>
                     <IconButton variant={'unstyled'} size={'lg'} icon={<FiGrid size={'40px'}/>}/>
                 </HStack>
             </Box>

@@ -16,9 +16,11 @@ import Chat from "./Chat";
 import ReviewList from './Review/List'
 import ReviewWrite from "./Review/Write";
 import PurchaseComplete from "./PurchaseComplete";
-import Info from "./Info";
+import Info from "./MyPage/Info";
 import PortfolioView from "./Portfolio/PortfolioView";
 import Order from "./Order";
+import Main from "./MyPage/Main";
+import Setting from "./MyPage/Setting";
 
 const CustomerApp = () => {
     return (
@@ -44,6 +46,8 @@ const CustomerApp = () => {
             <Route path='/customer/purchase/complete' element={<PurchaseComplete/>} />
             <Route path='/customer/portfolio/view' element={<PortfolioView/>} />
             <Route path='/customer/order' element={<Order/>} />
+            <Route path='/customer/mypage' element={<Main/>} />
+            <Route path='/customer/setting' element={<Setting/>} />
           </Routes>
         </BrowserRouter>
         // </Container>

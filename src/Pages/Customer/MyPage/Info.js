@@ -1,6 +1,6 @@
 import { Avatar, Badge, Box, Button, Center, Flex, FormControl, FormLabel, HStack, Input, Stack, StackDivider, Text, VStack, useBoolean } from '@chakra-ui/react'
 import React from 'react'
-import MobileStatus from '../../Components/MobileStatus'
+import MobileStatus from '../../../Components/MobileStatus'
 import { QuestionIcon } from '@chakra-ui/icons'
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa'
 
@@ -72,8 +72,8 @@ function Info() {
                 </Box>
 
 
-                <Button variant={'unstyled'}>로그아웃</Button>
-                <Button variant={'unstyled'}>회원탈퇴</Button>
+                {/* <Button variant={'unstyled'}>로그아웃</Button>
+                <Button variant={'unstyled'}>회원탈퇴</Button> */}
 
             </Stack>
         </Flex>
