@@ -182,7 +182,7 @@ export default function AdminUser() {
       </Tr>
     </Thead>
     <Tbody>
-        {(menu ==='Customer') && customer.map((value, index) => (
+        {((menu ==='Customer') || (menu ==='Total User')) && customer.map((value, index) => (
             <Tr key={index}>
                 <Td>{value.grade}</Td>
                 <Td>{value.name}</Td>
@@ -194,7 +194,7 @@ export default function AdminUser() {
                 <Td>{getDate(value.date)}</Td>
             </Tr>
         ))}
-                {(menu ==='Store' || menu ==='Florist' ) && owner.map((value, index) => (
+                {(menu ==='Store' || menu ==='Florist' || (menu ==='Total User')) && owner.map((value, index) => (
             <Tr key={index}>
                 <Td>{value.grade}</Td>
                 <Td>{value.name}</Td>

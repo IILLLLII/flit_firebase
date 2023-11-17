@@ -239,7 +239,8 @@ export const getPlan = async (ownerId, date) => {
 }
 
 export const getNotice = async (filter) => {
-  const q = query(collection(db, 'Notice'), where('user', 'array-contains-any', filter.user))
+  // user 타입에 따라 분리 필요
+  const q = query(collection(db, 'Notice'))
 
   const querySnapshot = await getDocs(q);
   let result = []

@@ -66,7 +66,7 @@ const Purchase = () => {
             customerId: localStorage.getItem('customerToken'),
             ownerId: orderInfo.product[0].product.ownerId,
             order: {...orderInfo.order, 
-                state : '미점수',
+                state : '미접수',
                 orderName: `${orderInfo.product[0].product.product_name} ${orderInfo.product.length > 2 ? '외 ' + (orderInfo.product.length - 1) + '건' : ""}`
             }
         })
