@@ -34,10 +34,8 @@ const Category = () => {
     const navigate = useNavigate();
     return (
         <Flex bgColor={'white'} h={'100vh'} flexDirection={'column'}>
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={"카테고리"} />
-            </Flex>
-
+                
             <Stack direction={'row'} h={'100%'} mt={'42px'}>
                 <Stack direction={'column'} h={'100%'} w={'30%'} bgColor={'gray.600'} pt={'20px'}>
                     {CATEGORY.map((value, index) => (

@@ -22,10 +22,7 @@ function Order() {
 
   return (
     <Flex flexDirection={'column'} w="100%">
-    <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
         <MobileStatus title={"주문내역"} />
-
-    </Flex>
     <Flex mt={'50px'} w='100%'>
                 <Tabs w='100%' isFitted colorScheme='red'>
                     <TabList>

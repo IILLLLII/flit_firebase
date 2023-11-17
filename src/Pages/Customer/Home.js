@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { Avatar, Box, Button, Container, Flex, HStack, IconButton, Image, SimpleGrid, Stack, StackDivider, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Button, Center, Container, Flex, HStack, IconButton, Image, SimpleGrid, Stack, StackDivider, Text, VStack } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { BellIcon, HamburgerIcon, SearchIcon } from "@chakra-ui/icons";
 import ImageSlider from "../../Components/ImageSlider";
@@ -70,15 +70,17 @@ const Home = () => {
 
     return (
         <Container maxW={'100vw'} overflowX={'hidden'} h={'100%'} overflowY={'scroll'} className="scroll">
-            <Box position={'fixed'} top={0} right={0} zIndex={999} w='100%' h='55px' bgColor={'white'}>
-            <HStack p={2}>
+                    <Center position={'fixed'} w='100%' top={0} left={0} zIndex={999}>
+        <Flex w='100%' maxW={'container.sm'} bgColor={'white'} justifyContent={'space-between'} alignItems={'center'} px={4} py={1}>
+            <HStack w='100%' px={2} py={2}>
                     <Button borderRadius={'full'} variant={'outline'} borderColor={'gray.300'} w='100%' leftIcon={<MdLocationPin size={'20px'}/>} textAlign={'left'} justifyContent={'flex-start'}>
                         <Text color={'gray.500'}>위치를 설정해주세요</Text>
                         </Button>
                     {/* <IconButton variant={'unstyled'} onClick={() => navigate('/customer/notice')} icon={<BellIcon boxSize={'30px'}/>} /> */}
                     <IconButton variant={'unstyled'} onClick={() => navigate('/customer/category')} icon={<HamburgerIcon boxSize={'30px'}/>} />
                 </HStack>
-            </Box>
+                </Flex>
+                </Center>
             <Box p={2} mb={'8vh'} mt='50px'>
                 <ImageSlider images={[Banner6, Banner1, Banner2, Banner3, Banner4, Banner5]} isHome={true} />
                 <HStack justifyContent={'space-between'}>
@@ -114,7 +116,7 @@ const Home = () => {
 
                             <Flex overflowX='auto' className="scroll" mx={-4} my={-2}>
                                 {adList.map(({ product }, index) => (
-                                    <Box w='40vw' flexShrink="0" mr={1}>
+                                    <Box w='40%' flexShrink="0" mr={1}>
                                         <ProductItem data={product} />
                                     </Box>
                                 ))}
@@ -135,7 +137,7 @@ const Home = () => {
                             <Flex overflowX='auto' className="scroll" mx={-4} my={-2}>
                                 {adList.map(({ product }, index) => (
 
-                                    <Box border={'1px solid #f1f1f1'} mr={4} mb={4} rounded={'lg'} bgColor={'white'} p={4} boxShadow={'lg'} w='80vw' flexShrink="0">
+                                    <Box border={'1px solid #f1f1f1'} mr={4} mb={4} rounded={'lg'} bgColor={'white'} p={4} boxShadow={'lg'} w='80%' flexShrink="0">
                                         <ProductHorizontal data={product} />
                                     </Box>
                                 ))}
@@ -145,13 +147,13 @@ const Home = () => {
 
                 </Box>
 
-                <Box mt={4} display={'block'}>
+                <Box mt={4} mb={4} display={'block'}>
                     <Stack direction={'column'} divider={<StackDivider borderColor={"#d9d9d9"} />}>
                         <Box>
                             <Text {...Title_lg}>우리동네 BEST</Text>
                             <Flex overflowX='auto' className="scroll" mx={-4} my={2}>
                             {ownerList.map((value, index) => (
-                                    <VStack w='40vw' flexShrink="0" mr={1}>
+                                    <VStack w='40%' flexShrink="0" mr={1}>
                                         <Avatar size={'2xl'} src={value.profileImage} alt={value.name} />
                                         <Text>{value.name}</Text>
                                         <Button variant={'outline'} size={'xs'}>팔로우</Button>
@@ -162,7 +164,7 @@ const Home = () => {
                     </Stack>
 
                 </Box>
-                <Button onClick={() => navigate('/customer/login')}>로그인</Button>
+                {/* <Button onClick={() => navigate('/customer/login')}>로그인</Button> */}
                 {/* <SimpleGrid columns={4} gap={2}>
                     <Button onClick={() => navigate('/customer/category')}>카테고리</Button>
                     <Button onClick={() => navigate('/customer/submit')}>회원가입</Button>

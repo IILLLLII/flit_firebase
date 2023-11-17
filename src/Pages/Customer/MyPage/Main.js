@@ -26,9 +26,7 @@ function Main() {
     }
     return (
         <Flex bgColor={'white'} flexDirection={'column'} w="100%" mb={'8vh'}>
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={'My Page'} isHome={true} />
-            </Flex>
             <Stack mt={'50px'} p={4} gap={4} divider={<StackDivider />}>
                 <Center>
                     <Stack w='100%' gap={4}>

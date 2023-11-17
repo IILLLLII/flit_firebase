@@ -18,9 +18,7 @@ const Notice = () => {
     }
     return (
         <Flex bgColor={'white'} h={'100vh'} flexDirection={'column'}>
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={"공지사항"} />
-            </Flex>
 
             <Stack mt={'50px'}>
                 {noticeList.map((value, index) => (

@@ -21,10 +21,11 @@ import PortfolioView from "./Portfolio/PortfolioView";
 import Order from "./Order";
 import Main from "./MyPage/Main";
 import Setting from "./MyPage/Setting";
+import { Container } from "@chakra-ui/react";
 
 const CustomerApp = () => {
     return (
-        // <Container maxW={'container.sm'} bgColor={'gray.200'} h={'100%'}>
+        <Container maxW={'container.sm'} minH={'100vh'} h={'100%'}>
                 <BrowserRouter>
           <Routes>
             <Route path='/customer' element={<Home />} />
@@ -51,7 +52,7 @@ const CustomerApp = () => {
             <Route path='/customer/setting' element={<Setting/>} />
           </Routes>
         </BrowserRouter>
-        // </Container>
+         </Container>
     )
 }
 export default CustomerApp;

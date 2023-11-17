@@ -96,9 +96,7 @@ const Purchase = () => {
 
     return (
         <Flex bgColor={'white'} flexDirection={'column'} w="100%">
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={`주문하기`} isHome={true} />
-            </Flex>
 
             <Stack mt={'50px'} mb={'80px'}>
                 {localStorage.getItem('Cart') === "픽업" &&

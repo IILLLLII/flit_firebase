@@ -9,9 +9,7 @@ function Setting() {
     const [modalId, setModalId] = useState(-1)
   return (
     <Flex bgColor={'white'} flexDirection={'column'} w="100%">
-    <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
         <MobileStatus title={'설정'} />
-    </Flex>
     <Stack pt={'70px'} bgColor={'gray.100'} gap={8}>
         <Stack spacing={0} divider={<StackDivider/>} borderTop={'1px solid #d9d9d9'} borderBottom={'1px solid #d9d9d9'}>
         <Text onClick={() => navigate('/customer/info')} p={4} bgColor={'white'}>계정 관리</Text>

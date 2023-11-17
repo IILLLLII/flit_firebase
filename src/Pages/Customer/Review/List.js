@@ -55,10 +55,8 @@ const ReviewList = () => {
   return (
     <Flex bgColor={'white'} flexDirection={'column'} w="100%">
               <Stack>
-      <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
 
         <MobileStatus title={'리뷰'} isHome={true} />
-      </Flex>
       {/* <Flex w='100%' bgColor={'white'} left={0} top={'49px'} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
       <HStack w='100%' justifyContent={'center'} borderBottom={'1px solid #d9d9d9'}>
           <Button border={'none'} w='25%' onClick={() => setTab(0)} variant={'unstyled'} color={tab == 0 ? `${fontColor.primary}` : 'black'} borderRadius={0} borderBottom={tab == 0 ? `5px solid ${fontColor.primary}` : 'none'}>리뷰 작성</Button>

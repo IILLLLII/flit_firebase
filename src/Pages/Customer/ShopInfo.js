@@ -93,9 +93,7 @@ const ShopInfo = () => {
     return (
         <Stack>
                     <Flex bgColor={'white'} flexDirection={'column'} w="100%">
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={"상점정보"} />
-            </Flex>
             <Flex maxW={'container.sm'} w='100%' justifyContent={'center'}>
 
                 <Flex mt={'50px'} display={'block'} bgColor={'white'}>

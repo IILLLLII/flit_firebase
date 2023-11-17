@@ -96,9 +96,7 @@ const Cart = () => {
 
     return (
         <Flex bgColor={'white'} flexDirection={'column'} w="100%">
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={`${localStorage.getItem('Cart') ? localStorage.getItem('Cart') : ''} 장바구니`} isHome={true} />
-            </Flex>
 
             <Stack mt={'50px'} mb={'80px'} p={2}>
                 <HStack mb={2} justifyContent={'space-between'}>

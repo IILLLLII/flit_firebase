@@ -9,10 +9,7 @@ function Info() {
     const [sms, setSms] = useBoolean(true);
     return (
         <Flex flexDirection={'column'} w="100%">
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={"내 정보 수정"} />
-
-            </Flex>
 
             <Stack mt='70px' divider={<StackDivider />}>
                 <Center>

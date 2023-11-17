@@ -109,9 +109,7 @@ const ReviewWrite = () => {
 
     return (
         <Flex bgColor={'white'} flexDirection={'column'} w="100%">
-            <Flex w='100%' left={0} position="fixed" zIndex={999} borderBottom={'1px solid #d9d9d9'}>
                 <MobileStatus title={'리뷰 작성'} />
-            </Flex>
 
             <Stack mt={'50px'} mb={'80px'} p={2}>
                 <HStack p={2} borderBottom={'1px solid #d9d9d9'}>
